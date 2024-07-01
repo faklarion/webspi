@@ -53,7 +53,19 @@ class Interior_c extends CI_Controller{
             'idBarang'  => $idBarang,
         );
 
-        $this->load->view('interior/detail_c.php', $data);
+        $hasil = $this->Interior_model->get_all_barang_by_id($id);
+
+        foreach($hasil as $row) {
+            $idSatuan = $row->id_satuan;
+        }
+
+        if($idSatuan == 1) {
+            $this->load->view('interior/detail_c.php', $data);
+        } elseif($idSatuan == 2) {
+            $this->load->view('interior/detail_m2_c.php', $data);
+        } elseif(($idSatuan == 3) || ($idSatuan == 4)) {
+            $this->load->view('interior/detail_unit_c.php', $data);
+        }
     }
 
     public function detail_c()
@@ -85,6 +97,64 @@ class Interior_c extends CI_Controller{
         );
 
         $this->load->view('interior/detail_hasil_c.php', $data);
+    }
+
+    public function detail_c_m2()
+    {
+        $panjang        = $this->input->get('panjang');
+        $lebar          = $this->input->get('lebar');
+        
+        $idBarang       = $this->input->get('id_barang');
+
+        $result = $this->Interior_model->get_all_kategori_by_barang($idBarang);
+
+        if($result) {
+            $idKategori = $result->id_kategori;
+            $namaKategori = $result->nama_kategori;
+            $namaBarang = $result->nama_barang;
+            $idBarang = $result->id_barang;
+        }
+
+        $data = array(
+            'detail_barang' => $this->Interior_model->get_all_barang_by_id($idBarang),
+            'panjang'       => $panjang,
+            'lebar'         => $lebar,
+            'id_barang'     => $idBarang,
+            'idBarang'     => $idBarang,
+            'idKategori'    => $idKategori,
+            'namaKategori'  => $namaKategori,
+            'namaBarang'  => $namaBarang,
+        );
+
+        $this->load->view('interior/detail_hasil_m2_c.php', $data);
+    }
+
+    public function detail_c_unit()
+    {
+        $unit        = $this->input->get('unit');
+        
+        $idBarang       = $this->input->get('id_barang');
+
+        $result = $this->Interior_model->get_all_kategori_by_barang($idBarang);
+
+        if($result) {
+            $idKategori = $result->id_kategori;
+            $namaKategori = $result->nama_kategori;
+            $namaBarang = $result->nama_barang;
+            $idBarang = $result->id_barang;
+        }
+
+        $data = array(
+            'detail_barang' => $this->Interior_model->get_all_barang_by_id($idBarang),
+            'unit'         => $unit,
+            'id_barang'     => $idBarang,
+            'idBarang'     => $idBarang,
+            'idKategori'    => $idKategori,
+            'namaKategori'  => $namaKategori,
+            'namaBarang'  => $namaBarang,
+        );
+
+        $this->load->view('interior/detail_hasil_unit_c.php', $data);
     }
 
 }

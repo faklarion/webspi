@@ -22,7 +22,7 @@
             <tr>
                 <th class="text-center" scope="col">No</th>
                 <th class="text-center" scope="col">Nama Barang</th>
-                <!-- <th class="text-center" scope="col">Harga Grade A</th> -->
+                <th class="text-center" scope="col">Satuan</th>
                 <th class="text-center" scope="col">Action</th>
             </tr>
         </thead>
@@ -33,7 +33,7 @@
                 <tr>
                     <td class="text-center"><?= $no++ ?></td>
                     <td><?= $row->nama_barang ?></td>
-                    <!-- <td><?= rupiah($row->harga_a) ?></td> -->
+                    <td><?= ($row->nama_satuan) ?>
                     <td class="text-center" width="20%">
                         <a href="<?= site_url('/interior_b/detail_barang/' . $row->id_barang . '') ?>">
                             <button type="button" class="btn btn-info">Cek Harga</button>
