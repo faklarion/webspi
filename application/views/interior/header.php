@@ -30,6 +30,20 @@
         width: 100%;
     }
 
+    body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+    .footer {
+        margin-top: auto;
+        background-color: #909090;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
     .radio-button label {
         display: inline-block;
         background-color: #fff;

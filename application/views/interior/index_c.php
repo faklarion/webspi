@@ -26,7 +26,7 @@
             <b><a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
                     href="https://manggadigital.my.id/">Halaman Utama </a></b>
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('interior_c') ?>"> Interior Paket Murah</a></b>
+                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('interior') ?>"> Interior Paket Murah</a></b>
         </div>
         <!-- <div class="custom-search my-3">
                 <input type="text" class="custom-search-input" placeholder="Cari tipe hp kamu...">
@@ -34,14 +34,14 @@
         </div> -->
         </div>
         <div class="container my-3">
-            <div class="row">
+            <div class="row justify-content-center">
                 <?php foreach ($data_kategori as $row): ?>
-                    <div class="col-6">
+                    <div class="col-3 p-1">
                         <a href="<?= site_url('/interior_c/gradea/' . $row->id_kategori . '') ?>">
                             <div class="card text-alignment class"
-                                style="background-color: #f0f0f0; border-radius: 12px; height:150px;">
+                                style="background-color: #f0f0f0; border-radius: 12px; height:100px;">
                                 <div class="card-body align-items-center d-flex justify-content-center">
-                                    <h4 class="text-center" style="color: black;"><?php echo $row->nama_kategori ?></h4>
+                                    <span class="text-center" style="color: black;"><?php echo $row->nama_kategori ?></span>
                                 </div>
                             </div>
                         </a>
