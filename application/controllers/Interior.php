@@ -17,8 +17,17 @@ class Interior extends CI_Controller{
 
     public function gradea($id)
     {
+        $result = $this->Interior_model->get_all_kategori_by_id($id);
+
+        if($result) {
+            $idKategori = $result->id_kategori;
+            $namaKategori = $result->nama_kategori;
+        }
+
         $data = array(
-            'barang'      => $this->Interior_model->get_all_barang_by_kategori($id),
+            'barang'        => $this->Interior_model->get_all_barang_by_kategori($id),
+            'idKategori'    => $idKategori,
+            'namaKategori'  => $namaKategori,
         );
 
         $this->load->view('interior/barang.php', $data);
@@ -26,8 +35,22 @@ class Interior extends CI_Controller{
 
     public function detail_barang($id)
     {
+
+        $result = $this->Interior_model->get_all_kategori_by_barang($id);
+
+        if($result) {
+            $idKategori = $result->id_kategori;
+            $namaKategori = $result->nama_kategori;
+            $namaBarang = $result->nama_barang;
+            $idBarang = $result->id_barang;
+        }
+
         $data = array(
             'detail_barang'      => $this->Interior_model->get_all_barang_by_id($id),
+            'idKategori'    => $idKategori,
+            'namaKategori'  => $namaKategori,
+            'namaBarang'  => $namaBarang,
+            'idBarang'  => $idBarang,
         );
 
         $this->load->view('interior/detail.php', $data);
@@ -40,12 +63,25 @@ class Interior extends CI_Controller{
         $tinggi         = $this->input->get('tinggi');
         $idBarang       = $this->input->get('id_barang');
 
+        $result = $this->Interior_model->get_all_kategori_by_barang($idBarang);
+
+        if($result) {
+            $idKategori = $result->id_kategori;
+            $namaKategori = $result->nama_kategori;
+            $namaBarang = $result->nama_barang;
+            $idBarang = $result->id_barang;
+        }
+
         $data = array(
             'detail_barang' => $this->Interior_model->get_all_barang_by_id($idBarang),
             'panjang'       => $panjang,
             'lebar'         => $lebar,
             'tinggi'        => $tinggi,
             'id_barang'     => $idBarang,
+            'idBarang'     => $idBarang,
+            'idKategori'    => $idKategori,
+            'namaKategori'  => $namaKategori,
+            'namaBarang'  => $namaBarang,
         );
 
         $this->load->view('interior/detail_hasil.php', $data);

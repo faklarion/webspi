@@ -20,8 +20,14 @@ class Interior_model extends CI_Model
         return $this->db->get('tbl_kategori')->result();
     }
 
-    function get_all_barang_by_kategori($id) {
+    function get_all_kategori_by_id($id) {
         $this->db->where('id_kategori', $id);
+        return $this->db->get('tbl_kategori')->row();
+    }
+
+    function get_all_barang_by_kategori($id) {
+        $this->db->join('tbl_kategori', 'tbl_barang.id_kategori = tbl_kategori.id_kategori');
+        $this->db->where('tbl_barang.id_kategori', $id);
         $this->db->order_by('id_barang', 'ASC');
         return $this->db->get('tbl_barang')->result();
     }
@@ -29,6 +35,13 @@ class Interior_model extends CI_Model
     function get_all_barang_by_id($id) {
         $this->db->where('id_barang', $id);
         return $this->db->get('tbl_barang')->result();
+    }
+
+    function get_all_kategori_by_barang($id) {
+        $this->db->join('tbl_kategori', 'tbl_barang.id_kategori = tbl_kategori.id_kategori');
+        $this->db->where('tbl_barang.id_barang', $id);
+        $this->db->order_by('id_barang', 'ASC');
+        return $this->db->get('tbl_barang')->row();
     }
 
   

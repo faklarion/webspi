@@ -60,6 +60,17 @@ function is_login(){
     }
 }
 
+function custom_round($number) {
+    // Membulatkan angka ke 0.5 terdekat
+    $half = round($number * 2) / 2;
+    
+    // Jika angka lebih besar dari angka yang sudah dibulatkan, tambahkan 0.5
+    if ($number > $half) {
+        $half += 0.5;
+    }
+    
+    return $half;
+}
 
 function rupiah ($angka) {
     $hasil = 'Rp ' . number_format($angka, 0, ",", ".");
