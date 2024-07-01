@@ -18,6 +18,13 @@
 					<tr>
 						<td width='200'>Nama Barang <?php echo form_error('nama_barang') ?></td><td><input type="text" class="form-control" name="nama_barang" id="nama_barang" placeholder="Nama Barang" value="<?php echo $nama_barang; ?>" /></td>
 					</tr>
+
+					<tr>
+						<td width='200'>Satuan</td>
+						<td>
+							<?php echo cmb_dinamis('id_satuan', 'tbl_satuan', 'nama_satuan', 'id_satuan', $id_satuan)?>
+						</td>
+					</tr>
 	
 					<tr>
 						<td width='200'>Harga Grade A <?php echo form_error('harga_a') ?></td><td><input type="number" class="form-control" name="harga_a" id="harga_a" placeholder="Harga A" value="<?php echo $harga_a; ?>" /></td>

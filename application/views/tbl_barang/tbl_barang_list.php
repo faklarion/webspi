@@ -34,6 +34,7 @@
                                         <th>No</th>
                                         <th>Kategori</th>
                                         <th>Nama Barang</th>
+                                        <th>Satuan</th>
                                         <th>Harga Grade A</th>
                                         <th>Harga Grade B</th>
                                         <th>Harga Paket Murah</th>
@@ -46,6 +47,7 @@
                                             <td width="10px"><?php echo ++$start ?></td>
                                             <td><?php echo $tbl_barang->nama_kategori ?></td>
                                             <td><?php echo $tbl_barang->nama_barang ?></td>
+                                            <td><?php echo $tbl_barang->nama_satuan ?></td>
                                             <td><?php echo rupiah($tbl_barang->harga_a) ?></td>
                                             <td><?php echo rupiah($tbl_barang->harga_b) ?></td>
                                             <td><?php echo rupiah($tbl_barang->harga_c) ?></td>

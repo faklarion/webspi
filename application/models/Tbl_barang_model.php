@@ -18,7 +18,8 @@ class Tbl_barang_model extends CI_Model
     // get all
     function get_all()
     {
-        $this->db->join('tbl_kategori', 'tbl_kategori.id_kategori = tbl_barang.id_kategori');
+        $this->db->join('tbl_satuan', 'tbl_satuan.id_satuan = tbl_barang.id_satuan', 'LEFT');
+        $this->db->join('tbl_kategori', 'tbl_kategori.id_kategori = tbl_barang.id_kategori', 'LEFT');
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }

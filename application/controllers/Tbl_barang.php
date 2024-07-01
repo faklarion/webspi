@@ -69,12 +69,13 @@ class Tbl_barang extends CI_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('tbl_barang/create_action'),
-	    'id_barang' => set_value('id_barang'),
-	    'id_kategori' => set_value('id_kategori'),
-	    'nama_barang' => set_value('nama_barang'),
-	    'harga_a' => set_value('harga_a'),
-	    'harga_b' => set_value('harga_b'),
-	    'harga_c' => set_value('harga_c'),
+            'id_barang' => set_value('id_barang'),
+            'id_satuan' => set_value('id_satuan'),
+            'id_kategori' => set_value('id_kategori'),
+            'nama_barang' => set_value('nama_barang'),
+            'harga_a' => set_value('harga_a'),
+            'harga_b' => set_value('harga_b'),
+            'harga_c' => set_value('harga_c'),
 	);
         $this->template->load('template','tbl_barang/tbl_barang_form', $data);
     }
@@ -92,6 +93,7 @@ class Tbl_barang extends CI_Controller
 		'harga_a' => $this->input->post('harga_a',TRUE),
 		'harga_b' => $this->input->post('harga_b',TRUE),
 		'harga_c' => $this->input->post('harga_c',TRUE),
+        'id_satuan' => $this->input->post('id_satuan',TRUE),
 	    );
 
             $this->Tbl_barang_model->insert($data);
@@ -108,12 +110,13 @@ class Tbl_barang extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('tbl_barang/update_action'),
-		'id_barang' => set_value('id_barang', $row->id_barang),
-		'id_kategori' => set_value('id_kategori', $row->id_kategori),
-		'nama_barang' => set_value('nama_barang', $row->nama_barang),
-		'harga_a' => set_value('harga_a', $row->harga_a),
-		'harga_b' => set_value('harga_b', $row->harga_b),
-		'harga_c' => set_value('harga_c', $row->harga_c),
+                'id_barang' => set_value('id_barang', $row->id_barang),
+                'id_kategori' => set_value('id_kategori', $row->id_kategori),
+                'nama_barang' => set_value('nama_barang', $row->nama_barang),
+                'harga_a' => set_value('harga_a', $row->harga_a),
+                'harga_b' => set_value('harga_b', $row->harga_b),
+                'harga_c' => set_value('harga_c', $row->harga_c),
+                'id_satuan' => set_value('id_satuan', $row->id_satuan),
 	    );
             $this->template->load('template','tbl_barang/tbl_barang_form', $data);
         } else {
@@ -134,6 +137,7 @@ class Tbl_barang extends CI_Controller
 		'nama_barang' => $this->input->post('nama_barang',TRUE),
 		'harga_a' => $this->input->post('harga_a',TRUE),
 		'harga_b' => $this->input->post('harga_b',TRUE),
+        'id_satuan' => $this->input->post('id_satuan',TRUE),
 		'harga_c' => $this->input->post('harga_c',TRUE),
 	    );
 
