@@ -18,9 +18,9 @@
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
                 <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/murah/') ?>"> Murah</a></b>
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/ukuran_murah?tipe_rumah='.$tipe.'') ?>"> <?php echo $tipe ?></a></b>
+                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/ukuran_murah?tipe_rumah='.$idTipe.'') ?>"> <?php echo $tipe ?></a></b>
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/kamar_murah?ukuran_rumah='.$ukuran.'&tipe_rumah='.$tipe.'') ?>"> <?php echo $ukuran ?> (m2)</a></b>
+                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/kamar_murah?ukuran_rumah='.$ukuran.'&tipe_rumah='.$idTipe.'') ?>"> <?php echo $ukuran ?> (m2)</a></b>
             </b>
         </div>
         <!-- <div class="custom-search my-3">
@@ -35,7 +35,7 @@
                             <div class="radio-button mb-3" id="inputUkuran">
                                 <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah Kamar</small></p>
                                 <input type="hidden" id="ukuran_rumah" class="form-control" name="ukuran_rumah" placeholder="Masukkan Ukuran" value="<?php echo $ukuran ?>">
-                                <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah" value="<?php echo $tipe ?>">
+                                <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah" value="<?php echo $idTipe ?>">
                                 <input type="radio" id="kamar1" name="jumlah_kamar" value="1" required>
                                 <label for="kamar1">1</label>
                                 <input type="radio" id="kamar2" name="jumlah_kamar" value="2" required>

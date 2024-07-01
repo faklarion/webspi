@@ -1,19 +1,41 @@
 <?php
 class Homerumah extends CI_Controller{
 
+
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Tbl_mewah_model');
+        $this->load->model('Tbl_murah_model');
+        $this->load->model('Tbl_bagus_model');
+    }
+
     function index(){
         $this->load->view('homerumah/index');
     }
 
     function mewah(){
-        $this->load->view('homerumah/mewah');
+        $data = array(
+            'data_tipe'              => $this->Tbl_mewah_model->get_all(),
+        );
+        $this->load->view('homerumah/mewah', $data);
     }
 
     function ukuran_mewah() {
+
+        
         $tipe   = $this->input->get('tipe_rumah');
 
+        $result = $this->Tbl_mewah_model->get_by_id($tipe);
+
+        if($result) {
+            $namaTipe   = $result->tipe;
+            $idTipe     = $result->id_mewah;
+        }
+
         $data = array(
-            'tipe'              => $tipe,
+            'tipe'              => $namaTipe,
+            'idTipe'              => $idTipe,
         );
 
         $this->load->view('homerumah/ukuran_mewah', $data);
@@ -23,10 +45,18 @@ class Homerumah extends CI_Controller{
     function kamar_mewah() {
         
         $tipe   = $this->input->get('tipe_rumah');
+
+        $result = $this->Tbl_mewah_model->get_by_id($tipe);
+
+        if($result) {
+            $namaTipe   = $result->tipe;
+            $idTipe     = $result->id_mewah;
+        }
         $ukuran = $this->input->get('ukuran_rumah');
 
         $data = array(
-            'tipe'              => $tipe,
+            'tipe'              => $namaTipe,
+            'idTipe'            => $idTipe,
             'ukuran'            => $ukuran,
         );
 
@@ -41,18 +71,18 @@ class Homerumah extends CI_Controller{
         $kamar  = $this->input->get('jumlah_kamar');
         $wc     = $this->input->get('jumlah_wc');
 
-        if($tipe == 'Classic') {
-            $tipeRmh = 6000000;
-        } elseif(($tipe == 'Skandinavian')) {
-            $tipeRmh = 5000000;
-        } elseif (($tipe == 'Minimalist')) {
-            $tipeRmh = 5000000;
+        $result = $this->Tbl_mewah_model->get_by_id($tipe);
+
+        if($result) {
+            $tipeRmh    = $result->harga;
+            $namaTipe   = $result->tipe;
         }
 
         $harga = $tipeRmh * $ukuran;
 
         $data = array(
             'harga'             => $harga,
+            'namaTipe'          => $namaTipe,
             'tipe'              => $tipe,
             'kamar'             => $kamar,
             'wc'                => $wc,
@@ -62,14 +92,27 @@ class Homerumah extends CI_Controller{
     }
 
     function bagus(){
-        $this->load->view('homerumah/bagus');
+        $data = array(
+            'data_tipe'              => $this->Tbl_bagus_model->get_all(),
+        );
+        $this->load->view('homerumah/bagus', $data);
     }
 
     function ukuran_bagus() {
+
+        
         $tipe   = $this->input->get('tipe_rumah');
 
+        $result = $this->Tbl_bagus_model->get_by_id($tipe);
+
+        if($result) {
+            $namaTipe   = $result->tipe;
+            $idTipe     = $result->id_bagus;
+        }
+
         $data = array(
-            'tipe'              => $tipe,
+            'tipe'              => $namaTipe,
+            'idTipe'              => $idTipe,
         );
 
         $this->load->view('homerumah/ukuran_bagus', $data);
@@ -79,10 +122,18 @@ class Homerumah extends CI_Controller{
     function kamar_bagus() {
         
         $tipe   = $this->input->get('tipe_rumah');
+
+        $result = $this->Tbl_bagus_model->get_by_id($tipe);
+
+        if($result) {
+            $namaTipe   = $result->tipe;
+            $idTipe     = $result->id_bagus;
+        }
         $ukuran = $this->input->get('ukuran_rumah');
 
         $data = array(
-            'tipe'              => $tipe,
+            'tipe'              => $namaTipe,
+            'idTipe'            => $idTipe,
             'ukuran'            => $ukuran,
         );
 
@@ -97,18 +148,18 @@ class Homerumah extends CI_Controller{
         $kamar  = $this->input->get('jumlah_kamar');
         $wc     = $this->input->get('jumlah_wc');
 
-        if($tipe == 'Classic') {
-            $tipeRmh = 5000000;
-        } elseif(($tipe == 'Skandinavian')) {
-            $tipeRmh = 4000000;
-        } elseif (($tipe == 'Minimalist')) {
-            $tipeRmh = 4000000;
+        $result = $this->Tbl_bagus_model->get_by_id($tipe);
+
+        if($result) {
+            $tipeRmh    = $result->harga;
+            $namaTipe   = $result->tipe;
         }
 
         $harga = $tipeRmh * $ukuran;
 
         $data = array(
             'harga'             => $harga,
+            'namaTipe'          => $namaTipe,
             'tipe'              => $tipe,
             'kamar'             => $kamar,
             'wc'                => $wc,
@@ -118,14 +169,27 @@ class Homerumah extends CI_Controller{
     }
 
     function murah(){
-        $this->load->view('homerumah/murah');
+        $data = array(
+            'data_tipe'              => $this->Tbl_murah_model->get_all(),
+        );
+        $this->load->view('homerumah/murah', $data);
     }
 
     function ukuran_murah() {
+
+        
         $tipe   = $this->input->get('tipe_rumah');
 
+        $result = $this->Tbl_murah_model->get_by_id($tipe);
+
+        if($result) {
+            $namaTipe   = $result->tipe;
+            $idTipe     = $result->id_murah;
+        }
+
         $data = array(
-            'tipe'              => $tipe,
+            'tipe'              => $namaTipe,
+            'idTipe'              => $idTipe,
         );
 
         $this->load->view('homerumah/ukuran_murah', $data);
@@ -135,17 +199,24 @@ class Homerumah extends CI_Controller{
     function kamar_murah() {
         
         $tipe   = $this->input->get('tipe_rumah');
+
+        $result = $this->Tbl_murah_model->get_by_id($tipe);
+
+        if($result) {
+            $namaTipe   = $result->tipe;
+            $idTipe     = $result->id_murah;
+        }
         $ukuran = $this->input->get('ukuran_rumah');
 
         $data = array(
-            'tipe'              => $tipe,
+            'tipe'              => $namaTipe,
+            'idTipe'            => $idTipe,
             'ukuran'            => $ukuran,
         );
 
         $this->load->view('homerumah/kamar_murah', $data);
 
     }
-
 
     function detail_harga_murah(){
 
@@ -154,18 +225,18 @@ class Homerumah extends CI_Controller{
         $kamar  = $this->input->get('jumlah_kamar');
         $wc     = $this->input->get('jumlah_wc');
 
-        if($tipe == 'Classic') {
-            $tipeRmh = 3500000;
-        } elseif(($tipe == 'Skandinavian')) {
-            $tipeRmh = 3000000;
-        } elseif (($tipe == 'Minimalist')) {
-            $tipeRmh = 2800000;
+        $result = $this->Tbl_murah_model->get_by_id($tipe);
+
+        if($result) {
+            $tipeRmh    = $result->harga;
+            $namaTipe   = $result->tipe;
         }
 
         $harga = $tipeRmh * $ukuran;
 
         $data = array(
             'harga'             => $harga,
+            'namaTipe'          => $namaTipe,
             'tipe'              => $tipe,
             'kamar'             => $kamar,
             'wc'                => $wc,

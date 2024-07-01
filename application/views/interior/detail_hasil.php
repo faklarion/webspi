@@ -70,6 +70,7 @@
         <h2 style="font-family: Arial, Helvetica, sans-serif;"><?php echo rupiah($harga); ?></h2>
         </div>
     </section>
+    <?php include 'footer.php'; ?>
 </body>
-<?php include 'footer.php'; ?>
+
 </html>

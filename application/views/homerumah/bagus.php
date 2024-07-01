@@ -14,7 +14,7 @@
 
         <div class="container" width="50%">
                 <b><a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
-                    href="https://manggadigital.my.id/index.php/siperindo/">Halaman Utama </a></b>
+                    href="https://manggadigital.my.id/">Halaman Utama </a></b>
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
                 <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/bagus/') ?>"> Bagus</a></b>
             </b>
@@ -30,12 +30,10 @@
                         <form action="<?php echo site_url('homerumah/ukuran_bagus') ?>" method="get" enctype="multipart/form-data" autocomplete="off">
                             <div class="radio-button mb-3">
                                 <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Tipe Rumah</small></p>
-                                <input type="radio" id="classic" name="tipe_rumah" value="Classic" required>
-                                <label for="classic">Classic</label>
-                                <input type="radio" id="skandinavian" name="tipe_rumah" value="Skandinavian" required>
-                                <label for="skandinavian">Skandinavian</label>
-                                <input type="radio" id="minimalist" name="tipe_rumah" value="Minimalist" required>
-                                <label for="minimalist">Minimalist</label>
+                                <?php foreach ($data_tipe as $row) : ?>
+                                <input type="radio" id="radio<?php echo $row->id_bagus?>" name="tipe_rumah" value="<?php echo $row->id_bagus?>" required>
+                                <label for="radio<?php echo $row->id_bagus?>"><?php echo $row->tipe?></label>
+                                <?php endforeach; ?>
                             </div>
                                 <button type="submit" id="btnSubmit" class="btn btn-warning" style="border-radius:10px; width: 300px;"><b
                                         style="font-family: Arial, Helvetica, sans-serif;">Lanjutkan</b></button>

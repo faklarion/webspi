@@ -27,7 +27,7 @@
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
                 <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/bagus/') ?>"> Bagus</a></b>
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/ukuran_bagus?tipe_rumah='.$tipe.'') ?>"> <?php echo $tipe ?></a></b>
+                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/ukuran_bagus?tipe_rumah='.$tipe.'') ?>"> <?php echo $namaTipe ?></a></b>
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
                 <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/kamar_bagus?ukuran_rumah='.$ukuran.'&tipe_rumah='.$tipe.'') ?>"> <?php echo $ukuran ?> (m2)</a></b>
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
@@ -47,7 +47,7 @@
                             <tr>
                                 <td>Tipe</td>
                                 <td width="20px" class="text-center">:</td>
-                                <td><?php echo $tipe ?></td>
+                                <td><?php echo $namaTipe ?></td>
                             </tr>
                             <tr>
                                 <td>Ukuran</td>

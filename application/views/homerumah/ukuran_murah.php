@@ -18,7 +18,7 @@
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
                 <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/murah/') ?>"> Murah</a></b>
                 <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/ukuran_murah?tipe_rumah='.$tipe.'') ?>"> <?php echo $tipe ?></a></b>
+                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/ukuran_murah?tipe_rumah='.$idTipe.'') ?>"> <?php echo $tipe ?></a></b>
             </b>
         </div>
         <!-- <div class="custom-search my-3">
@@ -33,7 +33,7 @@
                             <div class="radio-button mb-3" id="inputUkuran">
                                 <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Ukuran Rumah (m2)</small></p>
                                 <input type="number" id="ukuran_rumah" class="form-control" name="ukuran_rumah" placeholder="Masukkan Ukuran" required>
-                                <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah" value="<?php echo $tipe ?>">
+                                <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah" value="<?php echo $idTipe ?>">
                             </div>
                                 <button type="submit" id="btnSubmit" class="btn btn-warning" style="border-radius:10px; width: 300px;"><b
                                         style="font-family: Arial, Helvetica, sans-serif;">Lanjutkan</b></button>
