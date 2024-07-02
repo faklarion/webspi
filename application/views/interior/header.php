@@ -31,10 +31,10 @@
     }
 
     body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
 
     .footer {
         margin-top: auto;
@@ -42,6 +42,71 @@
         color: white;
         text-align: center;
         padding: 20px;
+    }
+
+    /* Kontainer carousel untuk menghindari pemotongan efek hover */
+    .carousel-inner {
+        overflow: visible;
+        padding: 20px;
+        /* Tambahkan padding untuk memberikan ruang ekstra */
+    }
+
+    /* Mengubah warna ikon navigasi menjadi hitam */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: black;
+    }
+
+    /* Menyesuaikan ukuran dan bentuk ikonnya jika diperlukan */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 30px;
+        height: 30px;
+        background-size: 100%, 100%;
+        border-radius: 50%;
+    }
+
+    /* Kustomisasi kartu */
+    .custom-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        max-width: 300px;
+        /* Atur lebar maksimum kartu */
+        margin: 0 auto;
+        /* Pusatkan kartu */
+    }
+
+    /* Efek hover pada kartu */
+    .custom-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Menyesuaikan tampilan teks di dalam kartu */
+    .custom-card .card-body span {
+        font-size: 1em;
+        font-weight: normal;
+        color: #333;
+    }
+
+    /* Menambah padding pada kartu */
+    .custom-card .card-body {
+        padding: 30px;
+    }
+
+    /* Media queries untuk tampilan mobile */
+    @media (max-width: 767px) {
+        .custom-card .card-body span {
+            font-size: 0.9em;
+        }
+
+        /* Mengatur lebar maksimum kartu untuk layar kecil */
+        .custom-card {
+            max-width: 250px;
+        }
     }
 
     .radio-button label {
