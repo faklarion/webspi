@@ -8,6 +8,9 @@ class Homerumah extends CI_Controller{
         $this->load->model('Tbl_mewah_model');
         $this->load->model('Tbl_murah_model');
         $this->load->model('Tbl_bagus_model');
+        $this->load->model('Tbl_foto_bagus_model');
+        $this->load->model('Tbl_foto_mewah_model');
+        $this->load->model('Tbl_foto_murah_model');
     }
 
     function index(){

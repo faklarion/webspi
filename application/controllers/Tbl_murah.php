@@ -10,6 +10,7 @@ class Tbl_murah extends CI_Controller
         parent::__construct();
         is_login();
         $this->load->model('Tbl_murah_model');
+        $this->load->model('Tbl_foto_murah_model');
         $this->load->library('form_validation');
     }
 

@@ -10,6 +10,7 @@ class Tbl_mewah extends CI_Controller
         parent::__construct();
         is_login();
         $this->load->model('Tbl_mewah_model');
+        $this->load->model('Tbl_foto_mewah_model');
         $this->load->library('form_validation');
     }
 

@@ -67,11 +67,63 @@
                         </table>
                         </div>
                         <hr>
-                    <div class="container">
-                        <span style="font-family: Arial, Helvetica, sans-serif;">Estimasi Harga Jasa Bangun Rumah Impian Kamu Adalah</span>
-                        <h2 style="font-family: Arial, Helvetica, sans-serif;"><?php echo rupiah($harga); ?></h2>
-                        <a href="<?php echo site_url('homerumah/bagus')?>" class="btn btn-warning"><b
-                        style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
+                        <div class="container">
+                        <span style="font-family: Arial, Helvetica, sans-serif;">Estimasi Harga Jasa Bangun Rumah Impian
+                            Kamu Adalah</span>
+                        <div style="display: flex;">
+                            <h4 style="font-family: Arial, Helvetica, sans-serif;"><?php echo rupiah($harga); ?></h4>
+                            <span
+                                style="font-family: Arial, Helvetica, sans-serif;"><s><?php echo rupiah($harga + ((25 / 100) * $harga)); ?></s></span>
+                        </div>
+                        <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn-sm btn-warning"><b
+                                style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
+                    </div>
+                    <div class="container mt-4">
+                        <div class="row justify-content-center">
+                            <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga
+                                !</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <a href="https://wa.me/6281250969099" target="_blank" class="btn-sm btn-success"><i
+                                    class="fa fa-whatsapp"></i> <b
+                                    style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
+                        </div>
+                    </div>
+                    <div id="myCarousel" class="carousel slide mt-4" data-ride="carousel">
+                        <h6 class="text-center">Rekomendasi Desain Rumah Untuk Kamu</h6>
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <?php
+                            $images = $this->Tbl_foto_bagus_model->get_by_id_kategori($tipe);
+                            foreach ($images as $index => $image): ?>
+                                <li data-target="#myCarousel" data-slide-to="<?php echo $index; ?>"
+                                    class="<?php echo ($index == 0) ? 'active' : ''; ?>"></li>
+                            <?php endforeach; ?>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <?php
+                            foreach ($images as $index => $image): ?>
+                                <div class="carousel-item <?php echo ($index == 0) ? 'active' : ''; ?>">
+                                    <img src="<?php echo base_url('assets/foto_bagus/' . $image->foto); ?>"
+                                        class="d-block w-100" alt="Slide <?php echo $index + 1; ?>" style="border-radius:10px; width: 50%; height: auto;">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>Slide <?php echo $index + 1; ?></h5>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
                 </div>
             </div>

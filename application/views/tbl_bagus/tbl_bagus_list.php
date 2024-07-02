@@ -12,7 +12,7 @@
             <div class='row'>
             <div class='col-md-9'>
             <div style="padding-bottom: 10px;">
-                <!-- <?php echo anchor(site_url('tbl_bagus/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?> -->
+                <?php echo anchor(site_url('tbl_foto_bagus/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Foto', 'class="btn btn-danger btn-sm"'); ?>
             </div>
             </div>
             <div class='col-md-3'>
@@ -70,6 +70,7 @@
 				//echo '  '; 
 				//echo anchor(site_url('tbl_bagus/delete/'.$tbl_bagus->id_bagus),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 				?>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal<?php echo $tbl_bagus->id_bagus ?>">Lihat Foto</button>
 			</td>
 		</tr>
                 <?php
@@ -90,3 +91,51 @@
             </div>
     </section>
 </div>
+<!-- Modal -->
+<?php foreach($tbl_bagus_data as $tbl_bagus) : ?>
+<div id="myModal<?php echo $tbl_bagus->id_bagus?>" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- konten modal-->
+			<div class="modal-content">
+				<!-- heading modal -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Lihat Foto <?php echo $tbl_bagus->tipe ?></h4>
+				</div>
+				<!-- body modal -->
+				<div class="modal-body">
+					<table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>No</td>
+                                    <td>Foto</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $no = 1;
+                                $foto = $this->Tbl_foto_bagus_model->get_by_id_kategori($tbl_bagus->id_bagus);
+                                foreach ($foto as $row) :
+                                ?>
+                                <tr>
+                                    <td><?php echo $no++?></td>
+                                    <td><img src="<?php echo base_url('assets/foto_bagus/'.$row->foto.'')?>" width="150px"></td>
+                                    <td>
+                                      <?php 
+                                        echo anchor(site_url('tbl_foto_bagus/delete/'.$row->id_foto),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete onclick="javascript: return confirm(\'Are You Sure ?\')"'); 
+                                      ?>  
+                                    </td>
+                                </tr>
+                                <?php endforeach ?>
+                            </tbody>
+                    </table>
+				</div>
+				<!-- footer modal -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+				</div>
+			</div>
+		</div>
+</div>
+<?php endforeach ?>

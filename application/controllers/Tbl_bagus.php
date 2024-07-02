@@ -10,6 +10,7 @@ class Tbl_bagus extends CI_Controller
         parent::__construct();
         is_login();
         $this->load->model('Tbl_bagus_model');
+        $this->load->model('Tbl_foto_bagus_model');
         $this->load->library('form_validation');
     }
 
