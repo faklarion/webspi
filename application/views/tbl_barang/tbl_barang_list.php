@@ -56,8 +56,9 @@
                                                 // echo anchor(site_url('tbl_barang/read/'.$tbl_barang->id_barang), '<i class="fa fa-eye" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm"'); 
                                                 echo anchor(site_url('tbl_barang/update/' . $tbl_barang->id_barang), '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm"');
                                                 echo '  ';
-                                                echo anchor(site_url('tbl_barang/delete/' . $tbl_barang->id_barang), '<i class="fa fa-trash-o" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm" Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+                                                echo anchor(site_url('tbl_barang/delete/' . $tbl_barang->id_barang), '<i class="fa fa-trash-o" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm" Delete onclick="javascript: return confirm(\'Are You Sure ?\')"');
                                                 ?>
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal<?= $tbl_barang->id_barang ?>">Lihat Foto</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -76,6 +77,59 @@
         </div>
     </section>
 </div>
+<!-- Modal -->
+<?php foreach($tbl_barang_data as $tbl_barang) : ?>
+<div id="myModal<?= $tbl_barang->id_barang ?>" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- konten modal-->
+			<div class="modal-content">
+				<!-- heading modal -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Lihat Foto <?= $tbl_barang->nama_barang ?></h4>
+				</div>
+				<!-- body modal -->
+				<div class="modal-body">
+					<table class="table table-responsive table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Foto</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        $no = 1;
+                        $daftarFoto = $this->Tbl_barang_model->get_foto_by_id($tbl_barang->id_barang);
+                        foreach ($daftarFoto as $images) : 
+                        $image_array = explode(',', $images->foto);
+                        ?>
+                        <?php foreach ($image_array as $img): ?>
+                            <?php if($img) { ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><img src="<?= base_url('assets/foto_barang/' . $img) ?>" alt="Uploaded Image" width="150px"></td>
+                            </tr>
+                            <?php } else { ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td>Tidak Ada Foto diupload</td>
+                            </tr>
+                            <?php } ?>
+                            
+                        <?php endforeach ?>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+				</div>
+				<!-- footer modal -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+				</div>
+			</div>
+		</div>
+</div>
+<?php endforeach ?>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <!-- Include DataTables Responsive CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">

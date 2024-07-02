@@ -11,6 +11,7 @@ class Interior_model extends CI_Model
     function __construct()
     {
         parent::__construct();
+        $this->load->model('Tbl_barang_model');
     }
 
     // datatables

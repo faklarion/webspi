@@ -11,6 +11,7 @@ class Tbl_barang extends CI_Controller
         is_login();
         $this->load->model('Tbl_barang_model');
         $this->load->library('form_validation');
+        $this->load->library('upload');
     }
 
     public function index()
@@ -45,17 +46,71 @@ class Tbl_barang extends CI_Controller
         $this->template->load('template','tbl_barang/tbl_barang_list', $data);
     }
 
+
+    public function multiple_upload() {
+        $files = $_FILES;
+        $count = count($_FILES['foto']['name']);
+        $images = [];
+
+        for($i=0; $i<$count; $i++) {
+            $_FILES['userfile']['name'] = $files['foto']['name'][$i];
+            $_FILES['userfile']['type'] = $files['foto']['type'][$i];
+            $_FILES['userfile']['tmp_name'] = $files['foto']['tmp_name'][$i];
+            $_FILES['userfile']['error'] = $files['foto']['error'][$i];
+            $_FILES['userfile']['size'] = $files['foto']['size'][$i];
+
+            $this->upload->initialize($this->set_upload_options());
+            if ($this->upload->do_upload('userfile')) {
+                $data = $this->upload->data();
+                $images[] = $data['file_name'];
+            }
+        }
+
+        // Simpan data ke database
+        $this->save_to_db($images);
+    }
+
+    private function save_to_db($images) {
+        $this->load->database();
+        $this->_rules();
+        $images_string = implode(',', $images);
+        $data = [
+            'foto' => $images_string,
+            'id_kategori' => $this->input->post('id_kategori'),
+            'nama_barang' => $this->input->post('nama_barang'),
+            'harga_a' => $this->input->post('harga_a'),
+            'harga_b' => $this->input->post('harga_b'),
+            'harga_c' => $this->input->post('harga_c'),
+            'id_satuan' => $this->input->post('id_satuan'),
+        ];
+        $this->db->insert('tbl_barang', $data);
+        $this->session->set_flashdata('message', 'Create Record Success !');
+        redirect(site_url('tbl_barang'));
+    }
+
+    private function set_upload_options() {
+        //upload an image options
+        $config = [];
+        $config['upload_path'] = './assets/foto_barang/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '4096';
+        //$config['max_width'] = '1024';
+        //$config['max_height'] = '768';
+        $config['encrypt_name'] = TRUE;
+        return $config;
+    }
+
     public function read($id) 
     {
         $row = $this->Tbl_barang_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_barang' => $row->id_barang,
-		'id_kategori' => $row->id_kategori,
-		'nama_barang' => $row->nama_barang,
-		'harga_a' => $row->harga_a,
-		'harga_b' => $row->harga_b,
-		'harga_c' => $row->harga_c,
+                'id_barang' => $row->id_barang,
+                'id_kategori' => $row->id_kategori,
+                'nama_barang' => $row->nama_barang,
+                'harga_a' => $row->harga_a,
+                'harga_b' => $row->harga_b,
+                'harga_c' => $row->harga_c,
 	    );
             $this->template->load('template','tbl_barang/tbl_barang_read', $data);
         } else {
@@ -68,10 +123,11 @@ class Tbl_barang extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('tbl_barang/create_action'),
+            'action' => site_url('tbl_barang/multiple_upload'),
             'id_barang' => set_value('id_barang'),
             'id_satuan' => set_value('id_satuan'),
             'id_kategori' => set_value('id_kategori'),
+            'foto' => set_value('foto'),
             'nama_barang' => set_value('nama_barang'),
             'harga_a' => set_value('harga_a'),
             'harga_b' => set_value('harga_b'),
@@ -101,6 +157,64 @@ class Tbl_barang extends CI_Controller
             redirect(site_url('tbl_barang'));
         }
     }
+
+    public function update_data() {
+        $this->load->library('upload');
+        
+        // Ambil data yang akan diupdate dari database
+        $this->load->database();
+        $query = $this->db->get_where('tbl_barang', ['id_barang' => $this->input->post('id_barang')]);
+        $data = $query->row();
+    
+        // Proses upload file baru (jika ada)
+        $files = $_FILES;
+        $count = count($_FILES['foto']['name']);
+        $images = [];
+        
+        for($i=0; $i<$count; $i++) {
+            $_FILES['userfile']['name'] = $files['foto']['name'][$i];
+            $_FILES['userfile']['type'] = $files['foto']['type'][$i];
+            $_FILES['userfile']['tmp_name'] = $files['foto']['tmp_name'][$i];
+            $_FILES['userfile']['error'] = $files['foto']['error'][$i];
+            $_FILES['userfile']['size'] = $files['foto']['size'][$i];
+            
+            $this->upload->initialize($this->set_upload_options());
+            if ($this->upload->do_upload('userfile')) {
+                $new_data = $this->upload->data();
+                $images[] = $new_data['file_name'];
+            } else {
+                // Handle error upload jika diperlukan
+            }
+        }
+    
+        // Gabungkan foto lama dan baru
+        if (!empty($images)) {
+            $old_images = !empty($data->foto) ? explode(',', $data->foto) : [];
+            $images = array_merge($old_images, $images);
+        } else {
+            $images = !empty($data->foto) ? explode(',', $data->foto) : [];
+        }
+    
+        // Update data di database
+        $images_string = implode(',', $images);
+        $this->_rules();
+        $update_data = [
+            'foto' => $images_string,
+            'id_kategori' => $this->input->post('id_kategori'),
+            'nama_barang' => $this->input->post('nama_barang'),
+            'harga_a' => $this->input->post('harga_a'),
+            'harga_b' => $this->input->post('harga_b'),
+            'id_satuan' => $this->input->post('id_satuan'),
+            'harga_c' => $this->input->post('harga_c'),
+            // Tambahkan field lain yang perlu diupdate
+        ];
+    
+        $this->db->where('id_barang', $this->input->post('id_barang'));
+        $this->db->update('tbl_barang', $update_data);
+    
+        // Redirect atau tampilkan pesan sukses
+        redirect(site_url('tbl_barang'));
+    }
     
     public function update($id) 
     {
@@ -109,10 +223,11 @@ class Tbl_barang extends CI_Controller
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('tbl_barang/update_action'),
+                'action' => site_url('tbl_barang/update_data'),
                 'id_barang' => set_value('id_barang', $row->id_barang),
                 'id_kategori' => set_value('id_kategori', $row->id_kategori),
                 'nama_barang' => set_value('nama_barang', $row->nama_barang),
+                'foto' => set_value('foto', $row->foto),
                 'harga_a' => set_value('harga_a', $row->harga_a),
                 'harga_b' => set_value('harga_b', $row->harga_b),
                 'harga_c' => set_value('harga_c', $row->harga_c),

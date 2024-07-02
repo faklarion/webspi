@@ -4,7 +4,7 @@
 			<div class="box-header with-border">
 				<h3 class="box-title"><?php echo strtoupper($button) ?> DATA TBL_BARANG</h3>
 			</div>
-			<form action="<?php echo $action; ?>" method="post">
+			<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 			
 				<table class='table table-bordered'>
 	
@@ -36,6 +36,19 @@
 	
 					<tr>
 						<td width='200'>Harga Paket Murah / Grade C  <?php echo form_error('harga_c') ?></td><td><input type="number" class="form-control" name="harga_c" id="harga_c" placeholder="Harga C" value="<?php echo $harga_c; ?>" /></td>
+					</tr>
+
+					<tr>
+						<td width='200'>Foto</td>
+						<td>
+							<input type="file" name="foto[]" id="foto" required multiple>
+							<?php if (!empty($data->foto)): ?>
+								<?php $images = explode(',', $foto); ?>
+								<?php foreach ($images as $img): ?>
+									<img src="<?= base_url('assets/foto_barang/' . $img) ?>" alt="Uploaded Image">
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</td>
 					</tr>
 	
 					<tr>
