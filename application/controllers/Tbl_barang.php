@@ -215,6 +215,24 @@ class Tbl_barang extends CI_Controller
         // Redirect atau tampilkan pesan sukses
         redirect(site_url('tbl_barang'));
     }
+
+    public function delete_photo() {
+        // Retrieve the photo URL from the form submission
+        $photo_url = $this->input->post('photo_url');
+        $id = $this->input->post('id_barang');
+    
+        // Perform deletion logic (update your database accordingly)
+        // Example: Delete from database
+        $success = $this->Tbl_barang_model->delete_photo_by_url($id, $photo_url);
+    
+        if ($success) {
+            // Redirect or refresh the page after deletion
+            redirect('tbl_barang');
+        } else {
+            // Handle deletion failure
+            echo "Failed to delete photo.";
+        }
+    }
     
     public function update($id) 
     {

@@ -22,6 +22,78 @@ class Tbl_mewah_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    public function delete_photo_by_url($id_mewah, $photo_url) {
+        // Fetch the existing photo URLs
+        $foto_denah = $this->db->select('foto_denah')
+                               ->where('id_mewah', $id_mewah)
+                               ->get('tbl_mewah')
+                               ->row()
+                               ->foto_denah;
+
+        // Explode the fetched photo string into an array of photo URLs
+        $photos = array_map('trim', explode(",", $foto_denah));
+
+        // Find the index of the photo URL to delete
+        $index = array_search($photo_url, $photos);
+
+        if ($index !== false) {
+            // Remove the photo URL from the array
+            unset($photos[$index]);
+
+            // Implode the array back into a comma-separated string
+            $updated_foto_denah = implode(",", $photos);
+
+            // Update the database record with the updated foto_denah
+            $this->db->where('id_mewah', $id_mewah)
+                     ->update('tbl_mewah', ['foto_denah' => $updated_foto_denah]);
+
+            // Return TRUE if update was successful
+            return true;
+        }
+
+        // Return FALSE if photo URL was not found
+        return false;
+    }
+
+    function get_foto_by_id($id)
+    {
+        $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->result();
+    }
+
+    public function delete_photo_rumah_by_url($id_mewah, $photo_url) {
+        // Fetch the existing photo URLs
+        $foto = $this->db->select('foto')
+                               ->where('id_mewah', $id_mewah)
+                               ->get('tbl_mewah')
+                               ->row()
+                               ->foto;
+
+        // Explode the fetched photo string into an array of photo URLs
+        $photos = array_map('trim', explode(",", $foto));
+
+        // Find the index of the photo URL to delete
+        $index = array_search($photo_url, $photos);
+
+        if ($index !== false) {
+            // Remove the photo URL from the array
+            unset($photos[$index]);
+
+            // Implode the array back into a comma-separated string
+            $updated_foto = implode(",", $photos);
+
+            // Update the database record with the updated foto
+            $this->db->where('id_mewah', $id_mewah)
+                     ->update('tbl_mewah', ['foto' => $updated_foto]);
+
+            // Return TRUE if update was successful
+            return true;
+        }
+
+        // Return FALSE if photo URL was not found
+        return false;
+    }
+
     // get data by id
     function get_by_id($id)
     {

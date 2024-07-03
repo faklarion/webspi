@@ -2,22 +2,21 @@
 	<section class="content">
 		<div class="box box-warning box-solid">
 			<div class="box-header with-border">
-				<h3 class="box-title"><?php echo strtoupper($button) ?> DATA FOTO TIPE BAGUS</h3>
+				<h3 class="box-title"><?php echo strtoupper($button) ?> DATA FOTO JENIS BAGUS</h3>
 			</div>
 			<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
-				<table class='table table-bordered'>	
+			
+				<table class='table table-bordered'>
+	
 					<tr>
-						<td width='200'>Tipe Rumah</td>
-						<td>
+						<td width='200'>Jenis Rumah <?php echo form_error('id_bagus') ?></td><td>
 							<?php echo cmb_dinamis('id_bagus', 'tbl_bagus', 'tipe', 'id_bagus', $id_bagus)?>
 						</td>
 					</tr>
 	    
 					<tr>
-						<td width='200'>Foto <?php echo form_error('foto') ?></td>
-						<td> 
-							<input type="file" name="foto" id="foto" class="form-control" required>
-						</td>
+						<td width='200'>Foto</td>
+						<td><input type="file" class="form-control" rows="3" name="foto[]" id="foto" placeholder="Foto" value="<?php echo $foto; ?>" required multiple/></td>
 					</tr>
 	
 					<tr>

@@ -16,7 +16,7 @@
 	    
 					<tr>
 						<td width='200'>Foto</td>
-						<td><input type="file" class="form-control" rows="3" name="foto" id="foto" placeholder="Foto" value="<?php echo $foto; ?>" required/></td>
+						<td><input type="file" class="form-control" rows="3" name="foto[]" id="foto" placeholder="Foto" value="<?php echo $foto; ?>" required multiple/></td>
 					</tr>
 	
 					<tr>

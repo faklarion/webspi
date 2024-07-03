@@ -1,6 +1,29 @@
 <html>
 
 <?php include 'header.php' ?>
+<style>
+        /* Kontainer carousel untuk menghindari pemotongan efek hover */
+    .carousel-inner {
+        
+        padding: 20px;
+        /* Tambahkan padding untuk memberikan ruang ekstra */
+    }
+
+    /* Mengubah warna ikon navigasi menjadi hitam */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: black;
+    }
+
+    /* Menyesuaikan ukuran dan bentuk ikonnya jika diperlukan */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 30px;
+        height: 30px;
+        background-size: 100%, 100%;
+        border-radius: 50%;
+    }
+</style>
 
 <body style="background-color: #ffffff;">
     <!-- <nav class="navbar bg-dark">

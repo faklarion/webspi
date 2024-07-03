@@ -95,6 +95,7 @@
                             <tr>
                                 <td>No</td>
                                 <td>Foto</td>
+                                <td>Action</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,6 +110,16 @@
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><img src="<?= base_url('assets/foto_barang/' . $img) ?>" alt="Uploaded Image" width="150px"></td>
+                                <td>
+                                            <!-- Form for delete action -->
+                                            <form action="<?php echo site_url('tbl_barang/delete_photo'); ?>" method="post">
+                                                <input type="hidden" name="photo_url"
+                                                    value="<?php echo htmlspecialchars((string) $img); ?>">
+                                                <input type="hidden" name="id_barang"
+                                                    value="<?php echo $images->id_barang; ?>">
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            </form>
+                                </td>
                             </tr>
                             <?php } else { ?>
                             <tr>

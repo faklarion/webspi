@@ -95,30 +95,67 @@
                                     style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
                         </div>
                     </div>
+                    <div class="container">
                     <div id="myCarousel" class="carousel slide mt-4" data-ride="carousel">
                         <h6 class="text-center">Rekomendasi Desain Rumah Untuk Kamu</h6>
+
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
                             <?php
-                            $images = $this->Tbl_foto_mewah_model->get_by_id_kategori($tipe);
-                            foreach ($images as $index => $image): ?>
-                                <li data-target="#myCarousel" data-slide-to="<?php echo $index; ?>"
-                                    class="<?php echo ($index == 0) ? 'active' : ''; ?>"></li>
-                            <?php endforeach; ?>
+                            $images = $this->Tbl_mewah_model->get_foto_by_id($tipe);
+                            $total_images = 0;
+                            $has_images = false;
+
+                            foreach ($images as $index => $image) {
+                                $image_array = explode(',', $image->foto);
+                                foreach ($image_array as $img) {
+                                    if (!empty(trim($img))) {
+                                        echo '<li data-target="#myCarousel" data-slide-to="' . $total_images . '" class="' . ($total_images == 0 ? 'active' : '') . '"></li>';
+                                        $total_images++;
+                                        $has_images = true;
+                                    }
+                                }
+                            }
+                            ?>
                         </ol>
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <?php
-                            foreach ($images as $index => $image): ?>
-                                <div class="carousel-item <?php echo ($index == 0) ? 'active' : ''; ?>">
-                                    <img src="<?php echo base_url('assets/foto_mewah/' . $image->foto); ?>"
-                                        class="d-block w-100" alt="Slide <?php echo $index + 1; ?>" style="border-radius:10px; width: 50%; height: auto;">
+                            if ($has_images) {
+                                $is_first = true;
+                                $total_images = 0;  // Reset counter for correct numbering
+                                foreach ($images as $image) {
+                                    $image_array = explode(',', $image->foto);
+                                    foreach ($image_array as $img) {
+                                        if (!empty(trim($img))) {
+                                            ?>
+                                            <div class="carousel-item <?php echo $is_first ? 'active' : ''; ?>">
+                                                <img src="<?php echo base_url('assets/foto_mewah/' . trim($img)); ?>"
+                                                    class="d-block w-100" alt="Slide <?php echo $total_images + 1; ?>"
+                                                    style="border-radius:10px; width: 50%; height: auto;">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>Slide <?php echo $total_images + 1; ?></h5>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            $is_first = false;
+                                            $total_images++;
+                                        }
+                                    }
+                                }
+                            } else {
+                                ?>
+                                <div class="carousel-item active">
+                                    <img src="<?php echo base_url('assets/default.jpg'); ?>" class="d-block w-100"
+                                        alt="No images available" style="border-radius:10px; width: 50%; height: auto;">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Slide <?php echo $index + 1; ?></h5>
+                                        <h5>No images available</h5>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
+                                <?php
+                            }
+                            ?>
                         </div>
 
                         <!-- Controls -->
@@ -131,6 +168,81 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+                </div>
+                <div class="container">
+                    <div id="myCarousel" class="carousel slide mt-4" data-ride="carousel">
+                        <h6 class="text-center">Rekomendasi Denah Untuk Kamu</h6>
+
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <?php
+                            $images = $this->Tbl_mewah_model->get_foto_by_id($tipe);
+                            $total_images = 0;
+                            $has_images = false;
+
+                            foreach ($images as $index => $image) {
+                                $image_array = explode(',', $image->foto_denah);
+                                foreach ($image_array as $img) {
+                                    if (!empty(trim($img))) {
+                                        echo '<li data-target="#myCarousel" data-slide-to="' . $total_images . '" class="' . ($total_images == 0 ? 'active' : '') . '"></li>';
+                                        $total_images++;
+                                        $has_images = true;
+                                    }
+                                }
+                            }
+                            ?>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <?php
+                            if ($has_images) {
+                                $is_first = true;
+                                $total_images = 0;  // Reset counter for correct numbering
+                                foreach ($images as $image) {
+                                    $image_array = explode(',', $image->foto_denah);
+                                    foreach ($image_array as $img) {
+                                        if (!empty(trim($img))) {
+                                            ?>
+                                            <div class="carousel-item <?php echo $is_first ? 'active' : ''; ?>">
+                                                <img src="<?php echo base_url('assets/foto_mewah/' . trim($img)); ?>"
+                                                    class="d-block w-100" alt="Slide <?php echo $total_images + 1; ?>"
+                                                    style="border-radius:10px; width: 50%; height: auto;">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>Slide <?php echo $total_images + 1; ?></h5>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            $is_first = false;
+                                            $total_images++;
+                                        }
+                                    }
+                                }
+                            } else {
+                                ?>
+                                <div class="carousel-item active">
+                                    <img src="<?php echo base_url('assets/default.jpg'); ?>" class="d-block w-100"
+                                        alt="No images available" style="border-radius:10px; width: 50%; height: auto;">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>No images available</h5>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <link rel="shortcut icon" href="<?= base_url('assets/img/siperindo.png') ?>" type="image/x-icon">
-    <meta name="description" content="Cek Harga Jasa Pembuatan Rumah Terbaik di PT Siperindo">
+    <meta name="description" content="Cek Harga Jasa Interior Rumah Terbaik di PT Siperindo">
     <title>Dapatkan Penawaran Harga Jasa Pembuatan Interiormu</title>
     <!-- Font Awesome -->
     <link rel="stylesheet"
@@ -16,10 +16,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
     <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet" />
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
 </head>
 <style>
     .radio-button {}
@@ -42,28 +43,6 @@
         color: white;
         text-align: center;
         padding: 20px;
-    }
-
-    /* Kontainer carousel untuk menghindari pemotongan efek hover */
-    .carousel-inner {
-        overflow: visible;
-        padding: 20px;
-        /* Tambahkan padding untuk memberikan ruang ekstra */
-    }
-
-    /* Mengubah warna ikon navigasi menjadi hitam */
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: black;
-    }
-
-    /* Menyesuaikan ukuran dan bentuk ikonnya jika diperlukan */
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        width: 30px;
-        height: 30px;
-        background-size: 100%, 100%;
-        border-radius: 50%;
     }
 
     /* Kustomisasi kartu */
