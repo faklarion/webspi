@@ -85,24 +85,12 @@
                 <div class="container mb-4">
                     <span style="font-family: Arial, Helvetica, sans-serif;">Estimasi Harga Jasa Pembuatan Interior
                         Kamu Adalah</span>
-                    <div style="display: flex;">
+                    <div style="container">
+                        <span style="font-family: Arial, Helvetica, sans-serif;"><s><?php echo rupiah($harga + ((25 / 100) * $harga));?></s> </span>
                         <h4 style="font-family: Arial, Helvetica, sans-serif;"><?php echo rupiah($harga); ?></h4>
-                        <span
-                            style="font-family: Arial, Helvetica, sans-serif;"><s><?php echo rupiah($harga + ((25 / 100) * $harga)); ?></s></span>
                     </div>
                     <a href="<?php echo site_url('interior') ?>" class="btn-sm btn-warning"><b
                             style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
-                </div>
-                <div class="container mb-4">
-                    <div class="row justify-content-center">
-                        <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga
-                            !</p>
-                    </div>
-                    <div class="row justify-content-center">
-                        <a href="https://wa.me/6281250969099" target="_blank" class="btn-sm btn-success"><i
-                                class="fa fa-whatsapp"></i> <b
-                                style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
-                    </div>
                 </div>
                 <div class="container">
                 <div id="myCarousel" class="carousel slide mt-4" data-ride="carousel">
@@ -177,6 +165,17 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+                </div>
+                <div class="container mt-4 mb-4">
+                    <div class="row justify-content-center">
+                        <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga
+                            !</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <a href="https://wa.me/6281250969099" target="_blank" class="btn-sm btn-success"><i
+                                class="fa fa-whatsapp"></i> <b
+                                style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
+                    </div>
                 </div>
             </div>
         </div>
