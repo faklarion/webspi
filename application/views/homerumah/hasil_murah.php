@@ -81,20 +81,11 @@
                             <span
                                 style="font-family: Arial, Helvetica, sans-serif;"><s><?php echo rupiah($harga + ((25 / 100) * $harga)); ?></s></span>
                         </div>
+                        <h4 style="font-family: Arial, Helvetica, sans-serif;">Estimasi Waktu Pengerjaan Adalah <?php echo ($ukuran * 1.7)?> Hari</h4>
                         <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn-sm btn-warning"><b
                                 style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
                     </div>
-                    <div class="container mt-4">
-                        <div class="row justify-content-center">
-                            <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga
-                                !</p>
-                        </div>
-                        <div class="row justify-content-center">
-                            <a href="https://wa.me/6281250969099" target="_blank" class="btn-sm btn-success"><i
-                                    class="fa fa-whatsapp"></i> <b
-                                    style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
-                        </div>
-                    </div>
+
                 <div class="container">
                     <div id="myCarousel" class="carousel slide mt-4" data-ride="carousel">
                         <h6 class="text-center">Rekomendasi Desain Rumah Untuk Kamu</h6>
@@ -244,6 +235,17 @@
                     </div>
                 </div>
                 </div>
+                <div class="container mt-4">
+                        <div class="row justify-content-center">
+                            <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga
+                                !</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <a href="https://wa.me/6281250969099" target="_blank" class="btn-sm btn-success"><i
+                                    class="fa fa-whatsapp"></i> <b
+                                    style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
+                        </div>
+                    </div>
             </div>
         </div>
     </section>
