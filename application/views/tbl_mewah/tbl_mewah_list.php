@@ -12,8 +12,8 @@
                         <div class='row'>
                             <div class='col-md-9'>
                                 <div style="padding-bottom: 10px;">
-                                    <?php echo anchor(site_url('tbl_foto_mewah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Update Foto Rumah', 'class="btn btn-danger btn-sm"'); ?>
-                                    <?php echo anchor(site_url('tbl_foto_mewah/create_denah'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Update Foto Denah', 'class="btn btn-info btn-sm"'); ?>
+                                    <!-- <?php echo anchor(site_url('tbl_foto_mewah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Update Foto Rumah', 'class="btn btn-danger btn-sm"'); ?>
+                                    <?php echo anchor(site_url('tbl_foto_mewah/create_denah'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Update Foto Denah', 'class="btn btn-info btn-sm"'); ?> -->
                                 </div>
                             </div>
                             <div class='col-md-3'>
@@ -71,12 +71,12 @@
                                         //echo '  '; 
                                         //echo anchor(site_url('tbl_mewah/delete/'.$tbl_mewah->id_mewah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
                                         ?>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                        <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target="#myModal<?php echo $tbl_mewah->id_mewah ?>">Lihat Foto
                                             Rumah</button>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target="#myModalDenah<?php echo $tbl_mewah->id_mewah ?>">Lihat Foto
-                                            Denah</button>
+                                            Denah</button> -->
                                     </td>
                                 </tr>
                                 <?php
