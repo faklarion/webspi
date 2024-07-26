@@ -12,7 +12,7 @@
             <div class='row'>
             <div class='col-md-9'>
             <div style="padding-bottom: 10px;">
-                <?php echo anchor(site_url('tbl_foto_denah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?>
+                <!-- <?php echo anchor(site_url('tbl_foto_denah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?> -->
             </div>
             </div>
             <div class='col-md-3'>
@@ -53,6 +53,7 @@
                 <th>No</th>
                 <th>Foto</th>
                 <th>Ukuran</th>
+                <th>Action</th>
             </tr><?php
             foreach ($tbl_foto_denah_data as $tbl_foto_denah)
             {
@@ -69,7 +70,7 @@
 				<?php 
 				//echo anchor(site_url('tbl_foto_denah/read/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-eye" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
 				//echo '  '; 
-				//echo anchor(site_url('tbl_foto_denah/update/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
+				echo anchor(site_url('tbl_foto_denah/update/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
 				//echo '  '; 
 				//echo anchor(site_url('tbl_foto_denah/delete/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 				?>
