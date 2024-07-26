@@ -99,6 +99,13 @@
         border-radius: 100px;
         z-index: 2;
     }
+
+    .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
 </style>
 
 <nav class="navbar mb-3" style="background: #909090;">

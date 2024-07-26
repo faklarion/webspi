@@ -32,7 +32,7 @@
                         <form action="<?php echo site_url('homerumah/kamar_bagus') ?>" method="get" enctype="multipart/form-data" autocomplete="off">
                             <div class="radio-button mb-3" id="inputUkuran">
                                 <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Ukuran Rumah (m2)</small></p>
-                                <input type="number" id="ukuran_rumah" class="form-control" name="ukuran_rumah" placeholder="Masukkan Ukuran" required>
+                                <input type="number" id="ukuran_rumah" class="form-control" name="ukuran_rumah" placeholder="Masukkan Ukuran" min="36" max="300" required>
                                 <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah" value="<?php echo $idTipe ?>">
                             </div>
                                 <button type="submit" id="btnSubmit" class="btn btn-warning" style="border-radius:10px; width: 300px;"><b

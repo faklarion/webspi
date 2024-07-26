@@ -55,6 +55,13 @@ class Tbl_foto_denah_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_foto_denah_by_ukuran($ukuran)
+    {
+        $this->db->select('*');
+        $this->db->where("$ukuran BETWEEN ukuran_awal AND ukuran_akhir", NULL, FALSE);
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {
