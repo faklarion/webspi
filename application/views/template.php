@@ -23,6 +23,10 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/adminlte/dist/css/skins/_all-skins.min.css">
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+        <!-- DataTables Responsive CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.bootstrap4.min.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -333,19 +337,19 @@
         <!-- Select2 -->
         <script src="<?php echo base_url() ?>assets/adminlte/bower_components/select2/dist/js/select2.full.min.js"></script>
         <!-- page script -->
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+        <!-- DataTables Responsive JS -->
+        <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
+        
         <script>
-            $(function () {
-                $('.select2').select2()
-                $('#example1').DataTable()
-                $('#example2').DataTable({
-                    'paging'      : true,
-                    'lengthChange': false,
-                    'searching'   : false,
-                    'ordering'    : true,
-                    'info'        : true,
-                    'autoWidth'   : false
-                })
-            })
+        $(document).ready(function() {
+            $('#tabelFotoRumah').DataTable({
+                responsive: true
+            });
+        });
         </script>
     </body>
 </html>

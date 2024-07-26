@@ -72,10 +72,10 @@ class Tbl_foto_denah_model extends CI_Model
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id_foto_denah', $q);
-	$this->db->or_like('foto', $q);
-	$this->db->or_like('ukuran_akhir', $q);
-	$this->db->or_like('ukuran_awal', $q);
-	$this->db->from($this->table);
+        $this->db->or_like('foto', $q);
+        $this->db->or_like('ukuran_akhir', $q);
+        $this->db->or_like('ukuran_awal', $q);
+        $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
@@ -83,10 +83,10 @@ class Tbl_foto_denah_model extends CI_Model
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id_foto_denah', $q);
-	$this->db->or_like('foto', $q);
-	$this->db->or_like('ukuran_akhir', $q);
-	$this->db->or_like('ukuran_awal', $q);
-	$this->db->limit($limit, $start);
+        $this->db->or_like('foto', $q);
+        $this->db->or_like('ukuran_akhir', $q);
+        $this->db->or_like('ukuran_awal', $q);
+        $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

@@ -161,7 +161,7 @@ class Tbl_foto_denah extends CI_Controller
     
     public function update_action() 
     {
-        $this->load->library('upload');
+       $this->load->library('upload');
         
         // Ambil data yang akan diupdate dari database
         $this->load->database();
@@ -207,7 +207,7 @@ class Tbl_foto_denah extends CI_Controller
     
         $this->db->where('id_foto_denah', $this->input->post('id_foto_denah'));
         $this->db->update('tbl_foto_denah', $update_data);
-        $this->session->set_flashdata('message', 'Create Record Success !');
+        $this->session->set_flashdata('message', 'Update Record Success !');
         redirect(site_url('tbl_foto_denah'));
     }
     

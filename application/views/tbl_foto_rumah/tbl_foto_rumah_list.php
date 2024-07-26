@@ -5,34 +5,17 @@
                 <div class="box box-warning box-solid">
     
                     <div class="box-header">
-                        <h3 class="box-title">KELOLA DATA FOTO DENAH</h3>
+                        <h3 class="box-title">KELOLA DATA FOTO RUMAH</h3>
                     </div>
         
         <div class="box-body">
             <div class='row'>
             <div class='col-md-9'>
             <div style="padding-bottom: 10px;">
-                <!-- <?php echo anchor(site_url('tbl_foto_denah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?> -->
+                <!-- <?php echo anchor(site_url('tbl_foto_rumah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?> -->
             </div>
             </div>
-            <div class='col-md-3'>
-            <form action="<?php echo site_url('tbl_foto_denah/index'); ?>" class="form-inline" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
-                        <span class="input-group-btn">
-                            <?php 
-                                if ($q <> '')
-                                {
-                                    ?>
-                                    <a href="<?php echo site_url('tbl_foto_denah'); ?>" class="btn btn-default">Reset</a>
-                                    <?php
-                                }
-                            ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
-                        </span>
-                    </div>
-                </form>
-            </div>
+            
             </div>
         
    
@@ -48,46 +31,56 @@
                 
             </div>
         </div>
-        <table class="table table-bordered" style="margin-bottom: 10px">
+        <table class="table table-bordered" style="margin-bottom: 10px" id="tabelFotoRumah">
+            <thead>
             <tr>
                 <th>No</th>
-                <th>Foto</th>
+                <th>Tipe Rumah</th>
                 <th>Ukuran</th>
+                <th>Foto</th>
                 <th>Action</th>
-            </tr><?php
-            foreach ($tbl_foto_denah_data as $tbl_foto_denah)
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($tbl_foto_rumah_data as $tbl_foto_rumah)
             {
                 ?>
                 <tr>
-			<td width="10px"><?php echo ++$start ?></td>
-			<td>
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                        data-target="#myModal<?php echo $tbl_foto_denah->id_foto_denah ?>">Lihat Foto
-                </button>
-            </td>
-			<td><?php echo $tbl_foto_denah->ukuran_awal ?> - <?php echo $tbl_foto_denah->ukuran_akhir ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				//echo anchor(site_url('tbl_foto_denah/read/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-eye" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
-				//echo '  '; 
-				echo anchor(site_url('tbl_foto_denah/update/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
-				//echo '  '; 
-				//echo anchor(site_url('tbl_foto_denah/delete/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
-				?>
-			</td>
-		</tr>
+                    <td width="10px"><?php echo ++$start ?></td>
+                    <td>
+                        <?php 
+                        if($tbl_foto_rumah->id_tipe == 1) {
+                            echo 'Classic';
+                        } elseif($tbl_foto_rumah->id_tipe == 2) {
+                            echo 'Minimalis';
+                        } elseif($tbl_foto_rumah->id_tipe == 3) {
+                            echo 'Skandinavian';
+                        }
+                        ?>
+                    </td>
+                    <td><?php echo $tbl_foto_rumah->ukuran_awal ?> - <?php echo $tbl_foto_rumah->ukuran_akhir ?></td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                            data-target="#myModal<?php echo $tbl_foto_rumah->id_foto_rumah ?>">Lihat Foto
+                        </button>
+                    </td>
+                    <td style="text-align:center" width="200px">
+                        <?php 
+                        //echo anchor(site_url('tbl_foto_rumah/read/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-eye" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
+                        //echo '  '; 
+                        echo anchor(site_url('tbl_foto_rumah/update/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
+                        //echo '  '; 
+                        //echo anchor(site_url('tbl_foto_rumah/delete/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+                        ?>
+                    </td>
+		        </tr>
                 <?php
             }
             ?>
+            </tbody>
         </table>
-        <div class="row">
-            <div class="col-md-6">
-                
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
-        </div>
+        
         </div>
                     </div>
             </div>
@@ -96,8 +89,8 @@
 </div>
 
 <!-- Modal -->
-<?php foreach ($tbl_foto_denah_data as $tbl_foto_denah): ?>
-    <div id="myModal<?php echo $tbl_foto_denah->id_foto_denah ?>" class="modal fade" role="dialog">
+<?php foreach ($tbl_foto_rumah_data as $tbl_foto_rumah): ?>
+    <div id="myModal<?php echo $tbl_foto_rumah->id_foto_rumah ?>" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- konten modal-->
             <div class="modal-content">
@@ -112,14 +105,14 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Foto Denah</th>
+                                <th>Foto Rumah</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $no = 1;
-                            $foto = $this->Tbl_foto_denah_model->get_by_id($tbl_foto_denah->id_foto_denah);
+                            $foto = $this->Tbl_foto_rumah_model->get_by_id($tbl_foto_rumah->id_foto_rumah);
                             if ($foto && $foto->foto != null) {
                                 // Explode the fetched photo string into an array of photo URLs
                                 $photos = array_map('trim', explode(",", $foto->foto));
@@ -129,15 +122,15 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $no++ ?></td>
-                                        <td><img src="<?php echo base_url('assets/denah/' . htmlspecialchars((string) $photo)) ?>"
+                                        <td><img src="<?php echo base_url('assets/rumah/' . htmlspecialchars((string) $photo)) ?>"
                                                 width="150px"></td>
                                         <td>
                                             <!-- Form for delete action -->
-                                            <form action="<?php echo site_url('Tbl_foto_denah/delete_photo'); ?>" method="post">
+                                            <form action="<?php echo site_url('Tbl_foto_rumah/delete_photo'); ?>" method="post">
                                                 <input type="hidden" name="photo_url"
                                                     value="<?php echo htmlspecialchars((string) $photo); ?>">
-                                                <input type="hidden" name="id_foto_denah"
-                                                    value="<?php echo $foto->id_foto_denah; ?>">
+                                                <input type="hidden" name="id_foto_rumah"
+                                                    value="<?php echo $foto->id_foto_rumah; ?>">
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                                             </form>
                                         </td>
