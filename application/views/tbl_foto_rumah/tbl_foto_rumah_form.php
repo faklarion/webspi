@@ -21,9 +21,9 @@
 								 
 								if($id_tipe == 1) {
 									echo 'Classic';
-								} elseif($id_tipe == 2) {
-									echo 'Minimalis';
 								} elseif($id_tipe == 3) {
+									echo 'Minimalis';
+								} elseif($id_tipe == 2) {
 									echo 'Skandinavian';
 								}
 								

@@ -74,18 +74,20 @@
                     </div>
                     <hr>
                     <div class="container">
-                        <span style="font-family: Arial, Helvetica, sans-serif;">Estimasi Harga Jasa Bangun Rumah Impian
-                            Kamu Adalah</span>
-                        <div style="display: flex;">
-                            <h4 style="font-family: Arial, Helvetica, sans-serif;"><?php echo rupiah($harga); ?></h4>
-                            <span
-                                style="font-family: Arial, Helvetica, sans-serif;"><s><?php echo rupiah($harga + ((25 / 100) * $harga)); ?></s></span>
+                        <span style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; display: inline-block;">
+                            Estimasi Harga Jasa Bangun Rumah Impian Kamu Adalah
+                        </span>
+                        <div style="display: inline-block; background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                            <h4 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0;">
+                                <?php echo rupiah($harga); ?>
+                            </h4>
+                            <span style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin-left: 10px;">
+                                <s><?php echo rupiah($harga + ((25 / 100) * $harga)); ?></s>
+                            </span>
                         </div>
-                        <h4 style="font-family: Arial, Helvetica, sans-serif;">Estimasi Waktu Pengerjaan Adalah
+                        <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;">Estimasi Waktu Pengerjaan Adalah
                             <?php echo ($ukuran * 1.7) ?> Hari
-                        </h4>
-                        <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn-sm btn-warning"><b
-                                style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
+                        </h6>
                     </div>
 
                     <div class="container">
@@ -95,7 +97,7 @@
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
                                 <?php
-                                $images = $this->Tbl_mewah_model->get_foto_by_id($tipe);
+                                $images = $this->Tbl_foto_rumah_model->get_foto_by_ukuran($tipe, $ukuran);
                                 $total_images = 0;
                                 $has_images = false;
 
@@ -124,7 +126,7 @@
                                             if (!empty(trim($img))) {
                                                 ?>
                                                 <div class="carousel-item <?php echo $is_first ? 'active' : ''; ?>">
-                                                    <img src="<?php echo base_url('assets/foto_mewah/' . trim($img)); ?>"
+                                                    <img src="<?php echo base_url('assets/rumah/' . trim($img)); ?>"
                                                         class="img-fluid d-block w-100" alt="Slide <?php echo $total_images + 1; ?>"
                                                         style="border-radius:10px; width: 50%; height: auto;">
                                                     <div class="carousel-caption d-none d-md-block">
@@ -251,6 +253,13 @@
                                     style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
                         </div>
                     </div>
+                    <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn-sm btn-warning"><b
+                        style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
+                    </div>
+                    </div>
+                    
                 </div>
 
             </div>

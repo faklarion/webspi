@@ -52,9 +52,9 @@
                         <?php 
                         if($tbl_foto_rumah->id_tipe == 1) {
                             echo 'Classic';
-                        } elseif($tbl_foto_rumah->id_tipe == 2) {
-                            echo 'Minimalis';
                         } elseif($tbl_foto_rumah->id_tipe == 3) {
+                            echo 'Minimalis';
+                        } elseif($tbl_foto_rumah->id_tipe == 2) {
                             echo 'Skandinavian';
                         }
                         ?>

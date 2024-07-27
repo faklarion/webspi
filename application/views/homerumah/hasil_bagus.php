@@ -1,11 +1,11 @@
 <html>
 
-<?php include 'header.php'?>
+<?php include 'header.php' ?>
 
 <body style="background-color: #ffffff;">
-        <!-- <nav class="navbar bg-dark">
+    <!-- <nav class="navbar bg-dark">
             <div class="container-fluid justify-content-center" style="min-height: 10%;">
-                <a class="text-center" href="<?php echo site_url('cek_harga')?>">
+                <a class="text-center" href="<?php echo site_url('cek_harga') ?>">
                     <img src="<?= base_url('assets/img/gsklogogold.png') ?>" width="150px">
                 </a>
             </div>
@@ -16,22 +16,28 @@
             <img class="img-fluid" src="<?= base_url('assets/img/banner.jpg') ?>" width="100%">
         </div> -->
         <div>
-                <h2 class="text-center" style="font-family: Arial, Helvetica, sans-serif;">
-                    <b>Mau Bikin Rumah ?</b>
-                </h2>
-            </div>
+            <h2 class="text-center" style="font-family: Arial, Helvetica, sans-serif;">
+                <b>Mau Bikin Rumah ?</b>
+            </h2>
+        </div>
 
-            <div class="container" width="50%">
+        <div class="container" width="50%">
             <b><a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
                     href="https://manggadigital.my.id/">Halaman Utama </a></b>
-                <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/bagus/') ?>"> Ideal</a></b>
-                <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/ukuran_bagus?tipe_rumah='.$tipe.'') ?>"> <?php echo $namaTipe ?></a></b>
-                <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%" href="<?php echo site_url('homerumah/kamar_bagus?ukuran_rumah='.$ukuran.'&tipe_rumah='.$tipe.'') ?>"> <?php echo $ukuran ?> (m2)</a></b>
-                <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i> 
-                <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"> Harga</a></b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="<?php echo site_url('homerumah/bagus/') ?>"> Bagus</a></b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="<?php echo site_url('homerumah/ukuran_bagus?tipe_rumah=' . $tipe . '') ?>">
+                    <?php echo $namaTipe ?></a></b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="<?php echo site_url('homerumah/kamar_bagus?ukuran_rumah=' . $ukuran . '&tipe_rumah=' . $tipe . '') ?>">
+                    <?php echo $ukuran ?> (m2)</a></b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%">
+                    Harga</a></b>
             </b>
         </div>
         <!-- <div class="custom-search my-3">
@@ -40,8 +46,8 @@
         </div> -->
         </div>
         <div class="container my-3">
-                <div class="card" style="background-color: #f0f0f0; border-radius: 10px;">
-                    <div class="container my-3">
+            <div class="card" style="background-color: #f0f0f0; border-radius: 10px;">
+                <div class="container my-3">
                     <div class="card-body">
                         <table>
                             <tr>
@@ -65,39 +71,33 @@
                                 <td><?php echo $wc ?></td>
                             </tr>
                         </table>
-                        </div>
-                        <hr>
-                        <div class="container">
-                        <span style="font-family: Arial, Helvetica, sans-serif;">Estimasi Harga Jasa Bangun Rumah Impian
-                            Kamu Adalah</span>
-                        <div style="display: flex;">
-                            <h4 style="font-family: Arial, Helvetica, sans-serif;"><?php echo rupiah($harga); ?></h4>
-                            <span
-                                style="font-family: Arial, Helvetica, sans-serif;"><s><?php echo rupiah($harga + ((25 / 100) * $harga)); ?></s></span>
-                        </div>
-                        <h4 style="font-family: Arial, Helvetica, sans-serif;">Estimasi Waktu Pengerjaan Adalah <?php echo ($ukuran * 1.7)?> Hari</h4>
-                        <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn-sm btn-warning"><b
-                                style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
                     </div>
-                    <div class="container mt-4">
-                        <div class="row justify-content-center">
-                            <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga
-                                !</p>
-                        </div>
-                        <div class="row justify-content-center">
-                            <a href="https://wa.me/6281250969099" target="_blank" class="btn-sm btn-success"><i
-                                    class="fa fa-whatsapp"></i> <b
-                                    style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
-                        </div>
-                    </div>
+                    <hr>
                     <div class="container">
-                    <div id="carouselDesainRumah" class="carousel slide mt-4" data-ride="carousel">
+                        <span style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; display: inline-block;">
+                            Estimasi Harga Jasa Bangun Rumah Impian Kamu Adalah
+                        </span>
+                        <div style="display: inline-block; background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                            <h4 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0;">
+                                <?php echo rupiah($harga); ?>
+                            </h4>
+                            <span style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin-left: 10px;">
+                                <s><?php echo rupiah($harga + ((25 / 100) * $harga)); ?></s>
+                            </span>
+                        </div>
+                        <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;">Estimasi Waktu Pengerjaan Adalah
+                            <?php echo ($ukuran * 1.7) ?> Hari
+                        </h6>
+                    </div>
+
+                    <div class="container">
+                        <div id="carouselDesainRumah" class="carousel slide mt-4" data-ride="carousel">
                             <h6 class="text-center">Rekomendasi Desain Rumah Untuk Kamu</h6>
 
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
                                 <?php
-                                $images = $this->Tbl_mewah_model->get_foto_by_id($tipe);
+                                $images = $this->Tbl_foto_rumah_model->get_foto_by_ukuran($tipe, $ukuran);
                                 $total_images = 0;
                                 $has_images = false;
 
@@ -126,7 +126,7 @@
                                             if (!empty(trim($img))) {
                                                 ?>
                                                 <div class="carousel-item <?php echo $is_first ? 'active' : ''; ?>">
-                                                    <img src="<?php echo base_url('assets/foto_mewah/' . trim($img)); ?>"
+                                                    <img src="<?php echo base_url('assets/rumah/' . trim($img)); ?>"
                                                         class="img-fluid d-block w-100" alt="Slide <?php echo $total_images + 1; ?>"
                                                         style="border-radius:10px; width: 50%; height: auto;">
                                                     <div class="carousel-caption d-none d-md-block">
@@ -241,6 +241,7 @@
                             </a>
                         </div>
                     </div>
+
                     <div class="container mt-4">
                         <div class="row justify-content-center">
                             <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga
@@ -251,14 +252,21 @@
                                     class="fa fa-whatsapp"></i> <b
                                     style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
                         </div>
+                    </div>
+                    <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <a href="<?php echo site_url('homerumah/bagus') ?>" class="btn-sm btn-warning"><b
+                        style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
+                    </div>
+                    </div>
+                    
                 </div>
-                </div>
-                
+
             </div>
         </div>
     </section>
 </body>
 
-<?php include 'footer.php'?>
+<?php include 'footer.php' ?>
 
 </html>

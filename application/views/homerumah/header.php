@@ -100,12 +100,16 @@
         z-index: 2;
     }
 
-    .carousel-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 10px;
+    .carousel {
+      aspect-ratio: 1/1;
     }
+
+    .carousel-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
 </style>
 
 <nav class="navbar mb-3" style="background: #909090;">

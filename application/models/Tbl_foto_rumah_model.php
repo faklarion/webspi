@@ -22,6 +22,13 @@ class Tbl_foto_rumah_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_foto_by_ukuran($tipe, $ukuran) {
+        $this->db->select('*');
+        $this->db->where("$ukuran BETWEEN ukuran_awal AND ukuran_akhir", NULL, FALSE);
+        $this->db->where("id_tipe", $tipe);
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {
