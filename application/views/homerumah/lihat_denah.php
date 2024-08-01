@@ -11,18 +11,23 @@
                     href="https://manggadigital.my.id/">Halaman Utama </a></b>
             <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
             <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
-                    href="<?php echo site_url('homerumah/murah/') ?>"> Murah</a></b>
+                    href="<?php echo site_url('homerumah/mewah/') ?>"> Mewah</a></b>
             <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
             <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
-                    href="<?php echo site_url('homerumah/ukuran_murah?tipe_rumah=' . $tipe . '') ?>">
+                    href="<?php echo site_url('homerumah/ukuran_mewah?tipe_rumah=' . $tipe . '') ?>">
                     <?php echo $namaTipe ?></a></b>
             <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
             <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
-                    href="<?php echo site_url('homerumah/kamar_murah?ukuran_rumah=' . $ukuran . '&tipe_rumah=' . $tipe . '') ?>">
+                    href="<?php echo site_url('homerumah/kamar_mewah?ukuran_rumah=' . $ukuran . '&tipe_rumah=' . $tipe . '') ?>">
                     <?php echo $ukuran ?> (m2)</a></b>
             <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
-            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%">
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="<?php echo site_url('homerumah/detail_harga_'.$jenis.'?ukuran_rumah=' . $ukuran . '&tipe_rumah=' . $tipe . '&jumlah_kamar=' . $kamar . '&jumlah_wc=' . $wc . '') ?>">
                     Harga</a></b>
+            </b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%">
+                    Denah</a></b>
             </b>
         </div>
         </div>
@@ -77,7 +82,7 @@
                     </div>
                     <div class="container">
                         <div class="row justify-content-center">
-                            <form action="<?php echo site_url('homerumah/lihat_denah')?>">
+                            <form action="<?php echo site_url('homerumah/lihat_desain')?>">
                                 <input type="hidden" name="tipe" value="<?php echo $tipe ?>">
                                 <input type="hidden" name="ukuran" value="<?php echo $ukuran ?>">
                                 <input type="hidden" name="kamar" value="<?php echo $kamar ?>">
@@ -85,11 +90,86 @@
                                 <input type="hidden" name="harga" value="<?php echo $harga ?>">
                                 <input type="hidden" name="hargacoret" value="<?php echo $hargacoret ?>">
                                 <input type="hidden" name="namaTipe" value="<?php echo $namaTipe ?>">
-                                <input type="hidden" name="jenis" value="Murah">
-                                <input input type="submit" value="Lihat Rekomendasi Denah Rumah Kamu" class="btn btn-primary" />
+                                <input type="hidden" name="jenis" value="<?php echo $jenis ?>">
+                                <input input type="submit" value="Lihat Rekomendasi Desain Rumah Kamu" class="btn btn-primary" />
                             </form>
                         </div>
                     </div>
+                    <div class="container">
+                        <div id="carouselDenah" class="carousel slide mt-4" data-ride="carousel">
+                            <h6 class="text-center">Berikut Rekomendasi Denah Untuk Kamu</h6>
+
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <?php
+                                $images = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran);
+                                $total_images = 0;
+                                $has_images = false;
+
+                                foreach ($images as $index => $image) {
+                                    $image_array = explode(',', $image->foto);
+                                    foreach ($image_array as $img) {
+                                        if (!empty(trim($img))) {
+                                            echo '<li data-target="#carouselDenah" data-slide-to="' . $total_images . '" class="' . ($total_images == 0 ? 'active' : '') . '"></li>';
+                                            $total_images++;
+                                            $has_images = true;
+                                        }
+                                    }
+                                }
+                                ?>
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <?php
+                                if ($has_images) {
+                                    $is_first = true;
+                                    $total_images = 0;  // Reset counter for correct numbering
+                                    foreach ($images as $image) {
+                                        $image_array = explode(',', $image->foto);
+                                        foreach ($image_array as $img) {
+                                            if (!empty(trim($img))) {
+                                                ?>
+                                                <div class="carousel-item <?php echo $is_first ? 'active' : ''; ?>">
+                                                    <img src="<?php echo base_url('assets/denah/' . trim($img)); ?>"
+                                                        class="img-fluid d-block w-100" alt="Slide <?php echo $total_images + 1; ?>"
+                                                        style="border-radius:10px; width: 50%; height: auto;">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <h5>Slide <?php echo $total_images + 1; ?></h5>
+                                                    </div>
+                                                </div>
+                                                <?php
+                                                $is_first = false;
+                                                $total_images++;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    ?>
+                                    <div class="carousel-item active">
+                                        <img src="<?php echo base_url('assets/default.jpg'); ?>" class="d-block w-100"
+                                            alt="No images available" style="border-radius:10px; width: 50%; height: auto;">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>No images available</h5>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                            </div>
+
+                            <!-- Controls -->
+                            <a class="carousel-control-prev" href="#carouselDenah" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselDenah" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="container">
                         <div class="row justify-content-center">
                             <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga !</p>
@@ -102,7 +182,7 @@
                     </div>
                     <div class="container mt-4">
                         <div class="row justify-content-center">
-                            <a href="<?php echo site_url('homerumah/murah') ?>" class="btn btn-sm btn-warning"><b
+                            <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn btn-sm btn-warning"><b
                             style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
                         </div>
                     </div>

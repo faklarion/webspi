@@ -249,4 +249,50 @@ class Homerumah extends CI_Controller{
         );
         $this->load->view('homerumah/hasil_murah', $data);
     }
+
+    function lihat_denah() {
+        $tipe       = $this->input->get('tipe');
+        $ukuran     = $this->input->get('ukuran');
+        $kamar      = $this->input->get('kamar');
+        $wc         = $this->input->get('wc');
+        $harga      = $this->input->get('harga');
+        $hargacoret = $this->input->get('hargacoret');
+        $namaTipe   = $this->input->get('namaTipe');
+        $jenis      = $this->input->get('jenis');
+
+        $data = array(
+            'harga'             => $harga,
+            'hargacoret'        => $hargacoret,
+            'namaTipe'          => $namaTipe,
+            'tipe'              => $tipe,
+            'jenis'             => $jenis,
+            'kamar'             => $kamar,
+            'wc'                => $wc,
+            'ukuran'            => $ukuran,
+        );
+        $this->load->view('homerumah/lihat_denah', $data);
+    }
+
+    function lihat_desain() {
+        $tipe       = $this->input->get('tipe');
+        $ukuran     = $this->input->get('ukuran');
+        $kamar      = $this->input->get('kamar');
+        $wc         = $this->input->get('wc');
+        $harga      = $this->input->get('harga');
+        $hargacoret = $this->input->get('hargacoret');
+        $namaTipe   = $this->input->get('namaTipe');
+        $jenis      = $this->input->get('jenis');
+
+        $data = array(
+            'harga'             => $harga,
+            'hargacoret'        => $hargacoret,
+            'namaTipe'          => $namaTipe,
+            'tipe'              => $tipe,
+            'jenis'             => $jenis,
+            'kamar'             => $kamar,
+            'wc'                => $wc,
+            'ukuran'            => $ukuran,
+        );
+        $this->load->view('homerumah/lihat_desain', $data);
+    }
 }
