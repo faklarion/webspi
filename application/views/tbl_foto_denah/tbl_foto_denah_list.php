@@ -15,7 +15,7 @@
                 <!-- <?php echo anchor(site_url('tbl_foto_denah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?> -->
             </div>
             </div>
-            <div class='col-md-3'>
+            <!-- <div class='col-md-3'>
             <form action="<?php echo site_url('tbl_foto_denah/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
@@ -32,7 +32,7 @@
                         </span>
                     </div>
                 </form>
-            </div>
+            </div> -->
             </div>
         
    
@@ -48,13 +48,18 @@
                 
             </div>
         </div>
-        <table class="table table-bordered" style="margin-bottom: 10px">
+        <table class="table table-bordered" style="margin-bottom: 10px" id="tabeldenah">
+            <thead>
             <tr>
                 <th>No</th>
                 <th>Foto</th>
                 <th>Ukuran</th>
+                <th>Kamar</th>
                 <th>Action</th>
-            </tr><?php
+            </tr>
+            </thead>
+            <tbody>
+            <?php
             foreach ($tbl_foto_denah_data as $tbl_foto_denah)
             {
                 ?>
@@ -66,6 +71,7 @@
                 </button>
             </td>
 			<td><?php echo $tbl_foto_denah->ukuran_awal ?> - <?php echo $tbl_foto_denah->ukuran_akhir ?></td>
+            <td width="10px" class="text-center"><?php echo $tbl_foto_denah->kamar ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				//echo anchor(site_url('tbl_foto_denah/read/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-eye" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
@@ -79,15 +85,8 @@
                 <?php
             }
             ?>
+        </tbody>
         </table>
-        <div class="row">
-            <div class="col-md-6">
-                
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
-        </div>
         </div>
                     </div>
             </div>

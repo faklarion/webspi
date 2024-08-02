@@ -351,5 +351,12 @@
             });
         });
         </script>
+        <script>
+        $(document).ready(function() {
+            $('#tabeldenah').DataTable({
+                responsive: true
+            });
+        });
+        </script>
     </body>
 </html>

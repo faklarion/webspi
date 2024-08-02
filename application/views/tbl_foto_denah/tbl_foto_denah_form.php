@@ -22,6 +22,10 @@
 					<tr>
 						<td width='200'>Ukuran Akhir <?php echo form_error('ukuran_akhir') ?></td><td><input type="number" max="300" class="form-control" name="ukuran_akhir" id="ukuran_akhir" placeholder="Ukuran Akhir" value="<?php echo $ukuran_akhir; ?>" readonly/></td>
 					</tr>
+
+					<tr>
+						<td width='200'>Kamar</td><td><input type="number" max="300" class="form-control" name="kamar" id="kamar" placeholder="Kamar" value="<?php echo $kamar; ?>" readonly/></td>
+					</tr>
 	
 					
 	

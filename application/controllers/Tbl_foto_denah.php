@@ -79,7 +79,7 @@ class Tbl_foto_denah extends CI_Controller
         //upload an image options
         $config = [];
         $config['upload_path'] = './assets/denah/';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
         //$config['max_size'] = '4096';
         //$config['max_width'] = '1024';
         //$config['max_height'] = '768';
@@ -147,10 +147,11 @@ class Tbl_foto_denah extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('tbl_foto_denah/update_action'),
-		'foto' => set_value('foto', $row->foto),
-		'id_foto_denah' => set_value('id_foto_denah', $row->id_foto_denah),
-		'ukuran_akhir' => set_value('ukuran_akhir', $row->ukuran_akhir),
-		'ukuran_awal' => set_value('ukuran_awal', $row->ukuran_awal),
+                'foto' => set_value('foto', $row->foto),
+                'id_foto_denah' => set_value('id_foto_denah', $row->id_foto_denah),
+                'ukuran_akhir' => set_value('ukuran_akhir', $row->ukuran_akhir),
+                'ukuran_awal' => set_value('ukuran_awal', $row->ukuran_awal),
+                'kamar' => set_value('kamar', $row->kamar),
 	    );
             $this->template->load('template','tbl_foto_denah/tbl_foto_denah_form', $data);
         } else {
