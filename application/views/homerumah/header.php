@@ -69,6 +69,18 @@
         width: 50%;
         margin: auto;
     }
+    
+    .overlay-text {
+        position: absolute; /* Menetapkan posisi absolut */
+        top: 50%; /* Posisi vertikal tengah */
+        left: 50%; /* Posisi horizontal tengah */
+        transform: translate(-50%, -50%); /* Mengatur posisi teks tepat di tengah */
+        color: white; /* Warna teks putih untuk kontras dengan gambar */
+        background-color: rgba(0, 0, 0, 0.5); /* Background semi-transparan untuk keterbacaan */
+        padding: 10px; /* Padding untuk jarak antara teks dan tepi */
+        border-radius: 5px; /* Border-radius untuk teks */
+        text-align: center; /* Pusatkan teks */
+    }
 
     .custom-search-input {
         width: 100%;

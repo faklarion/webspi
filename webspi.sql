@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 26 Jul 2024 pada 08.07
+-- Waktu pembuatan: 02 Agu 2024 pada 07.27
 -- Versi server: 8.0.30
 -- Versi PHP: 7.4.33
 
@@ -137,22 +137,39 @@ CREATE TABLE `tbl_foto_denah` (
   `id_foto_denah` int NOT NULL,
   `ukuran_awal` int NOT NULL,
   `ukuran_akhir` int NOT NULL,
-  `foto` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `foto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `kamar` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tbl_foto_denah`
 --
 
-INSERT INTO `tbl_foto_denah` (`id_foto_denah`, `ukuran_awal`, `ukuran_akhir`, `foto`) VALUES
-(1, 36, 44, '891631bb1083456b6f01e8c437db5c6b.jpg,bb372d9f78f533627a6004908b65dbda.jpg,3065b8dfe58c5dba7ef4cc3fa45d3b6d.jpg,09d051b819f9d5731eebda78cbf1da82.jpg'),
-(2, 45, 55, '2c11db6d4dc58ba27c30093419bcdb4d.jpg,8b86950f6eb2d396e6bc71c695d86f75.jpg,5e21b2fdbd6166fce78dedb827683013.jpg,b9a91ed48fc55ae13b7843c10c477052.jpg,30f8142b16712955d939fb1b475280e7.jpg,709479276d42edc2f9e31e47eaf8c3b4.jpg'),
-(3, 56, 69, 'a926ad2326e6c854c63aafe95e31032d.jpg,fd57fa1aaccf3201a095a06e0c0c2c11.jpg,c0665f96261ba66b34035472cd052bf0.jpg'),
-(4, 70, 99, '904dc99bf9bbd57e40193d72a6376aa6.jpg,17a3f746dfe5e2a898cc43fce147cca3.jpg,c23ee3c39836c577ca6d56c328f1d9c1.png'),
-(5, 100, 149, 'e1274a95cc4c7584b58b084dcc82a66b.jpg,d1ed91aa51bc882520f7981209d0f57b.jpg,445eef25bd312b12141d597697f7873c.png'),
-(6, 150, 199, '1d586394a3fe282ccee9ca4ed7f0d59e.jpg,07248b2b39e0ec582af3edee9f21afdb.png,301804db2a39fdcdbe92cbe95d7ff006.png'),
-(7, 200, 249, 'c1c451232fc7ad04ffe654e56c4a68a1.jpg,57428f271dcd514490f654f88673a781.jpg,225d5fa5baa001772be8f080b2465ecd.jpg'),
-(8, 250, 300, '41f02d9d8942aebb71ee266d32147f01.jpg,75c984ac0b672793f173255df081fada.jpg,e9b87279fb2f8bb376895142f462212e.jpg');
+INSERT INTO `tbl_foto_denah` (`id_foto_denah`, `ukuran_awal`, `ukuran_akhir`, `foto`, `kamar`) VALUES
+(1, 36, 44, 'bff26a373da1697a1d67396f82b874b6.png,c79bd4963cd0ebe6d9d6344903c9fad4.png,2a3e2468e5a33224dba12efb874c9c9e.png', 1),
+(2, 45, 55, '160899bb9ec9efc074597a7b6415e860.png,f4f96e47ebe372f1744de60be2e83be8.png,3f1cf45a9389c7d4040d359300eadc4f.png', 1),
+(3, 56, 69, '83530f40347ca64f7a19d683bff0809c.png,402c7322eacdbb6fb5fbe595793e4b2a.png,9c05cae610d79df6393d7104877b7016.png', 1),
+(4, 70, 99, 'f878fef5652e02e031ea59bf25f18e86.png,fa1c0273751df0bc8a6616648bb3b745.png,05defd387ced69b24bb3d701805e3e83.png', 1),
+(5, 100, 149, 'a6e392d61516a4fb3359d7d637bcf690.png,4dbd56860ac0a4300d90400df6b06182.png,d59903b4b1b47a1d052bfbdb9b27533f.png', 1),
+(6, 150, 199, 'aadb343a0e4425a1575cac8799aaea42.jpeg,468bd9a93dcc8eb65da1590582d6ef3c.jpg,75f9567dfef05233067d16dd19a17a96.jpg', 1),
+(7, 200, 249, 'f0d60ecca1a3507b5eb9ee63cd319bff.jpeg,07c317b9624b5d6b2afc7ff623b7c059.jpeg,6a13dbf29d9d1a72328df423e6206d8c.jpeg', 1),
+(8, 250, 300, 'd64568744d66f05d88ef57fcb2c9703f.jpeg,ef7864174f850e3ca999f3f440d92cef.jpeg,9abb6ef7c19967cfe6196e860a57f6bf.jpeg', 1),
+(9, 36, 44, '7b30e74a1715c8d097aac9d2d098489f.png,b4614371555cf2ddc45fec4892826abb.png,63ae7548144430971c2a42a55e2fb0ed.png', 2),
+(10, 45, 55, 'b113c826128c1aec2413cf18eeb8793e.png,c75c458dca8d6a4a2bff63bab13bc3f1.png,3c8ad1e536e174c25ed4612ecc3ad9dc.png', 2),
+(11, 56, 69, '810f75ab18e80468296059f4bacca427.png,3ee442d979943f014b2e8a9109b25ce3.png,1489e2402fee120e24a04cbd289451f6.png', 2),
+(12, 70, 99, '439331318d97cc68218d6a93debd4614.png,64cc1ec7cdfcbdf575ba0c9a1412da33.png,a427cfbb56e4f7daa77fe3e837bd1d22.png', 2),
+(13, 100, 149, '3ad281339eae0f9bbcd654174e2013fa.png,1e7054cffaccc2be9784c5e7ac46e29c.png,a749b5679bab96a705fb7a254d10885b.png', 2),
+(14, 150, 199, '181058345720e5b319eeb0cdfb58c86b.jpeg,778fa17d6914ed1bed91cdda10913eb9.png,d6c79219115cf75304f7ef3af9c182ca.png', 2),
+(15, 200, 249, '18b7f06a2a0f3c3cde46d0a06fa7d7e2.jpeg,8d81d1d7ffd8cccabc1ab330611aa024.jpeg,dd2db22f509dffe10ab0cc858f246f47.jpeg', 2),
+(16, 250, 300, '2dbd2f995a51df1e8023aced298a113f.jpeg,a2a95ca92c0a0be9c0a792760c2a4660.jpeg,2816e304c7638e41bfdb21b5e95aa04e.jpeg', 2),
+(17, 36, 44, '6baea1bb37b9a4d718b5ef9b132b76d0.png,17798ecd70ac8ef21f044b6ee8d53f16.png', 3),
+(18, 45, 55, '126c0e86c619ed96d7814e54f5b3a8bf.png,4705197d72c31bf315031b1e2c6c313f.png', 3),
+(19, 56, 69, 'd39d561df863e88227774b09c29e9adc.png,8932841a5615fe20d0dc65abcc56c0dc.png', 3),
+(20, 70, 99, 'fff0aa1d6d1164030dc8cfadb89dddd7.png,604d5b672e73bca4bd1a188c66cfb120.png,3ea5d08c78b19d8d6a46fb52ba7bafaf.png', 3),
+(21, 100, 149, '635d535532ac50071d36f677c99ff22a.png,a6a1cf9d1121d40f8575ee6ccd570e85.png', 3),
+(22, 150, 199, '696b04764c01ddcc2c4be500fa7c3b97.png,b624ed259ed4ffebb75d4b855aed58eb.png,3d61eca04a2f51a01e86f5bb85a8e69b.png', 3),
+(23, 200, 249, 'c23b864d09f043f9092e174e7f38ea61.jpeg,48c06a642165a2910c235ae7e61c8c05.jpeg,ad7d69def7d53689e78a18bf533c9dd5.jpeg', 3),
+(24, 250, 300, '984b206a877f499d03bfa161f19b7e10.jpeg,0d02c4e0b11d4f41cad5d440063a2794.jpeg,e1a82225301a4f223ae61481dd36620b.jpeg', 3);
 
 -- --------------------------------------------------------
 
@@ -210,8 +227,8 @@ CREATE TABLE `tbl_foto_rumah` (
   `id_tipe` int NOT NULL,
   `ukuran_awal` int NOT NULL,
   `ukuran_akhir` int NOT NULL,
-  `foto` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `foto` text COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tbl_foto_rumah`
@@ -219,29 +236,29 @@ CREATE TABLE `tbl_foto_rumah` (
 
 INSERT INTO `tbl_foto_rumah` (`id_foto_rumah`, `id_tipe`, `ukuran_awal`, `ukuran_akhir`, `foto`) VALUES
 (1, 1, 36, 44, '743fea66f12e727960a4968f125f2073.jpg,270f45e4c07dda8e3a0e5a00ba554e3f.jpg,3814d73e401762a232148754b483dc36.jpg'),
-(2, 2, 36, 44, '0df5ea5b99c342370973ed5fe92b52fc.jpg,32ca78d891e9833449b636af7ed1118f.jpg,d74000417addc7da34001c8ba2a07a40.jpg'),
-(3, 3, 36, 44, '5424afc9f6b04588bf08fbbf1cfb42c6.jpg,4d0dd624c071ed938ebd4d5fd7b5d948.jpg,afdf71f38907cba44e64dde7fe186687.jpg'),
+(2, 3, 36, 44, '0df5ea5b99c342370973ed5fe92b52fc.jpg,32ca78d891e9833449b636af7ed1118f.jpg,d74000417addc7da34001c8ba2a07a40.jpg'),
+(3, 2, 36, 44, '5424afc9f6b04588bf08fbbf1cfb42c6.jpg,4d0dd624c071ed938ebd4d5fd7b5d948.jpg,afdf71f38907cba44e64dde7fe186687.jpg'),
 (4, 1, 45, 55, 'f510898f29141365035da395d42b9fd2.jpg'),
-(5, 2, 45, 55, '034a8a7575b861196a33f572c922c252.jpg,f6716fa5115acda9877a558cdc5659e4.jpg,a2317c07f886215166b11a8b42fa9277.jpg'),
-(6, 3, 45, 55, '0708205c77d7d601c53fc6076783a7c4.jpg,8bfff19f6b189b7359662f8b7979d5fc.jpg,973f6ba81be2c2cafe9bd4d9347c70a5.jpg'),
+(5, 3, 45, 55, '034a8a7575b861196a33f572c922c252.jpg,f6716fa5115acda9877a558cdc5659e4.jpg,a2317c07f886215166b11a8b42fa9277.jpg'),
+(6, 2, 45, 55, '0708205c77d7d601c53fc6076783a7c4.jpg,8bfff19f6b189b7359662f8b7979d5fc.jpg,973f6ba81be2c2cafe9bd4d9347c70a5.jpg'),
 (7, 1, 56, 69, '9669184dcd6e16926d6569c106f719f6.jpg,b17df901ee103f3957412660155bdf21.jpg,7de45276f1e7a99f5dd5b751aafc839b.jpg'),
-(8, 2, 56, 69, '376b89e3c0e71a489a7d887d08770e73.jpg,9345b3f47488b38e510cd4aef49a91ab.jpg,aa43de87c62b30a0950d0c2bd45751d8.jpg'),
-(9, 3, 56, 69, '8bff70e935f06c422b2cdd8ec88e2249.jpg,c40c57e025d559199a31bad14c35f8e3.jpg,66d354c85faa9bfe5a1d743a64da48f1.jpg,462971c03d1bc4ab4887a902028e10d2.jpg'),
+(8, 3, 56, 69, '376b89e3c0e71a489a7d887d08770e73.jpg,9345b3f47488b38e510cd4aef49a91ab.jpg,aa43de87c62b30a0950d0c2bd45751d8.jpg'),
+(9, 2, 56, 69, '8bff70e935f06c422b2cdd8ec88e2249.jpg,c40c57e025d559199a31bad14c35f8e3.jpg,66d354c85faa9bfe5a1d743a64da48f1.jpg,462971c03d1bc4ab4887a902028e10d2.jpg'),
 (10, 1, 70, 99, 'bb55b530e86964b37baa1b12b222ba7c.jpg,99af71f9d47a5ba6941d12a56da2884d.jpg'),
-(11, 2, 70, 99, 'e1fbaf332e4bdface4d360cfe1dfd09e.jpg,967927eba00e4bd8104f20ca795870f2.jpg,209f3a9c7919e51be48b5dd7d61160ee.jpg'),
-(12, 3, 70, 99, 'c9cfa0585b2e98a1f12abb2feb574f1c.jpg,156fdb498a9dc8a59747d7604caa323c.jpg,5201f7de11ee52c847a5df4a6c09936f.jpg'),
+(11, 3, 70, 99, 'e1fbaf332e4bdface4d360cfe1dfd09e.jpg,967927eba00e4bd8104f20ca795870f2.jpg,209f3a9c7919e51be48b5dd7d61160ee.jpg'),
+(12, 2, 70, 99, 'c9cfa0585b2e98a1f12abb2feb574f1c.jpg,156fdb498a9dc8a59747d7604caa323c.jpg,5201f7de11ee52c847a5df4a6c09936f.jpg'),
 (13, 1, 100, 149, 'ae057ee74cd50c4e1fa1065f2ba3f6e3.jpg,64c9d926b9f7bc34d78d4976395a8d7b.jpg'),
-(14, 2, 100, 149, '2b35dfe0526988fa8b3cdc38157667fe.jpg,2f50f219d858fca15b80897d22fc3a1f.jpg,459731aeb166875791a6afc3c10bd3a4.jpg,b63ab7b38508b109542bd15f54552640.jpg'),
-(15, 3, 100, 149, '183c2328fef2fd11b5e0ddb0954db0b7.jpg,b4231133d326e68632b952e99f44adf7.jpg,acdc5c00b9764c7ab5f5f9f0fb5af25b.jpg'),
+(14, 3, 100, 149, '2b35dfe0526988fa8b3cdc38157667fe.jpg,2f50f219d858fca15b80897d22fc3a1f.jpg,459731aeb166875791a6afc3c10bd3a4.jpg,b63ab7b38508b109542bd15f54552640.jpg'),
+(15, 2, 100, 149, '183c2328fef2fd11b5e0ddb0954db0b7.jpg,b4231133d326e68632b952e99f44adf7.jpg,acdc5c00b9764c7ab5f5f9f0fb5af25b.jpg'),
 (16, 1, 150, 199, 'e9984ee648706689140c4083a7a0865b.jpg,51eed3d00384c38ef6ae6d24c0e3f22d.jpg,777299ba7fecf10a9303fd7dbae2b217.jpg'),
-(17, 2, 150, 199, '2e8db7877e2fc38d36d0fdfa963ce898.jpg,a7cb6993f4f9ed23035ffb71d2dbf1a7.jpg,d28bf63a942dad4a52fc39b614cde271.jpg'),
-(18, 3, 150, 199, '016976521a702af2bffd59f5d881888e.jpg,924bc7a838c8460fef947942d0ff8d7c.jpg,23a3310a9e1b762f5f0510e714c45c16.jpg'),
+(17, 3, 150, 199, '2e8db7877e2fc38d36d0fdfa963ce898.jpg,a7cb6993f4f9ed23035ffb71d2dbf1a7.jpg,d28bf63a942dad4a52fc39b614cde271.jpg'),
+(18, 2, 150, 199, '016976521a702af2bffd59f5d881888e.jpg,924bc7a838c8460fef947942d0ff8d7c.jpg,23a3310a9e1b762f5f0510e714c45c16.jpg'),
 (19, 1, 200, 249, 'a525c5a6ce3e3c798021c27de430596a.jpg,6ce07179f5ad1b1b00717f4cc9fd3695.jpg,4c52143881a7beef5cea441788568fe4.jpg'),
-(20, 2, 200, 249, '5e012641911f8a848aa8396b3b71cfae.jpg,676a44a71b3581216f3599e697707e1b.jpg,e2b2a5d0c7ce21335397cf840c9d7060.jpg'),
-(21, 3, 200, 249, '121fc29b7edc9b22151a0a3cbcebe879.jpg,98c77f7e7d2708e97a236f3cf5c757a4.jpg,9a1b63309a915eb7832b3dd48003d782.jpg'),
+(20, 3, 200, 249, '5e012641911f8a848aa8396b3b71cfae.jpg,676a44a71b3581216f3599e697707e1b.jpg,e2b2a5d0c7ce21335397cf840c9d7060.jpg'),
+(21, 2, 200, 249, '121fc29b7edc9b22151a0a3cbcebe879.jpg,98c77f7e7d2708e97a236f3cf5c757a4.jpg,9a1b63309a915eb7832b3dd48003d782.jpg'),
 (22, 1, 250, 300, '7fb43faee844bed9d43a3866b9aad961.jpg,8a83da76e1a339e91cfd83ce8e114de7.jpg,b44d6112d2a76a7b4517cd745ed9d3a0.jpg'),
-(23, 2, 250, 300, '60dcefb720340dc9f002dd3399f83307.jpg,1276b0c39da98753b30257c276454790.jpg,f019617b7f65cde8003dda61dfb30d24.jpg'),
-(24, 3, 250, 300, 'cd41653f1dc74004cf4ff0492f92869c.jpg,5a7c8a719695cc8f85af9f9c698c39b2.jpg,3c2a1d8fd960ec07e0a2c40c9019b819.jpg');
+(23, 3, 250, 300, '60dcefb720340dc9f002dd3399f83307.jpg,1276b0c39da98753b30257c276454790.jpg,f019617b7f65cde8003dda61dfb30d24.jpg'),
+(24, 2, 250, 300, 'cd41653f1dc74004cf4ff0492f92869c.jpg,5a7c8a719695cc8f85af9f9c698c39b2.jpg,3c2a1d8fd960ec07e0a2c40c9019b819.jpg');
 
 -- --------------------------------------------------------
 
@@ -398,6 +415,10 @@ INSERT INTO `tbl_satuan` (`id_satuan`, `nama_satuan`) VALUES
 (1, 'm/m2'),
 (2, 'm2'),
 (3, 'm'),
+(4, 'unit'),
+(1, 'm/m2'),
+(2, 'm2'),
+(3, 'm'),
 (4, 'unit');
 
 -- --------------------------------------------------------
@@ -417,6 +438,7 @@ CREATE TABLE `tbl_setting` (
 --
 
 INSERT INTO `tbl_setting` (`id_setting`, `nama_setting`, `value`) VALUES
+(1, 'Tampil Menu', 'ya'),
 (1, 'Tampil Menu', 'ya');
 
 -- --------------------------------------------------------
@@ -441,6 +463,8 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`id_users`, `full_name`, `email`, `password`, `images`, `id_user_level`, `is_aktif`) VALUES
 (1, 'Admin', 'admin@gmail.com', '$2y$04$Wbyfv4xwihb..POfhxY5Y.jHOJqEFIG3dLfBYwAmnOACpH0EWCCdq', 'atomix_user31.png', 1, 'y'),
+(3, 'Faisal', 'it@gmail.com', '$2y$04$Wbyfv4xwihb..POfhxY5Y.jHOJqEFIG3dLfBYwAmnOACpH0EWCCdq', 'atomix_user31.png', 2, 'y'),
+(1, 'Admin', 'admin@gmail.com', '$2y$04$Wbyfv4xwihb..POfhxY5Y.jHOJqEFIG3dLfBYwAmnOACpH0EWCCdq', 'atomix_user31.png', 1, 'y'),
 (3, 'Faisal', 'it@gmail.com', '$2y$04$Wbyfv4xwihb..POfhxY5Y.jHOJqEFIG3dLfBYwAmnOACpH0EWCCdq', 'atomix_user31.png', 2, 'y');
 
 -- --------------------------------------------------------
@@ -459,6 +483,8 @@ CREATE TABLE `tbl_user_level` (
 --
 
 INSERT INTO `tbl_user_level` (`id_user_level`, `nama_level`) VALUES
+(1, 'Admin'),
+(2, 'IT'),
 (1, 'Admin'),
 (2, 'IT');
 
@@ -539,128 +565,14 @@ ALTER TABLE `tbl_murah`
   ADD PRIMARY KEY (`id_murah`);
 
 --
--- Indeks untuk tabel `tbl_satuan`
---
-ALTER TABLE `tbl_satuan`
-  ADD PRIMARY KEY (`id_satuan`);
-
---
--- Indeks untuk tabel `tbl_setting`
---
-ALTER TABLE `tbl_setting`
-  ADD PRIMARY KEY (`id_setting`);
-
---
--- Indeks untuk tabel `tbl_user`
---
-ALTER TABLE `tbl_user`
-  ADD PRIMARY KEY (`id_users`);
-
---
--- Indeks untuk tabel `tbl_user_level`
---
-ALTER TABLE `tbl_user_level`
-  ADD PRIMARY KEY (`id_user_level`);
-
---
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
-
---
--- AUTO_INCREMENT untuk tabel `tbl_bagus`
---
-ALTER TABLE `tbl_bagus`
-  MODIFY `id_bagus` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_barang`
---
-ALTER TABLE `tbl_barang`
-  MODIFY `id_barang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_foto_bagus`
---
-ALTER TABLE `tbl_foto_bagus`
-  MODIFY `id_foto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_foto_denah`
 --
 ALTER TABLE `tbl_foto_denah`
-  MODIFY `id_foto_denah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_foto_mewah`
---
-ALTER TABLE `tbl_foto_mewah`
-  MODIFY `id_foto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_foto_murah`
---
-ALTER TABLE `tbl_foto_murah`
-  MODIFY `id_foto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_foto_rumah`
---
-ALTER TABLE `tbl_foto_rumah`
-  MODIFY `id_foto_rumah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_hak_akses`
---
-ALTER TABLE `tbl_hak_akses`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_kategori`
---
-ALTER TABLE `tbl_kategori`
-  MODIFY `id_kategori` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_menu`
---
-ALTER TABLE `tbl_menu`
-  MODIFY `id_menu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_mewah`
---
-ALTER TABLE `tbl_mewah`
-  MODIFY `id_mewah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_murah`
---
-ALTER TABLE `tbl_murah`
-  MODIFY `id_murah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_satuan`
---
-ALTER TABLE `tbl_satuan`
-  MODIFY `id_satuan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_setting`
---
-ALTER TABLE `tbl_setting`
-  MODIFY `id_setting` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_user`
---
-ALTER TABLE `tbl_user`
-  MODIFY `id_users` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_user_level`
---
-ALTER TABLE `tbl_user_level`
-  MODIFY `id_user_level` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_foto_denah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

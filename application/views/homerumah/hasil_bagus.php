@@ -1,3 +1,20 @@
+<style>
+    .card-img {
+        width: 200px; /* Mengisi lebar card body */
+        height: auto;
+        object-fit: cover; /* Memastikan gambar menutupi seluruh area card body */
+        border-radius: 15px; /* Sama seperti border-radius card */
+    }
+    
+
+    @media (max-width: 576px) { /* Media query untuk perangkat mobile */
+        .card-img {
+            width: 100%; /* Mengisi lebar card body */
+            height: auto; /* Biarkan height otomatis */
+        }
+    }
+
+</style>
 <?php include 'header.php' ?>
 <body style="background-color: #ffffff;">
     <section>
@@ -77,35 +94,42 @@
                     </div>
                     <div class="container">
                         <div class="row justify-content-center">
-                            <form action="<?php echo site_url('homerumah/lihat_denah')?>">
+                            <h4 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;" class="text-center">
+                                Pilih Denah Pilihan Kamu
+                            </h4>
+                            <form action="<?php echo site_url('homerumah/lihat_desain')?>" id="myForm">
                                 <input type="hidden" name="tipe" value="<?php echo $tipe ?>">
                                 <input type="hidden" name="ukuran" value="<?php echo $ukuran ?>">
                                 <input type="hidden" name="kamar" value="<?php echo $kamar ?>">
                                 <input type="hidden" name="wc" value="<?php echo $wc ?>">
                                 <input type="hidden" name="harga" value="<?php echo $harga ?>">
-                                <input type="hidden" name="hargacoret" value="<?php echo $hargacoret ?>">
                                 <input type="hidden" name="namaTipe" value="<?php echo $namaTipe ?>">
-                                <input type="hidden" name="jenis" value="Bagus">
-                                <input input type="submit" value="Lihat Rekomendasi Denah Rumah Kamu" class="btn btn-primary" />
+                                <input type="hidden" name="jenis" value="bagus">
+                                <input type="hidden" name="fotodenah" id="fotodenah">
+                                
+                                <div class="row justify-content-center">
+                                    <?php
+                                        $foto_denah = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran, $kamar); 
+                                        foreach ($foto_denah as $row): 
+                                            $fotos = explode(',', $row->foto); // Memisahkan string menjadi array
+                                            foreach ($fotos as $foto): // Iterasi melalui setiap elemen array
+                                    ?>
+                                                <div class="col-6 col-sm-3">
+                                                    <a href="#" class="fotoLink" data-foto="<?= trim($foto) ?>">
+                                                        <div class="card-body align-items-center d-flex justify-content-center m-2 card-shadow">
+                                                            <img src="<?= base_url('assets/denah/' . trim($foto)) ?>" alt="Foto Denah" class="card-img" style="border-radius: 15px">
+                                                        </div> 
+                                                    </a>
+                                                </div>
+                                    <?php
+                                            endforeach;
+                                        endforeach;
+                                    ?>
+                                </div>
                             </form>
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga !</p>
-                        </div>
-                        <div class="row justify-content-center">
-                            <a href="https://wa.me/6281250969099" target="_blank" class="btn btn-sm btn-success"><i
-                                    class="fa fa-whatsapp"></i> <b
-                                    style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
-                        </div>
-                    </div>
-                    <div class="container mt-4">
-                        <div class="row justify-content-center">
-                            <a href="<?php echo site_url('homerumah/bagus') ?>" class="btn btn-sm btn-warning"><b
-                            style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -1,3 +1,20 @@
+<style>
+    .card-img {
+        width: 200px; /* Mengisi lebar card body */
+        height: auto;
+        object-fit: cover; /* Memastikan gambar menutupi seluruh area card body */
+        border-radius: 15px; /* Sama seperti border-radius card */
+    }
+    
+
+    @media (max-width: 576px) { /* Media query untuk perangkat mobile */
+        .card-img {
+            width: 100%; /* Mengisi lebar card body */
+            height: auto; /* Biarkan height otomatis */
+        }
+    }
+
+</style>
 <?php include 'header.php' ?>
 <body style="background-color: #ffffff;">
     <section>
@@ -26,13 +43,8 @@
                     Harga</a></b>
             </b>
             <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
-            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
-                href="<?php echo site_url('homerumah/lihat_denah?tipe='.$tipe.'&ukuran='.$ukuran.'&kamar='.$kamar.'&wc='.$wc.'&harga='.$harga.'&hargacoret='.$hargacoret.'&namaTipe='.$namaTipe.'&jenis='.$jenis.'') ?>">
-                    Denah</a></b>
-            </b>
-            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
             <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%">
-                    Rumah</a></b>
+                    Desain Rumah</a></b>
             </b>
         </div>
         </div>
@@ -86,98 +98,43 @@
                         </h6>
                     </div>
                     <div class="container">
-                        <div id="carouselDesainRumah" class="carousel slide mt-4" data-ride="carousel">
-                            <h6 class="text-center">Berikut Rekomendasi Desain Rumah Untuk Kamu</h6>
-
-                            <!-- Indicators -->
-                            <ol class="carousel-indicators">
-                                <?php
-                                $images = $this->Tbl_foto_rumah_model->get_foto_by_ukuran($tipe, $ukuran);
-                                $total_images = 0;
-                                $has_images = false;
-
-                                foreach ($images as $index => $image) {
-                                    $image_array = explode(',', $image->foto);
-                                    foreach ($image_array as $img) {
-                                        if (!empty(trim($img))) {
-                                            echo '<li data-target="#carouselDesainRumah" data-slide-to="' . $total_images . '" class="' . ($total_images == 0 ? 'active' : '') . '"></li>';
-                                            $total_images++;
-                                            $has_images = true;
-                                        }
-                                    }
-                                }
-                                ?>
-                            </ol>
-
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner">
-                                <?php
-                                if ($has_images) {
-                                    $is_first = true;
-                                    $total_images = 0;  // Reset counter for correct numbering
-                                    foreach ($images as $image) {
-                                        $image_array = explode(',', $image->foto);
-                                        foreach ($image_array as $img) {
-                                            if (!empty(trim($img))) {
-                                                ?>
-                                                <div class="carousel-item <?php echo $is_first ? 'active' : ''; ?>">
-                                                    <img src="<?php echo base_url('assets/rumah/' . trim($img)); ?>"
-                                                        class="img-fluid d-block w-100" alt="Slide <?php echo $total_images + 1; ?>"
-                                                        style="border-radius:10px; width: 50%; height: auto;">
-                                                    <div class="carousel-caption d-none d-md-block">
-                                                        <h5>Slide <?php echo $total_images + 1; ?></h5>
-                                                    </div>
-                                                </div>
-                                                <?php
-                                                $is_first = false;
-                                                $total_images++;
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    ?>
-                                    <div class="carousel-item active">
-                                        <img src="<?php echo base_url('assets/default.jpg'); ?>" class="d-block w-100"
-                                            alt="No images available" style="border-radius:10px; width: 50%; height: auto;">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>No images available</h5>
-                                        </div>
-                                    </div>
+                        <div class="row justify-content-center">
+                            <h4 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;" class="text-center">
+                                Pilih Desain Rumah Pilihan Kamu
+                            </h4>
+                            <form action="<?php echo site_url('homerumah/lihat_rekap')?>" id="myFormRumah">
+                                <input type="hidden" name="tipe" value="<?php echo $tipe ?>">
+                                <input type="hidden" name="ukuran" value="<?php echo $ukuran ?>">
+                                <input type="hidden" name="kamar" value="<?php echo $kamar ?>">
+                                <input type="hidden" name="wc" value="<?php echo $wc ?>">
+                                <input type="hidden" name="harga" value="<?php echo $harga ?>">
+                                <input type="hidden" name="namaTipe" value="<?php echo $namaTipe ?>">
+                                <input type="hidden" name="jenis" value="<?php echo $jenis ?>">
+                                <input type="hidden" name="fotodenah" id="fotodenah" value="<?php echo $fotodenah ?>">
+                                <input type="hidden" name="fotorumah" id="fotorumah">
+                                <div class="row justify-content-center">
                                     <?php
-                                }
-                                ?>
-                            </div>
-
-                            <!-- Controls -->
-                            <a class="carousel-control-prev" href="#carouselDesainRumah" role="button"
-                                data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselDesainRumah" role="button"
-                                data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                                        $foto_rumah = $this->Tbl_foto_rumah_model->get_foto_by_ukuran($tipe, $ukuran);
+                                        foreach ($foto_rumah as $row): 
+                                            $fotos = explode(',', $row->foto); // Memisahkan string menjadi array
+                                            foreach ($fotos as $foto): // Iterasi melalui setiap elemen array
+                                    ?>
+                                                <div class="col-6 col-sm-3">
+                                                    <a href="#" class="rumahLink" data-foto="<?= trim($foto) ?>">
+                                                        <div class="card-body align-items-center d-flex justify-content-center m-2 card-shadow">
+                                                            <img src="<?= base_url('assets/rumah/' . trim($foto)) ?>" alt="Foto Rumah" class="card-img" style="border-radius: 15px">
+                                                        </div> 
+                                                    </a>
+                                                </div>
+                                    <?php
+                                            endforeach;
+                                        endforeach;
+                                    ?>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga !</p>
-                        </div>
-                        <div class="row justify-content-center">
-                            <a href="https://wa.me/6281250969099" target="_blank" class="btn btn-sm btn-success"><i
-                                    class="fa fa-whatsapp"></i> <b
-                                    style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
-                        </div>
-                    </div>
-                    <div class="container mt-4">
-                        <div class="row justify-content-center">
-                            <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn btn-sm btn-warning"><b
-                            style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

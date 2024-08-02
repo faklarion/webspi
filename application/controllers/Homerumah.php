@@ -256,13 +256,11 @@ class Homerumah extends CI_Controller{
         $kamar      = $this->input->get('kamar');
         $wc         = $this->input->get('wc');
         $harga      = $this->input->get('harga');
-        $hargacoret = $this->input->get('hargacoret');
         $namaTipe   = $this->input->get('namaTipe');
         $jenis      = $this->input->get('jenis');
 
         $data = array(
             'harga'             => $harga,
-            'hargacoret'        => $hargacoret,
             'namaTipe'          => $namaTipe,
             'tipe'              => $tipe,
             'jenis'             => $jenis,
@@ -279,20 +277,45 @@ class Homerumah extends CI_Controller{
         $kamar      = $this->input->get('kamar');
         $wc         = $this->input->get('wc');
         $harga      = $this->input->get('harga');
-        $hargacoret = $this->input->get('hargacoret');
         $namaTipe   = $this->input->get('namaTipe');
         $jenis      = $this->input->get('jenis');
+        $fotodenah  = $this->input->get('fotodenah');
 
         $data = array(
             'harga'             => $harga,
-            'hargacoret'        => $hargacoret,
             'namaTipe'          => $namaTipe,
             'tipe'              => $tipe,
             'jenis'             => $jenis,
             'kamar'             => $kamar,
             'wc'                => $wc,
             'ukuran'            => $ukuran,
+            'fotodenah'         => $fotodenah,
         );
         $this->load->view('homerumah/lihat_desain', $data);
+    }
+
+    function lihat_rekap() {
+        $tipe       = $this->input->get('tipe');
+        $ukuran     = $this->input->get('ukuran');
+        $kamar      = $this->input->get('kamar');
+        $wc         = $this->input->get('wc');
+        $harga      = $this->input->get('harga');
+        $namaTipe   = $this->input->get('namaTipe');
+        $jenis      = $this->input->get('jenis');
+        $fotodenah  = $this->input->get('fotodenah');
+        $fotorumah  = $this->input->get('fotorumah');
+
+        $data = array(
+            'harga'             => $harga,
+            'namaTipe'          => $namaTipe,
+            'tipe'              => $tipe,
+            'jenis'             => $jenis,
+            'kamar'             => $kamar,
+            'wc'                => $wc,
+            'ukuran'            => $ukuran,
+            'fotodenah'         => $fotodenah,
+            'fotorumah'         => $fotorumah,
+        );
+        $this->load->view('homerumah/lihat_rekap', $data);
     }
 }
