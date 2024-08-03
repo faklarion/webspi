@@ -84,31 +84,36 @@
                         </table>
                     </div>
                     <hr>
-                    <div class="container">
-                        <span style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; display: inline-block;">
-                            Estimasi Harga Jasa Bangun Rumah Impian Kamu Adalah
-                        </span>
-                        <div style="display: inline-block; background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                            <h4 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0;">
-                                <?php echo rupiah($harga); ?>
-                            </h4>
-                            <span style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin-left: 10px;">
+                    <div class="container" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; align-items: center; justify-content: center; text-align: center;">
+                        <div>
+                            <span style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
+                                Estimasi Harga Jasa Bangun Rumah Impian Kamu Adalah
+                            </span>
+                            <h5 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
                                 <s>
                                     <?php 
                                         $hargacoret = $harga + ((25 / 100) * $harga);
                                         echo rupiah($hargacoret); 
                                     ?>
                                 </s>
+                            </h5>
+                            <hr>
+                            <span style="font-family: Arial, Helvetica, sans-serif; font-size: 1.3em; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
+                                Harga spesial di website  
                             </span>
-                        </div>
-                        <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;">Estimasi Waktu Pengerjaan Adalah
-                            <?php echo ($ukuran * 1.7) ?> Hari
-                        </h6>
-                    </div>
-                    <div class="container mt-2">
-                    <h6 class="text-center">Berikut Pilihan Denah dan Desain Rumah Kamu</h6>
-                            <div class="row justify-content-center">
+                            
+                            <h3 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
+                                <b>Rp </b>
+                                <b>
+                                    <div id="odometer" style=" display: inline-block;"></div>
+                                </b>
                                 
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="container mt-4">
+                            <h6 class="text-center">Berikut Pilihan Denah dan Desain Rumah Kamu</h6>
+                            <div class="row justify-content-center">
                                 <div class="col-md-6 mb-4">
                                         <div class="card-body align-items-center d-flex justify-content-center card-shadow">
                                             <img src="<?= base_url('assets/denah/' . $fotodenah) ?>" alt="Foto Denah" class="card-img" style="border-radius: 15px">
@@ -117,11 +122,11 @@
                                 <div class="col-md-6 mb-4">
                                         <div class="card-body align-items-center d-flex justify-content-center card-shadow">
                                             <img src="<?= base_url('assets/rumah/' . $fotorumah) ?>" alt="Foto Rumah" class="card-img" style="border-radius: 15px">
-                                        </div>
+                                         </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                    
                     <div class="container mb-4">
                         <div class="row justify-content-center">
                             <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ?</p>

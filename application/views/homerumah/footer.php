@@ -18,6 +18,28 @@
         });
     });
 </script>
+<script>
+    // Nilai awal dan akhir yang valid
+    const startVal = <?php $hargacoret = $harga + ((25 / 100) * $harga);
+                            echo $hargacoret; ?>; // Nilai awal
+    const endVal = <?php echo $harga ?>;      // Nilai akhir
+    
+    // Membuat instance baru dari CountUp
+    const odometer = new CountUp('odometer', startVal, endVal, 0, 3, {
+        useEasing: true,
+        useGrouping: true,
+        separator: '.',
+        decimal: '.',
+    });
+
+    // Memulai animasi ke nilai akhir
+    if (!odometer.error) {
+        odometer.start();
+    } else {
+        console.error(odometer.error);
+    }
+</script>
+
 <footer class="footer">
     &copy; <?php echo DATE('Y'); ?> ZED Group. All rights reserved.
 </footer>
