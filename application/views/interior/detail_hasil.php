@@ -81,7 +81,7 @@
                 </div>
                 
                 <div class="container">
-                    <?php include 'harga.php '?>
+                    <?php include 'harga.php'?>
                 </div>
                 
 
