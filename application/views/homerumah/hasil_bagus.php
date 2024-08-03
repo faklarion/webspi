@@ -71,31 +71,43 @@
                         </table>
                     </div>
                     <hr>
-                    <div class="container">
-                        <span style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; display: inline-block;">
-                            Estimasi Harga Jasa Bangun Rumah Impian Kamu Adalah
-                        </span>
-                        <div style="display: inline-block; background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                            <h4 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0;">
-                                <?php echo rupiah($harga); ?>
-                            </h4>
-                            <span style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin-left: 10px;">
+                    <div class="container" style="background-color: white; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; align-items: center; justify-content: center; text-align: center;">
+                        <div>
+                            <span style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
+                                Estimasi Harga Jasa Bangun Rumah Impian Kamu Adalah
+                            </span>
+                            <h5 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
                                 <s>
                                     <?php 
                                         $hargacoret = $harga + ((25 / 100) * $harga);
                                         echo rupiah($hargacoret); 
                                     ?>
                                 </s>
+                            </h5>
+                            <hr>
+                            <span style="font-family: Arial, Helvetica, sans-serif; font-size: 1.3em; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
+                                Harga spesial di website  
                             </span>
+                            
+                            <h3 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
+                                <b>Rp </b>
+                                <b>
+                                    <div id="odometer" style=" display: inline-block;"></div>
+                                </b>
+                                
+                            </h3>
                         </div>
-                        <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;">Estimasi Waktu Pengerjaan Adalah
-                            <?php echo ($ukuran * 1.7) ?> Hari
+                    </div>
+
+                    <div class="container" style="display: flex; align-items: center; justify-content: center; text-align: center;">
+                        <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block; ">
+                            Estimasi Waktu Pengerjaan Adalah <?php echo ($ukuran * 1.7) ?> Hari
                         </h6>
                     </div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <h4 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;" class="text-center">
-                                Pilih Denah Pilihan Kamu
+                                Pilih dan Klik Denah Pilihan Kamu
                             </h4>
                             <form action="<?php echo site_url('homerumah/lihat_desain')?>" id="myForm">
                                 <input type="hidden" name="tipe" value="<?php echo $tipe ?>">
@@ -114,9 +126,9 @@
                                             $fotos = explode(',', $row->foto); // Memisahkan string menjadi array
                                             foreach ($fotos as $foto): // Iterasi melalui setiap elemen array
                                     ?>
-                                                <div class="col-6 col-sm-3">
+                                                <div class="col-4 d-none d-md-block"> <!-- Hanya tampil di layar menengah ke atas -->
                                                     <a href="#" class="fotoLink" data-foto="<?= trim($foto) ?>">
-                                                        <div class="card-body align-items-center d-flex justify-content-center m-2 card-shadow">
+                                                        <div class="card-body align-items-center d-flex justify-content-center card-shadow">
                                                             <img src="<?= base_url('assets/denah/' . trim($foto)) ?>" alt="Foto Denah" class="card-img" style="border-radius: 15px">
                                                         </div> 
                                                     </a>
@@ -125,6 +137,36 @@
                                             endforeach;
                                         endforeach;
                                     ?>
+                                </div>
+
+                                <!-- Carousel for Mobile Devices -->
+                                <div id="carouselExampleControls" class="carousel slide d-md-none" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <?php
+                                        $foto_denah = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran, $kamar); 
+                                        $first = true; // Variable untuk menandai item pertama
+                                        foreach ($foto_denah as $row): 
+                                            $fotos = explode(',', $row->foto); // Memisahkan string menjadi array
+                                            foreach ($fotos as $foto): // Iterasi melalui setiap elemen array
+                                        ?>
+                                                <div class="carousel-item <?php if ($first) { echo 'active'; $first = false; } ?>">
+                                                    <a href="#" class="fotoLink" data-foto="<?= trim($foto) ?>">
+                                                        <img src="<?= base_url('assets/denah/' . trim($foto)) ?>" class="d-block w-100" alt="Foto Denah" style="border-radius: 15px;">
+                                                    </a>
+                                                </div>
+                                        <?php
+                                            endforeach;
+                                        endforeach;
+                                        ?>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
                             </form>
                         </div>

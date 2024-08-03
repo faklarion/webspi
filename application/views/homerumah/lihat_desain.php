@@ -104,8 +104,8 @@
                         </div>
                     </div>
 
-                    <div class="container" style="display: flex; align-items: center; justify-content: center;">
-                        <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;">
+                    <div class="container" style="display: flex; align-items: center; justify-content: center; text-align: center;">
+                        <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block; ">
                             Estimasi Waktu Pengerjaan Adalah <?php echo ($ukuran * 1.7) ?> Hari
                         </h6>
                     </div>
