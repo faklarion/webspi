@@ -13,7 +13,6 @@
             height: auto; /* Biarkan height otomatis */
         }
     }
-
 </style>
 <?php include 'header.php' ?>
 <body style="background-color: #ffffff;">
@@ -89,27 +88,29 @@
                                     ?>
                                 </s>
                             </h5>
-                            <hr>
-                            <span style="font-family: Arial, Helvetica, sans-serif; font-size: 1.3em; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
+                        </div>
+                    </div>
+
+                    <div class="container mt-1" style="background-color: #FF2200; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; align-items: center; justify-content: center; text-align: center;">
+                        <div>
+                            <span style="color: white; font-family: Arial, Helvetica, sans-serif; font-size: 1.3em; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
                                 Harga spesial di website  
                             </span>
-                            
-                            <h3 style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
+                            <h3 style="color: white; font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
                                 <b>Rp </b>
                                 <b>
                                     <div id="odometer" style=" display: inline-block;"></div>
-                                </b>
-                                
+                                </b>            
                             </h3>
                         </div>
                     </div>
 
-                    <div class="container" style="display: flex; align-items: center; justify-content: center; text-align: center;">
-                        <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block; ">
-                            Estimasi Waktu Pengerjaan Adalah <?php echo ($ukuran * 1.7) ?> Hari
+                    <div class="container mt-4" style="background-color: #2E8B57; border-radius: 10px; padding: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: flex; align-items: center; justify-content: center; text-align: center;">
+                        <h6 style="color: white; font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block; ">
+                            Estimasi Waktu Pengerjaan Adalah <b><div id="odometerhari" style=" display: inline-block;"></div> Hari</b>
                         </h6>
                     </div>
-                    <div class="container">
+                    <div class="container" id="containerDesain">
                         <div class="row justify-content-center">
                             <h4 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;" class="text-center">
                                 Pilih dan Klik Desain Rumah Pilihan Kamu
@@ -183,3 +184,9 @@
     </section>
 </body>
 <?php include 'footer.php' ?>
+<!-- Tambahkan JavaScript untuk mengarahkan ke elemen dengan id 'containerDesain' -->
+<script>
+    window.onload = function() {
+        window.location.hash = 'containerDesain';
+    }
+</script>
