@@ -86,7 +86,7 @@
                     <hr>
 
                     <?php include 'harga.php'; ?>
-                    <?php include 'hari.php'; ?>
+                    
 
                     <div class="container mt-4">
                             <h6 class="text-center">Berikut Pilihan Denah dan Desain Rumah Kamu</h6>
@@ -103,8 +103,10 @@
                                 </div>
                             </div>
                     </div>
+
+                    <?php include 'hari.php'; ?>
                     
-                    <div class="container mb-4">
+                    <div class="container mb-4 mt-2">
                         <div class="row justify-content-center">
                             <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ?</p>
                             
@@ -119,6 +121,8 @@
                                     style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
                         </div>
                     </div>
+
+                   
                     <!-- <div class="container mt-4">
                         <div class="row justify-content-center">
                             <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn btn-sm btn-warning"><b
