@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 02 Agu 2024 pada 07.27
--- Versi server: 8.0.30
--- Versi PHP: 7.4.33
+-- Generation Time: Aug 16, 2024 at 06:58 PM
+-- Server version: 10.6.18-MariaDB-cll-lve
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,25 +18,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webspi`
+-- Database: `manggad1_spi`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_bagus`
+-- Table structure for table `tbl_bagus`
 --
 
 CREATE TABLE `tbl_bagus` (
-  `id_bagus` int NOT NULL,
-  `tipe` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `harga` int NOT NULL,
-  `foto` text COLLATE utf8mb4_general_ci NOT NULL,
-  `foto_denah` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_bagus` int(11) NOT NULL,
+  `tipe` varchar(50) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `foto` text NOT NULL,
+  `foto_denah` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_bagus`
+-- Dumping data for table `tbl_bagus`
 --
 
 INSERT INTO `tbl_bagus` (`id_bagus`, `tipe`, `harga`, `foto`, `foto_denah`) VALUES
@@ -47,22 +47,22 @@ INSERT INTO `tbl_bagus` (`id_bagus`, `tipe`, `harga`, `foto`, `foto_denah`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_barang`
+-- Table structure for table `tbl_barang`
 --
 
 CREATE TABLE `tbl_barang` (
-  `id_barang` int NOT NULL,
-  `id_kategori` int NOT NULL,
-  `nama_barang` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `harga_a` int NOT NULL,
-  `harga_b` int NOT NULL,
-  `harga_c` int NOT NULL,
-  `id_satuan` int NOT NULL,
-  `foto` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_barang` int(11) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
+  `nama_barang` varchar(100) NOT NULL,
+  `harga_a` int(11) NOT NULL,
+  `harga_b` int(11) NOT NULL,
+  `harga_c` int(11) NOT NULL,
+  `id_satuan` int(11) NOT NULL,
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_barang`
+-- Dumping data for table `tbl_barang`
 --
 
 INSERT INTO `tbl_barang` (`id_barang`, `id_kategori`, `nama_barang`, `harga_a`, `harga_b`, `harga_c`, `id_satuan`, `foto`) VALUES
@@ -108,17 +108,17 @@ INSERT INTO `tbl_barang` (`id_barang`, `id_kategori`, `nama_barang`, `harga_a`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_foto_bagus`
+-- Table structure for table `tbl_foto_bagus`
 --
 
 CREATE TABLE `tbl_foto_bagus` (
-  `id_foto` int NOT NULL,
-  `id_bagus` int NOT NULL,
-  `foto` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_foto` int(11) NOT NULL,
+  `id_bagus` int(11) NOT NULL,
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_foto_bagus`
+-- Dumping data for table `tbl_foto_bagus`
 --
 
 INSERT INTO `tbl_foto_bagus` (`id_foto`, `id_bagus`, `foto`) VALUES
@@ -130,19 +130,19 @@ INSERT INTO `tbl_foto_bagus` (`id_foto`, `id_bagus`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_foto_denah`
+-- Table structure for table `tbl_foto_denah`
 --
 
 CREATE TABLE `tbl_foto_denah` (
-  `id_foto_denah` int NOT NULL,
-  `ukuran_awal` int NOT NULL,
-  `ukuran_akhir` int NOT NULL,
-  `foto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `kamar` int NOT NULL
+  `id_foto_denah` int(11) NOT NULL,
+  `ukuran_awal` int(11) NOT NULL,
+  `ukuran_akhir` int(11) NOT NULL,
+  `foto` text DEFAULT NULL,
+  `kamar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_foto_denah`
+-- Dumping data for table `tbl_foto_denah`
 --
 
 INSERT INTO `tbl_foto_denah` (`id_foto_denah`, `ukuran_awal`, `ukuran_akhir`, `foto`, `kamar`) VALUES
@@ -174,17 +174,17 @@ INSERT INTO `tbl_foto_denah` (`id_foto_denah`, `ukuran_awal`, `ukuran_akhir`, `f
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_foto_mewah`
+-- Table structure for table `tbl_foto_mewah`
 --
 
 CREATE TABLE `tbl_foto_mewah` (
-  `id_foto` int NOT NULL,
-  `id_mewah` int NOT NULL,
-  `foto` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_foto` int(11) NOT NULL,
+  `id_mewah` int(11) NOT NULL,
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_foto_mewah`
+-- Dumping data for table `tbl_foto_mewah`
 --
 
 INSERT INTO `tbl_foto_mewah` (`id_foto`, `id_mewah`, `foto`) VALUES
@@ -196,17 +196,17 @@ INSERT INTO `tbl_foto_mewah` (`id_foto`, `id_mewah`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_foto_murah`
+-- Table structure for table `tbl_foto_murah`
 --
 
 CREATE TABLE `tbl_foto_murah` (
-  `id_foto` int NOT NULL,
-  `id_murah` int NOT NULL,
-  `foto` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_foto` int(11) NOT NULL,
+  `id_murah` int(11) NOT NULL,
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_foto_murah`
+-- Dumping data for table `tbl_foto_murah`
 --
 
 INSERT INTO `tbl_foto_murah` (`id_foto`, `id_murah`, `foto`) VALUES
@@ -219,19 +219,19 @@ INSERT INTO `tbl_foto_murah` (`id_foto`, `id_murah`, `foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_foto_rumah`
+-- Table structure for table `tbl_foto_rumah`
 --
 
 CREATE TABLE `tbl_foto_rumah` (
-  `id_foto_rumah` int NOT NULL,
-  `id_tipe` int NOT NULL,
-  `ukuran_awal` int NOT NULL,
-  `ukuran_akhir` int NOT NULL,
-  `foto` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_foto_rumah` int(11) NOT NULL,
+  `id_tipe` int(11) NOT NULL,
+  `ukuran_awal` int(11) NOT NULL,
+  `ukuran_akhir` int(11) NOT NULL,
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_foto_rumah`
+-- Dumping data for table `tbl_foto_rumah`
 --
 
 INSERT INTO `tbl_foto_rumah` (`id_foto_rumah`, `id_tipe`, `ukuran_awal`, `ukuran_akhir`, `foto`) VALUES
@@ -263,17 +263,17 @@ INSERT INTO `tbl_foto_rumah` (`id_foto_rumah`, `id_tipe`, `ukuran_awal`, `ukuran
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_hak_akses`
+-- Table structure for table `tbl_hak_akses`
 --
 
 CREATE TABLE `tbl_hak_akses` (
-  `id` int NOT NULL,
-  `id_user_level` int NOT NULL,
-  `id_menu` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL,
+  `id_user_level` int(11) NOT NULL,
+  `id_menu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `tbl_hak_akses`
+-- Dumping data for table `tbl_hak_akses`
 --
 
 INSERT INTO `tbl_hak_akses` (`id`, `id_user_level`, `id_menu`) VALUES
@@ -287,16 +287,16 @@ INSERT INTO `tbl_hak_akses` (`id`, `id_user_level`, `id_menu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_kategori`
+-- Table structure for table `tbl_kategori`
 --
 
 CREATE TABLE `tbl_kategori` (
-  `id_kategori` int NOT NULL,
-  `nama_kategori` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_kategori`
+-- Dumping data for table `tbl_kategori`
 --
 
 INSERT INTO `tbl_kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -318,20 +318,20 @@ INSERT INTO `tbl_kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_menu`
+-- Table structure for table `tbl_menu`
 --
 
 CREATE TABLE `tbl_menu` (
-  `id_menu` int NOT NULL,
+  `id_menu` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
   `url` varchar(30) NOT NULL,
   `icon` varchar(30) NOT NULL,
-  `is_main_menu` int NOT NULL,
+  `is_main_menu` int(11) NOT NULL,
   `is_aktif` enum('y','n') NOT NULL COMMENT 'y=yes,n=no'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `tbl_menu`
+-- Dumping data for table `tbl_menu`
 --
 
 INSERT INTO `tbl_menu` (`id_menu`, `title`, `url`, `icon`, `is_main_menu`, `is_aktif`) VALUES
@@ -353,19 +353,19 @@ INSERT INTO `tbl_menu` (`id_menu`, `title`, `url`, `icon`, `is_main_menu`, `is_a
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_mewah`
+-- Table structure for table `tbl_mewah`
 --
 
 CREATE TABLE `tbl_mewah` (
-  `id_mewah` int NOT NULL,
-  `tipe` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `harga` int NOT NULL,
-  `foto` text COLLATE utf8mb4_general_ci NOT NULL,
-  `foto_denah` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_mewah` int(11) NOT NULL,
+  `tipe` varchar(50) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `foto` text NOT NULL,
+  `foto_denah` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_mewah`
+-- Dumping data for table `tbl_mewah`
 --
 
 INSERT INTO `tbl_mewah` (`id_mewah`, `tipe`, `harga`, `foto`, `foto_denah`) VALUES
@@ -376,19 +376,19 @@ INSERT INTO `tbl_mewah` (`id_mewah`, `tipe`, `harga`, `foto`, `foto_denah`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_murah`
+-- Table structure for table `tbl_murah`
 --
 
 CREATE TABLE `tbl_murah` (
-  `id_murah` int NOT NULL,
-  `tipe` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `harga` int NOT NULL,
-  `foto` text COLLATE utf8mb4_general_ci NOT NULL,
-  `foto_denah` text COLLATE utf8mb4_general_ci NOT NULL
+  `id_murah` int(11) NOT NULL,
+  `tipe` varchar(50) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `foto` text NOT NULL,
+  `foto_denah` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_murah`
+-- Dumping data for table `tbl_murah`
 --
 
 INSERT INTO `tbl_murah` (`id_murah`, `tipe`, `harga`, `foto`, `foto_denah`) VALUES
@@ -399,16 +399,16 @@ INSERT INTO `tbl_murah` (`id_murah`, `tipe`, `harga`, `foto`, `foto_denah`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_satuan`
+-- Table structure for table `tbl_satuan`
 --
 
 CREATE TABLE `tbl_satuan` (
-  `id_satuan` int NOT NULL,
-  `nama_satuan` varchar(10) COLLATE utf8mb4_general_ci NOT NULL
+  `id_satuan` int(11) NOT NULL,
+  `nama_satuan` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tbl_satuan`
+-- Dumping data for table `tbl_satuan`
 --
 
 INSERT INTO `tbl_satuan` (`id_satuan`, `nama_satuan`) VALUES
@@ -424,17 +424,17 @@ INSERT INTO `tbl_satuan` (`id_satuan`, `nama_satuan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_setting`
+-- Table structure for table `tbl_setting`
 --
 
 CREATE TABLE `tbl_setting` (
-  `id_setting` int NOT NULL,
+  `id_setting` int(11) NOT NULL,
   `nama_setting` varchar(50) NOT NULL,
   `value` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `tbl_setting`
+-- Dumping data for table `tbl_setting`
 --
 
 INSERT INTO `tbl_setting` (`id_setting`, `nama_setting`, `value`) VALUES
@@ -444,21 +444,21 @@ INSERT INTO `tbl_setting` (`id_setting`, `nama_setting`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_user`
+-- Table structure for table `tbl_user`
 --
 
 CREATE TABLE `tbl_user` (
-  `id_users` int NOT NULL,
+  `id_users` int(11) NOT NULL,
   `full_name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `images` text NOT NULL,
-  `id_user_level` int NOT NULL,
+  `id_user_level` int(11) NOT NULL,
   `is_aktif` enum('y','n') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `tbl_user`
+-- Dumping data for table `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id_users`, `full_name`, `email`, `password`, `images`, `id_user_level`, `is_aktif`) VALUES
@@ -470,16 +470,16 @@ INSERT INTO `tbl_user` (`id_users`, `full_name`, `email`, `password`, `images`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_user_level`
+-- Table structure for table `tbl_user_level`
 --
 
 CREATE TABLE `tbl_user_level` (
-  `id_user_level` int NOT NULL,
+  `id_user_level` int(11) NOT NULL,
   `nama_level` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `tbl_user_level`
+-- Dumping data for table `tbl_user_level`
 --
 
 INSERT INTO `tbl_user_level` (`id_user_level`, `nama_level`) VALUES
@@ -493,86 +493,86 @@ INSERT INTO `tbl_user_level` (`id_user_level`, `nama_level`) VALUES
 --
 
 --
--- Indeks untuk tabel `tbl_bagus`
+-- Indexes for table `tbl_bagus`
 --
 ALTER TABLE `tbl_bagus`
   ADD PRIMARY KEY (`id_bagus`);
 
 --
--- Indeks untuk tabel `tbl_barang`
+-- Indexes for table `tbl_barang`
 --
 ALTER TABLE `tbl_barang`
   ADD PRIMARY KEY (`id_barang`);
 
 --
--- Indeks untuk tabel `tbl_foto_bagus`
+-- Indexes for table `tbl_foto_bagus`
 --
 ALTER TABLE `tbl_foto_bagus`
   ADD PRIMARY KEY (`id_foto`);
 
 --
--- Indeks untuk tabel `tbl_foto_denah`
+-- Indexes for table `tbl_foto_denah`
 --
 ALTER TABLE `tbl_foto_denah`
   ADD PRIMARY KEY (`id_foto_denah`);
 
 --
--- Indeks untuk tabel `tbl_foto_mewah`
+-- Indexes for table `tbl_foto_mewah`
 --
 ALTER TABLE `tbl_foto_mewah`
   ADD PRIMARY KEY (`id_foto`);
 
 --
--- Indeks untuk tabel `tbl_foto_murah`
+-- Indexes for table `tbl_foto_murah`
 --
 ALTER TABLE `tbl_foto_murah`
   ADD PRIMARY KEY (`id_foto`);
 
 --
--- Indeks untuk tabel `tbl_foto_rumah`
+-- Indexes for table `tbl_foto_rumah`
 --
 ALTER TABLE `tbl_foto_rumah`
   ADD PRIMARY KEY (`id_foto_rumah`);
 
 --
--- Indeks untuk tabel `tbl_hak_akses`
+-- Indexes for table `tbl_hak_akses`
 --
 ALTER TABLE `tbl_hak_akses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbl_kategori`
+-- Indexes for table `tbl_kategori`
 --
 ALTER TABLE `tbl_kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `tbl_menu`
+-- Indexes for table `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indeks untuk tabel `tbl_mewah`
+-- Indexes for table `tbl_mewah`
 --
 ALTER TABLE `tbl_mewah`
   ADD PRIMARY KEY (`id_mewah`);
 
 --
--- Indeks untuk tabel `tbl_murah`
+-- Indexes for table `tbl_murah`
 --
 ALTER TABLE `tbl_murah`
   ADD PRIMARY KEY (`id_murah`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_foto_denah`
+-- AUTO_INCREMENT for table `tbl_foto_denah`
 --
 ALTER TABLE `tbl_foto_denah`
-  MODIFY `id_foto_denah` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_foto_denah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
