@@ -100,7 +100,7 @@
                         $has_images = false;
 
                         foreach ($images as $index => $image) {
-                            $image_array = explode(',', $image->foto);
+                            $image_array = explode(',', $image->foto_b);
                             foreach ($image_array as $img) {
                                 if (!empty(trim($img))) {
                                     echo '<li data-target="#myCarousel" data-slide-to="' . $total_images . '" class="' . ($total_images == 0 ? 'active' : '') . '"></li>';
@@ -119,7 +119,7 @@
                             $is_first = true;
                             $total_images = 0;  // Reset counter for correct numbering
                             foreach ($images as $image) {
-                                $image_array = explode(',', $image->foto);
+                                $image_array = explode(',', $image->foto_b);
                                 foreach ($image_array as $img) {
                                     if (!empty(trim($img))) {
                                         ?>

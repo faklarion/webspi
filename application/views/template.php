@@ -318,6 +318,12 @@
         <!-- ./wrapper -->
         <script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>assets/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+        <!-- DataTables JS -->
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+        <!-- DataTables Responsive JS -->
+        <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
         <!-- jQuery 3
         <script src="<?php echo base_url() ?>assets/adminlte/bower_components/jquery/dist/jquery.min.js"></script>
          -->
@@ -337,12 +343,7 @@
         <!-- Select2 -->
         <script src="<?php echo base_url() ?>assets/adminlte/bower_components/select2/dist/js/select2.full.min.js"></script>
         <!-- page script -->
-        <!-- DataTables JS -->
-        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-        <!-- DataTables Responsive JS -->
-        <script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
+        
         
         <script>
         $(document).ready(function() {
@@ -357,6 +358,13 @@
                 responsive: true
             });
         });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#tabelBarang').DataTable({
+                    responsive: true
+                });
+            });
         </script>
     </body>
 </html>

@@ -27,6 +27,8 @@ class Interior_model extends CI_Model
     }
 
     function get_all_barang_by_kategori($id) {
+        $this->db->distinct(); // Menambahkan DISTINCT
+        $this->db->select('tbl_barang.*, tbl_satuan.nama_satuan, tbl_kategori.nama_kategori');
         $this->db->join('tbl_kategori', 'tbl_barang.id_kategori = tbl_kategori.id_kategori');
         $this->db->join('tbl_satuan', 'tbl_barang.id_satuan = tbl_satuan.id_satuan');
         $this->db->where('tbl_barang.id_kategori', $id);

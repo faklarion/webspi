@@ -28,7 +28,7 @@
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover dt-responsive display nowrap" cellspacing="0"
-                                id="dataTable">
+                                id="tabelBarang">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -274,19 +274,4 @@
 		</div>
 </div>
 <?php endforeach ?>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-<!-- Include DataTables Responsive CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Include DataTables JS -->
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<!-- Include DataTables Responsive JS -->
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('#dataTable').DataTable({
-            responsive: true
-        });
-    });
-</script>
