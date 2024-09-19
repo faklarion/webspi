@@ -50,32 +50,48 @@ class Tbl_barang extends CI_Controller
     public function multiple_upload() {
         $files = $_FILES;
         $count = count($_FILES['foto']['name']);
-        $images = [];
-
+        $images_a = [];
+        $images_b = [];
+        $images_c = [];
+    
         for($i=0; $i<$count; $i++) {
             $_FILES['userfile']['name'] = $files['foto']['name'][$i];
             $_FILES['userfile']['type'] = $files['foto']['type'][$i];
             $_FILES['userfile']['tmp_name'] = $files['foto']['tmp_name'][$i];
             $_FILES['userfile']['error'] = $files['foto']['error'][$i];
             $_FILES['userfile']['size'] = $files['foto']['size'][$i];
-
+    
             $this->upload->initialize($this->set_upload_options());
+    
             if ($this->upload->do_upload('userfile')) {
                 $data = $this->upload->data();
-                $images[] = $data['file_name'];
+                // Pisahkan gambar sesuai dengan kondisi atau kebutuhan
+                if ($i < $count / 3) {
+                    $images_a[] = $data['file_name'];  // Untuk foto
+                } elseif ($i < 2 * $count / 3) {
+                    $images_b[] = $data['file_name'];  // Untuk foto_b
+                } else {
+                    $images_c[] = $data['file_name'];  // Untuk foto_c
+                }
             }
         }
-
+    
         // Simpan data ke database
-        $this->save_to_db($images);
+        $this->save_to_db($images_a, $images_b, $images_c);
     }
-
-    private function save_to_db($images) {
+    
+    private function save_to_db($images_a, $images_b, $images_c) {
         $this->load->database();
         $this->_rules();
-        $images_string = implode(',', $images);
+        
+        $images_string_a = implode(',', $images_a);
+        $images_string_b = implode(',', $images_b);
+        $images_string_c = implode(',', $images_c);
+    
         $data = [
-            'foto' => $images_string,
+            'foto' => $images_string_a,  // Field foto
+            'foto_b' => $images_string_b,  // Field foto_b
+            'foto_c' => $images_string_c,  // Field foto_c
             'id_kategori' => $this->input->post('id_kategori'),
             'nama_barang' => $this->input->post('nama_barang'),
             'harga_a' => $this->input->post('harga_a'),
@@ -83,10 +99,12 @@ class Tbl_barang extends CI_Controller
             'harga_c' => $this->input->post('harga_c'),
             'id_satuan' => $this->input->post('id_satuan'),
         ];
+    
         $this->db->insert('tbl_barang', $data);
         $this->session->set_flashdata('message', 'Create Record Success !');
         redirect(site_url('tbl_barang'));
     }
+    
 
     private function set_upload_options() {
         //upload an image options
@@ -166,55 +184,105 @@ class Tbl_barang extends CI_Controller
         $query = $this->db->get_where('tbl_barang', ['id_barang' => $this->input->post('id_barang')]);
         $data = $query->row();
     
-        // Proses upload file baru (jika ada)
+        // Proses upload foto baru (jika ada)
         $files = $_FILES;
-        $count = count($_FILES['foto']['name']);
-        $images = [];
-        
-        for($i=0; $i<$count; $i++) {
-            $_FILES['userfile']['name'] = $files['foto']['name'][$i];
-            $_FILES['userfile']['type'] = $files['foto']['type'][$i];
-            $_FILES['userfile']['tmp_name'] = $files['foto']['tmp_name'][$i];
-            $_FILES['userfile']['error'] = $files['foto']['error'][$i];
-            $_FILES['userfile']['size'] = $files['foto']['size'][$i];
-            
-            $this->upload->initialize($this->set_upload_options());
-            if ($this->upload->do_upload('userfile')) {
-                $new_data = $this->upload->data();
-                $images[] = $new_data['file_name'];
-            } else {
-                // Handle error upload jika diperlukan
+    
+        // Array untuk menyimpan hasil upload
+        $images_a = [];
+        $images_b = [];
+        $images_c = [];
+    
+        // Upload untuk foto (foto utama)
+        $count_a = count($files['foto']['name']);
+        for($i = 0; $i < $count_a; $i++) {
+            if (!empty($files['foto']['name'][$i])) {
+                $_FILES['userfile']['name'] = $files['foto']['name'][$i];
+                $_FILES['userfile']['type'] = $files['foto']['type'][$i];
+                $_FILES['userfile']['tmp_name'] = $files['foto']['tmp_name'][$i];
+                $_FILES['userfile']['error'] = $files['foto']['error'][$i];
+                $_FILES['userfile']['size'] = $files['foto']['size'][$i];
+                
+                $this->upload->initialize($this->set_upload_options());
+                if ($this->upload->do_upload('userfile')) {
+                    $new_data = $this->upload->data();
+                    $images_a[] = $new_data['file_name'];
+                }
             }
         }
     
-        // Gabungkan foto lama dan baru
-        if (!empty($images)) {
-            $old_images = !empty($data->foto) ? explode(',', $data->foto) : [];
-            $images = array_merge($old_images, $images);
-        } else {
-            $images = !empty($data->foto) ? explode(',', $data->foto) : [];
+        // Upload untuk foto_b
+        $count_b = count($files['foto_b']['name']);
+        for($i = 0; $i < $count_b; $i++) {
+            if (!empty($files['foto_b']['name'][$i])) {
+                $_FILES['userfile']['name'] = $files['foto_b']['name'][$i];
+                $_FILES['userfile']['type'] = $files['foto_b']['type'][$i];
+                $_FILES['userfile']['tmp_name'] = $files['foto_b']['tmp_name'][$i];
+                $_FILES['userfile']['error'] = $files['foto_b']['error'][$i];
+                $_FILES['userfile']['size'] = $files['foto_b']['size'][$i];
+                
+                $this->upload->initialize($this->set_upload_options());
+                if ($this->upload->do_upload('userfile')) {
+                    $new_data = $this->upload->data();
+                    $images_b[] = $new_data['file_name'];
+                }
+            }
         }
     
+        // Upload untuk foto_c
+        $count_c = count($files['foto_c']['name']);
+        for($i = 0; $i < $count_c; $i++) {
+            if (!empty($files['foto_c']['name'][$i])) {
+                $_FILES['userfile']['name'] = $files['foto_c']['name'][$i];
+                $_FILES['userfile']['type'] = $files['foto_c']['type'][$i];
+                $_FILES['userfile']['tmp_name'] = $files['foto_c']['tmp_name'][$i];
+                $_FILES['userfile']['error'] = $files['foto_c']['error'][$i];
+                $_FILES['userfile']['size'] = $files['foto_c']['size'][$i];
+                
+                $this->upload->initialize($this->set_upload_options());
+                if ($this->upload->do_upload('userfile')) {
+                    $new_data = $this->upload->data();
+                    $images_c[] = $new_data['file_name'];
+                }
+            }
+        }
+    
+        // Gabungkan gambar lama dan baru untuk masing-masing field
+        $old_images_a = !empty($data->foto) ? explode(',', $data->foto) : [];
+        $images_a = array_merge($old_images_a, $images_a);
+    
+        $old_images_b = !empty($data->foto_b) ? explode(',', $data->foto_b) : [];
+        $images_b = array_merge($old_images_b, $images_b);
+    
+        $old_images_c = !empty($data->foto_c) ? explode(',', $data->foto_c) : [];
+        $images_c = array_merge($old_images_c, $images_c);
+    
         // Update data di database
-        $images_string = implode(',', $images);
+        $images_string_a = implode(',', $images_a);
+        $images_string_b = implode(',', $images_b);
+        $images_string_c = implode(',', $images_c);
+    
         $this->_rules();
+    
         $update_data = [
-            'foto' => $images_string,
+            'foto' => $images_string_a,   // Update field foto
+            'foto_b' => $images_string_b, // Update field foto_b
+            'foto_c' => $images_string_c, // Update field foto_c
             'id_kategori' => $this->input->post('id_kategori'),
             'nama_barang' => $this->input->post('nama_barang'),
             'harga_a' => $this->input->post('harga_a'),
             'harga_b' => $this->input->post('harga_b'),
             'id_satuan' => $this->input->post('id_satuan'),
             'harga_c' => $this->input->post('harga_c'),
-            // Tambahkan field lain yang perlu diupdate
         ];
     
         $this->db->where('id_barang', $this->input->post('id_barang'));
         $this->db->update('tbl_barang', $update_data);
     
         // Redirect atau tampilkan pesan sukses
+        $this->session->set_flashdata('message', 'Update Record Success !');
         redirect(site_url('tbl_barang'));
     }
+    
 
     public function delete_photo() {
         // Retrieve the photo URL from the form submission
@@ -224,6 +292,42 @@ class Tbl_barang extends CI_Controller
         // Perform deletion logic (update your database accordingly)
         // Example: Delete from database
         $success = $this->Tbl_barang_model->delete_photo_by_url($id, $photo_url);
+    
+        if ($success) {
+            // Redirect or refresh the page after deletion
+            redirect('tbl_barang');
+        } else {
+            // Handle deletion failure
+            echo "Failed to delete photo.";
+        }
+    }
+
+    public function delete_photo_b() {
+        // Retrieve the photo URL from the form submission
+        $photo_url = $this->input->post('photo_url');
+        $id = $this->input->post('id_barang');
+    
+        // Perform deletion logic (update your database accordingly)
+        // Example: Delete from database
+        $success = $this->Tbl_barang_model->delete_photo_by_url_b($id, $photo_url);
+    
+        if ($success) {
+            // Redirect or refresh the page after deletion
+            redirect('tbl_barang');
+        } else {
+            // Handle deletion failure
+            echo "Failed to delete photo.";
+        }
+    }
+
+    public function delete_photo_c() {
+        // Retrieve the photo URL from the form submission
+        $photo_url = $this->input->post('photo_url');
+        $id = $this->input->post('id_barang');
+    
+        // Perform deletion logic (update your database accordingly)
+        // Example: Delete from database
+        $success = $this->Tbl_barang_model->delete_photo_by_url_c($id, $photo_url);
     
         if ($success) {
             // Redirect or refresh the page after deletion

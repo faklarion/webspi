@@ -58,7 +58,9 @@
                                                 echo '  ';
                                                 echo anchor(site_url('tbl_barang/delete/' . $tbl_barang->id_barang), '<i class="fa fa-trash-o" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm" Delete onclick="javascript: return confirm(\'Are You Sure ?\')"');
                                                 ?>
-                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal<?= $tbl_barang->id_barang ?>">Lihat Foto</button>
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal<?= $tbl_barang->id_barang ?>">Lihat Foto <br> Grade A</button>
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModalB<?= $tbl_barang->id_barang ?>">Lihat Foto <br> Grade B</button>
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModalC<?= $tbl_barang->id_barang ?>">Lihat Foto <br> Grade C</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -77,7 +79,8 @@
         </div>
     </section>
 </div>
-<!-- Modal -->
+
+<!-- Modal Grade A -->
 <?php foreach($tbl_barang_data as $tbl_barang) : ?>
 <div id="myModal<?= $tbl_barang->id_barang ?>" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -86,7 +89,7 @@
 				<!-- heading modal -->
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Lihat Foto <?= $tbl_barang->nama_barang ?></h4>
+					<h4 class="modal-title">Lihat Foto Grade A <?= $tbl_barang->nama_barang ?></h4>
 				</div>
 				<!-- body modal -->
 				<div class="modal-body">
@@ -113,6 +116,136 @@
                                 <td>
                                             <!-- Form for delete action -->
                                             <form action="<?php echo site_url('tbl_barang/delete_photo'); ?>" method="post">
+                                                <input type="hidden" name="photo_url"
+                                                    value="<?php echo htmlspecialchars((string) $img); ?>">
+                                                <input type="hidden" name="id_barang"
+                                                    value="<?php echo $images->id_barang; ?>">
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            </form>
+                                </td>
+                            </tr>
+                            <?php } else { ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td>Tidak Ada Foto diupload</td>
+                            </tr>
+                            <?php } ?>
+                            
+                        <?php endforeach ?>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+				</div>
+				<!-- footer modal -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+				</div>
+			</div>
+		</div>
+</div>
+<?php endforeach ?>
+
+<!-- Modal Grade B -->
+<?php foreach($tbl_barang_data as $tbl_barang) : ?>
+<div id="myModalB<?= $tbl_barang->id_barang ?>" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- konten modal-->
+			<div class="modal-content">
+				<!-- heading modal -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Lihat Foto Grade B <?= $tbl_barang->nama_barang ?></h4>
+				</div>
+				<!-- body modal -->
+				<div class="modal-body">
+					<table class="table table-responsive table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Foto</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        $no = 1;
+                        $daftarFoto = $this->Tbl_barang_model->get_foto_by_id($tbl_barang->id_barang);
+                        foreach ($daftarFoto as $images) : 
+                        $image_array = explode(',', $images->foto_b);
+                        ?>
+                        <?php foreach ($image_array as $img): ?>
+                            <?php if($img) { ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><img src="<?= base_url('assets/foto_barang/' . $img) ?>" alt="Uploaded Image" width="150px"></td>
+                                <td>
+                                            <!-- Form for delete action -->
+                                            <form action="<?php echo site_url('tbl_barang/delete_photo_b'); ?>" method="post">
+                                                <input type="hidden" name="photo_url"
+                                                    value="<?php echo htmlspecialchars((string) $img); ?>">
+                                                <input type="hidden" name="id_barang"
+                                                    value="<?php echo $images->id_barang; ?>">
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            </form>
+                                </td>
+                            </tr>
+                            <?php } else { ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td>Tidak Ada Foto diupload</td>
+                            </tr>
+                            <?php } ?>
+                            
+                        <?php endforeach ?>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+				</div>
+				<!-- footer modal -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+				</div>
+			</div>
+		</div>
+</div>
+<?php endforeach ?>
+
+<!-- Modal Grade C -->
+<?php foreach($tbl_barang_data as $tbl_barang) : ?>
+<div id="myModalC<?= $tbl_barang->id_barang ?>" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- konten modal-->
+			<div class="modal-content">
+				<!-- heading modal -->
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Lihat Foto Grade C <?= $tbl_barang->nama_barang ?></h4>
+				</div>
+				<!-- body modal -->
+				<div class="modal-body">
+					<table class="table table-responsive table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Foto</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        $no = 1;
+                        $daftarFoto = $this->Tbl_barang_model->get_foto_by_id($tbl_barang->id_barang);
+                        foreach ($daftarFoto as $images) : 
+                        $image_array = explode(',', $images->foto_c);
+                        ?>
+                        <?php foreach ($image_array as $img): ?>
+                            <?php if($img) { ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><img src="<?= base_url('assets/foto_barang/' . $img) ?>" alt="Uploaded Image" width="150px"></td>
+                                <td>
+                                            <!-- Form for delete action -->
+                                            <form action="<?php echo site_url('tbl_barang/delete_photo_c'); ?>" method="post">
                                                 <input type="hidden" name="photo_url"
                                                     value="<?php echo htmlspecialchars((string) $img); ?>">
                                                 <input type="hidden" name="id_barang"

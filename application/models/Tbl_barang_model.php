@@ -27,35 +27,129 @@ class Tbl_barang_model extends CI_Model
     public function delete_photo_by_url($id_barang, $photo_url) {
         // Fetch the existing photo URLs
         $foto = $this->db->select('foto')
-                               ->where('id_barang', $id_barang)
-                               ->get('tbl_barang')
-                               ->row()
-                               ->foto;
-
+                         ->where('id_barang', $id_barang)
+                         ->get('tbl_barang')
+                         ->row()
+                         ->foto;
+    
         // Explode the fetched photo string into an array of photo URLs
         $photos = array_map('trim', explode(",", $foto));
-
+    
         // Find the index of the photo URL to delete
         $index = array_search($photo_url, $photos);
-
+    
         if ($index !== false) {
             // Remove the photo URL from the array
             unset($photos[$index]);
-
+    
             // Implode the array back into a comma-separated string
             $updated_foto = implode(",", $photos);
-
-            // Update the database record with the updated foto_denah
+    
+            // Update the database record with the updated photo URLs
             $this->db->where('id_barang', $id_barang)
                      ->update('tbl_barang', ['foto' => $updated_foto]);
-
-            // Return TRUE if update was successful
+    
+            // Define the file path for the photo to delete
+            $file_path = FCPATH . 'assets/foto_barang/' . $photo_url;
+    
+            // Check if the file exists
+            if (file_exists($file_path)) {
+                // Delete the file from the server
+                unlink($file_path);
+            }
+    
+            // Return TRUE if the file was successfully deleted from the database
             return true;
         }
-
-        // Return FALSE if photo URL was not found
+    
+        // Return FALSE if the photo URL was not found in the database
         return false;
     }
+
+    public function delete_photo_by_url_b($id_barang, $photo_url) {
+        // Fetch the existing photo URLs
+        $foto_b = $this->db->select('foto_b')
+                         ->where('id_barang', $id_barang)
+                         ->get('tbl_barang')
+                         ->row()
+                         ->foto_b;
+    
+        // Explode the fetched photo string into an array of photo URLs
+        $photos = array_map('trim', explode(",", $foto_b));
+    
+        // Find the index of the photo URL to delete
+        $index = array_search($photo_url, $photos);
+    
+        if ($index !== false) {
+            // Remove the photo URL from the array
+            unset($photos[$index]);
+    
+            // Implode the array back into a comma-separated string
+            $updated_foto = implode(",", $photos);
+    
+            // Update the database record with the updated photo URLs
+            $this->db->where('id_barang', $id_barang)
+                     ->update('tbl_barang', ['foto_b' => $updated_foto]);
+    
+            // Define the file path for the photo to delete
+            $file_path = FCPATH . 'assets/foto_barang/' . $photo_url;
+    
+            // Check if the file exists
+            if (file_exists($file_path)) {
+                // Delete the file from the server
+                unlink($file_path);
+            }
+    
+            // Return TRUE if the file was successfully deleted from the database
+            return true;
+        }
+    
+        // Return FALSE if the photo URL was not found in the database
+        return false;
+    }
+
+    public function delete_photo_by_url_c($id_barang, $photo_url) {
+        // Fetch the existing photo URLs
+        $foto_c = $this->db->select('foto_c')
+                         ->where('id_barang', $id_barang)
+                         ->get('tbl_barang')
+                         ->row()
+                         ->foto_c;
+    
+        // Explode the fetched photo string into an array of photo URLs
+        $photos = array_map('trim', explode(",", $foto_c));
+    
+        // Find the index of the photo URL to delete
+        $index = array_search($photo_url, $photos);
+    
+        if ($index !== false) {
+            // Remove the photo URL from the array
+            unset($photos[$index]);
+    
+            // Implode the array back into a comma-separated string
+            $updated_foto = implode(",", $photos);
+    
+            // Update the database record with the updated photo URLs
+            $this->db->where('id_barang', $id_barang)
+                     ->update('tbl_barang', ['foto_c' => $updated_foto]);
+    
+            // Define the file path for the photo to delete
+            $file_path = FCPATH . 'assets/foto_barang/' . $photo_url;
+    
+            // Check if the file exists
+            if (file_exists($file_path)) {
+                // Delete the file from the server
+                unlink($file_path);
+            }
+    
+            // Return TRUE if the file was successfully deleted from the database
+            return true;
+        }
+    
+        // Return FALSE if the photo URL was not found in the database
+        return false;
+    }
+    
 
     // get data by id
     function get_by_id($id)

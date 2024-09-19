@@ -39,11 +39,37 @@
 					</tr>
 
 					<tr>
-						<td width='200'>Foto</td>
+						<td width='200'>Foto Grade A</td>
 						<td>
-							<input type="file" name="foto[]" id="foto" required multiple>
+							<input type="file" name="foto[]" id="foto" multiple>
 							<?php if (!empty($data->foto)): ?>
 								<?php $images = explode(',', $foto); ?>
+								<?php foreach ($images as $img): ?>
+									<img src="<?= base_url('assets/foto_barang/' . $img) ?>" alt="Uploaded Image">
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</td>
+					</tr>
+
+					<tr>
+						<td width='200'>Foto Grade B</td>
+						<td>
+							<input type="file" name="foto_b[]" id="foto_b" multiple>
+							<?php if (!empty($data->foto_b)): ?>
+								<?php $images = explode(',', $foto_b); ?>
+								<?php foreach ($images as $img): ?>
+									<img src="<?= base_url('assets/foto_barang/' . $img) ?>" alt="Uploaded Image">
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</td>
+					</tr>
+
+					<tr>
+						<td width='200'>Foto Grade C</td>
+						<td>
+							<input type="file" name="foto_c[]" id="foto_c" multiple>
+							<?php if (!empty($data->foto_c)): ?>
+								<?php $images = explode(',', $foto_c); ?>
 								<?php foreach ($images as $img): ?>
 									<img src="<?= base_url('assets/foto_barang/' . $img) ?>" alt="Uploaded Image">
 								<?php endforeach; ?>
