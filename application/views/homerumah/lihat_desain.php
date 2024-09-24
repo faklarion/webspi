@@ -76,7 +76,7 @@
                     </div>
                     <hr>
                     
-                    <?php include 'harga.php'; ?>
+                    <!-- <?php include 'harga.php'; ?> -->
 
                     <div class="container" id="containerDesain">
                         <div class="row justify-content-center">

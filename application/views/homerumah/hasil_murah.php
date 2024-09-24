@@ -72,7 +72,7 @@
                     </div>
                     <hr>
                     
-                    <?php include 'harga.php'; ?>
+                    <!-- <?php include 'harga.php'; ?> -->
                     
                     <div class="container">
                         <div class="row justify-content-center">
@@ -91,7 +91,7 @@
                                 
                                 <div class="row justify-content-center">
                                     <?php
-                                        $foto_denah = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran, $kamar); 
+                                        $foto_denah = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran, $kamar, $wc); 
                                         foreach ($foto_denah as $row): 
                                             $fotos = explode(',', $row->foto); // Memisahkan string menjadi array
                                             foreach ($fotos as $foto): // Iterasi melalui setiap elemen array
@@ -113,7 +113,7 @@
                                 <div id="carouselExampleControls" class="carousel slide d-md-none" data-ride="carousel">
                                     <div class="carousel-inner">
                                         <?php
-                                        $foto_denah = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran, $kamar); 
+                                        $foto_denah = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran, $kamar, $wc); 
                                         $first = true; // Variable untuk menandai item pertama
                                         foreach ($foto_denah as $row): 
                                             $fotos = explode(',', $row->foto); // Memisahkan string menjadi array

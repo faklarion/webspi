@@ -27,20 +27,6 @@
         width: 100%;
     }
 
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    .footer {
-        margin-top: auto;
-        background-color: #909090;
-        color: white;
-        text-align: center;
-        padding: 20px;
-    }
-
     .radio-button label {
         display: inline-block;
         background-color: #fff;
@@ -61,6 +47,50 @@
         background-color: #808080;
         border-color: #333;
     }
+
+    .radio-button-ukuran {}
+
+    .radio-button-ukuran input[type="radio"] {
+        opacity: 0;
+        position: fixed;
+        width: 100%;
+    }
+
+    .radio-button-ukuran label {
+        display: inline-block;
+        background-color: #fff;
+        padding: 10px;
+        font-family: sans-serif, Arial;
+        font-size: 100%;
+        border: 2px solid #444;
+        border-radius: 15px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .radio-button-ukuran label:hover {
+        background-color: #dfd;
+    }
+
+    .radio-button-ukuran input[type="radio"]:checked+label {
+        background-color: #808080;
+        border-color: #333;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .footer {
+        margin-top: auto;
+        background-color: #909090;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
 
     .custom-search {
         position: relative;

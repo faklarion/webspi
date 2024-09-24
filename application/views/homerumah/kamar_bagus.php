@@ -42,6 +42,10 @@
                                 <label for="kamar2">2 </label>
                                 <input type="radio" id="kamar3" name="jumlah_kamar" value="3" required>
                                 <label for="kamar3">3</label>
+                                <input type="radio" id="kamar4" name="jumlah_kamar" value="4" required>
+                                <label for="kamar3">4</label>
+                                <input type="radio" id="kamar5" name="jumlah_kamar" value="5" required>
+                                <label for="kamar3">5</label>
                             </div>
                             <div class="radio-button mb-3" id="inputWc">
                                 <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah WC</small></p>
@@ -51,6 +55,10 @@
                                 <label for="wc2">2 </label>
                                 <input type="radio" id="wc3" name="jumlah_wc" value="3" required>
                                 <label for="wc3">3</label>
+                                <input type="radio" id="wc4" name="jumlah_wc" value="4" required>
+                                <label for="wc3">4</label>
+                                <input type="radio" id="wc5" name="jumlah_wc" value="5" required>
+                                <label for="wc3">5</label>
                             </div>
                                 <button type="submit" id="btnSubmit" class="btn btn-warning" style="border-radius:10px; width: 300px;"><b
                                         style="font-family: Arial, Helvetica, sans-serif;">Cek Harga</b></button>
