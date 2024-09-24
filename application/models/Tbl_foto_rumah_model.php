@@ -80,35 +80,42 @@ class Tbl_foto_rumah_model extends CI_Model
     public function delete_photo_rumah_by_url($id_foto_rumah, $photo_url) {
         // Fetch the existing photo URLs
         $foto = $this->db->select('foto')
-                               ->where('id_foto_rumah', $id_foto_rumah)
-                               ->get('tbl_foto_rumah')
-                               ->row()
-                               ->foto;
-
+                         ->where('id_foto_rumah', $id_foto_rumah)
+                         ->get('tbl_foto_rumah')
+                         ->row()
+                         ->foto;
+    
         // Explode the fetched photo string into an array of photo URLs
         $photos = array_map('trim', explode(",", $foto));
-
+    
         // Find the index of the photo URL to delete
         $index = array_search($photo_url, $photos);
-
+    
         if ($index !== false) {
             // Remove the photo URL from the array
             unset($photos[$index]);
-
+    
             // Implode the array back into a comma-separated string
             $updated_foto = implode(",", $photos);
-
+    
             // Update the database record with the updated foto
             $this->db->where('id_foto_rumah', $id_foto_rumah)
                      ->update('tbl_foto_rumah', ['foto' => $updated_foto]);
-
-            // Return TRUE if update was successful
+    
+            // Hapus file gambar dari direktori server
+            $file_path = './assets/rumah/' . $photo_url;
+            if (file_exists($file_path)) {
+                unlink($file_path); // Menghapus file dari server
+            }
+    
+            // Return TRUE jika update dan penghapusan file berhasil
             return true;
         }
-
-        // Return FALSE if photo URL was not found
+    
+        // Return FALSE jika URL foto tidak ditemukan
         return false;
     }
+    
 
 }
 
