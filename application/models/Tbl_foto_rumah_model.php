@@ -24,7 +24,7 @@ class Tbl_foto_rumah_model extends CI_Model
 
     function get_foto_by_ukuran($tipe, $ukuran) {
         $this->db->select('*');
-        $this->db->where("$ukuran BETWEEN ukuran_awal AND ukuran_akhir", NULL, FALSE);
+        $this->db->where("ukuran_awal", $ukuran);
         $this->db->where("id_tipe", $tipe);
         return $this->db->get($this->table)->result();
     }
@@ -41,7 +41,6 @@ class Tbl_foto_rumah_model extends CI_Model
         $this->db->like('id_foto_rumah', $q);
         $this->db->or_like('id_tipe', $q);
         $this->db->or_like('ukuran_awal', $q);
-        $this->db->or_like('ukuran_akhir', $q);
         $this->db->or_like('foto', $q);
         $this->db->from($this->table);
         return $this->db->count_all_results();
@@ -53,7 +52,6 @@ class Tbl_foto_rumah_model extends CI_Model
         $this->db->like('id_foto_rumah', $q);
         $this->db->or_like('id_tipe', $q);
         $this->db->or_like('ukuran_awal', $q);
-        $this->db->or_like('ukuran_akhir', $q);
         $this->db->or_like('foto', $q);
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

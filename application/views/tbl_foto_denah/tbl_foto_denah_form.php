@@ -15,19 +15,44 @@
 						</td>
 					</tr>
 
+					<?php if($this->uri->segment(2) == 'update') { ?>		
 					<tr>
 						<td width='200'>Ukuran Awal <?php echo form_error('ukuran_awal') ?></td><td><input type="number" class="form-control" name="ukuran_awal" id="ukuran_awal" placeholder="Ukuran Awal" value="<?php echo $ukuran_awal; ?>" readonly/></td>
 					</tr>
-	
-					<tr>
-						<td width='200'>Ukuran Akhir <?php echo form_error('ukuran_akhir') ?></td><td><input type="number" max="300" class="form-control" name="ukuran_akhir" id="ukuran_akhir" placeholder="Ukuran Akhir" value="<?php echo $ukuran_akhir; ?>" readonly/></td>
-					</tr>
-
+		
 					<tr>
 						<td width='200'>Kamar</td><td><input type="number" max="300" class="form-control" name="kamar" id="kamar" placeholder="Kamar" value="<?php echo $kamar; ?>" readonly/></td>
 					</tr>
 	
-					
+					<tr>
+						<td width='200'>WC</td><td><input type="number" max="300" class="form-control" name="wc" id="wc" placeholder="WC" value="<?php echo $wc; ?>" readonly/></td>
+					</tr>
+					<?php } else { ?>
+
+					<tr>
+						<td width='200'>Ukuran Awal <?php echo form_error('ukuran_awal') ?></td>
+						<td>
+							<select name="ukuran_awal" id="ukuran_awal" class="form-control">
+								<option value="36">36</option>
+								<option value="45">45</option>
+								<option value="60">60</option>
+								<option value="70">70</option>
+								<option value="90">90</option>
+								<option value="100">100</option>
+								<option value="120">120</option>
+								<option value="160">160</option>
+								<option value="200">200</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td width='200'>Kamar</td><td><input type="number" max="300" class="form-control" name="kamar" id="kamar" placeholder="Kamar" value="<?php echo $kamar; ?>" /></td>
+					</tr>
+	
+					<tr>
+						<td width='200'>WC</td><td><input type="number" max="300" class="form-control" name="wc" id="wc" placeholder="WC" value="<?php echo $wc; ?>" /></td>
+					</tr>
+					<?php } ?>
 	
 					<tr>
 						<td></td>

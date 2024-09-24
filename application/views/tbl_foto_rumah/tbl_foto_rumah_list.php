@@ -59,7 +59,7 @@
                         }
                         ?>
                     </td>
-                    <td><?php echo $tbl_foto_rumah->ukuran_awal ?> - <?php echo $tbl_foto_rumah->ukuran_akhir ?></td>
+                    <td><?php echo $tbl_foto_rumah->ukuran_awal ?></td>
                     <td>
                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                             data-target="#myModal<?php echo $tbl_foto_rumah->id_foto_rumah ?>">Lihat Foto

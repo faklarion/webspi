@@ -12,7 +12,7 @@
             <div class='row'>
             <div class='col-md-9'>
             <div style="padding-bottom: 10px;">
-                <!-- <?php echo anchor(site_url('tbl_foto_denah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?> -->
+                <?php echo anchor(site_url('tbl_foto_denah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?>
             </div>
             </div>
             <!-- <div class='col-md-3'>
@@ -55,6 +55,7 @@
                 <th>Foto</th>
                 <th>Ukuran</th>
                 <th>Kamar</th>
+                <th>WC</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -70,15 +71,16 @@
                         data-target="#myModal<?php echo $tbl_foto_denah->id_foto_denah ?>">Lihat Foto
                 </button>
             </td>
-			<td><?php echo $tbl_foto_denah->ukuran_awal ?> - <?php echo $tbl_foto_denah->ukuran_akhir ?></td>
+			<td><?php echo $tbl_foto_denah->ukuran_awal ?></td>
             <td width="10px" class="text-center"><?php echo $tbl_foto_denah->kamar ?></td>
+            <td width="10px" class="text-center"><?php echo $tbl_foto_denah->wc ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				//echo anchor(site_url('tbl_foto_denah/read/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-eye" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
 				//echo '  '; 
 				echo anchor(site_url('tbl_foto_denah/update/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
-				//echo '  '; 
-				//echo anchor(site_url('tbl_foto_denah/delete/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+				echo '  '; 
+				echo anchor(site_url('tbl_foto_denah/delete/'.$tbl_foto_denah->id_foto_denah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete onclick="javascript: return confirm(\'Are You Sure ?\')"'); 
 				?>
 			</td>
 		</tr>

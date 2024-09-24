@@ -16,11 +16,6 @@
 			</tr>
 	
 			<tr>
-				<td>Ukuran Akhir</td>
-				<td><?php echo $ukuran_akhir; ?></td>
-			</tr>
-	
-			<tr>
 				<td>Ukuran Awal</td>
 				<td><?php echo $ukuran_awal; ?></td>
 			</tr>

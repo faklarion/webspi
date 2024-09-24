@@ -53,7 +53,6 @@ class Tbl_foto_rumah extends CI_Controller
 		'id_foto_rumah' => $row->id_foto_rumah,
 		'id_tipe' => $row->id_tipe,
 		'ukuran_awal' => $row->ukuran_awal,
-		'ukuran_akhir' => $row->ukuran_akhir,
 		'foto' => $row->foto,
 	    );
             $this->template->load('template','tbl_foto_rumah/tbl_foto_rumah_read', $data);
@@ -71,7 +70,6 @@ class Tbl_foto_rumah extends CI_Controller
 	    'id_foto_rumah' => set_value('id_foto_rumah'),
 	    'id_tipe' => set_value('id_tipe'),
 	    'ukuran_awal' => set_value('ukuran_awal'),
-	    'ukuran_akhir' => set_value('ukuran_akhir'),
 	    'foto' => set_value('foto'),
 	);
         $this->template->load('template','tbl_foto_rumah/tbl_foto_rumah_form', $data);
@@ -87,7 +85,6 @@ class Tbl_foto_rumah extends CI_Controller
             $data = array(
 		'id_tipe' => $this->input->post('id_tipe',TRUE),
 		'ukuran_awal' => $this->input->post('ukuran_awal',TRUE),
-		'ukuran_akhir' => $this->input->post('ukuran_akhir',TRUE),
 		'foto' => $this->input->post('foto',TRUE),
 	    );
 
@@ -108,7 +105,6 @@ class Tbl_foto_rumah extends CI_Controller
 		'id_foto_rumah' => set_value('id_foto_rumah', $row->id_foto_rumah),
 		'id_tipe' => set_value('id_tipe', $row->id_tipe),
 		'ukuran_awal' => set_value('ukuran_awal', $row->ukuran_awal),
-		'ukuran_akhir' => set_value('ukuran_akhir', $row->ukuran_akhir),
 		'foto' => set_value('foto', $row->foto),
 	    );
             $this->template->load('template','tbl_foto_rumah/tbl_foto_rumah_form', $data);
@@ -220,7 +216,6 @@ class Tbl_foto_rumah extends CI_Controller
     {
 	$this->form_validation->set_rules('id_tipe', 'id tipe', 'trim|required');
 	$this->form_validation->set_rules('ukuran_awal', 'ukuran awal', 'trim|required');
-	$this->form_validation->set_rules('ukuran_akhir', 'ukuran akhir', 'trim|required');
 	$this->form_validation->set_rules('foto', 'foto', 'trim|required');
 
 	$this->form_validation->set_rules('id_foto_rumah', 'id_foto_rumah', 'trim');

@@ -34,10 +34,6 @@
 					<tr>
 						<td width='200'>Ukuran Awal <?php echo form_error('ukuran_awal') ?></td><td><input type="text" class="form-control" name="ukuran_awal" id="ukuran_awal" placeholder="Ukuran Awal" value="<?php echo $ukuran_awal; ?>" readonly/></td>
 					</tr>
-	
-					<tr>
-						<td width='200'>Ukuran Akhir <?php echo form_error('ukuran_akhir') ?></td><td><input type="text" class="form-control" name="ukuran_akhir" id="ukuran_akhir" placeholder="Ukuran Akhir" value="<?php echo $ukuran_akhir; ?>" readonly/></td>
-					</tr>
 	    
 					<tr>
 						<td width='200'>Foto</td>

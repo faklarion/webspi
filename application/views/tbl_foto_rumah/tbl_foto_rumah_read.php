@@ -21,11 +21,6 @@
 			</tr>
 	
 			<tr>
-				<td>Ukuran Akhir</td>
-				<td><?php echo $ukuran_akhir; ?></td>
-			</tr>
-	
-			<tr>
 				<td>Foto</td>
 				<td><?php echo $foto; ?></td>
 			</tr>

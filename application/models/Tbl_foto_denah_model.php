@@ -18,35 +18,42 @@ class Tbl_foto_denah_model extends CI_Model
     public function delete_photo_denah_by_url($id_foto_denah, $photo_url) {
         // Fetch the existing photo URLs
         $foto = $this->db->select('foto')
-                               ->where('id_foto_denah', $id_foto_denah)
-                               ->get('tbl_foto_denah')
-                               ->row()
-                               ->foto;
-
+                         ->where('id_foto_denah', $id_foto_denah)
+                         ->get('tbl_foto_denah')
+                         ->row()
+                         ->foto;
+    
         // Explode the fetched photo string into an array of photo URLs
         $photos = array_map('trim', explode(",", $foto));
-
+    
         // Find the index of the photo URL to delete
         $index = array_search($photo_url, $photos);
-
+    
         if ($index !== false) {
             // Remove the photo URL from the array
             unset($photos[$index]);
-
+    
             // Implode the array back into a comma-separated string
             $updated_foto = implode(",", $photos);
-
+    
             // Update the database record with the updated foto
             $this->db->where('id_foto_denah', $id_foto_denah)
                      ->update('tbl_foto_denah', ['foto' => $updated_foto]);
-
-            // Return TRUE if update was successful
+    
+            // Hapus file gambar dari direktori server
+            $file_path = './assets/denah/' . $photo_url;
+            if (file_exists($file_path)) {
+                unlink($file_path); // Menghapus file dari server
+            }
+    
+            // Return TRUE jika update dan penghapusan file berhasil
             return true;
         }
-
-        // Return FALSE if photo URL was not found
+    
+        // Return FALSE jika URL foto tidak ditemukan
         return false;
     }
+    
 
     // get all
     function get_all()
@@ -55,11 +62,12 @@ class Tbl_foto_denah_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-    function get_foto_denah_by_ukuran($ukuran, $kamar)
+    function get_foto_denah_by_ukuran($ukuran, $kamar, $wc)
     {
         $this->db->select('*');
-        $this->db->where("$ukuran BETWEEN ukuran_awal AND ukuran_akhir", NULL, FALSE);
+        $this->db->where("ukuran_awal", $ukuran);
         $this->db->where("kamar", $kamar);
+        $this->db->where("wc", $wc);
         return $this->db->get($this->table)->result();
     }
 
@@ -74,7 +82,6 @@ class Tbl_foto_denah_model extends CI_Model
     function total_rows($q = NULL) {
         $this->db->like('id_foto_denah', $q);
         $this->db->or_like('foto', $q);
-        $this->db->or_like('ukuran_akhir', $q);
         $this->db->or_like('ukuran_awal', $q);
         $this->db->from($this->table);
         return $this->db->count_all_results();
@@ -85,7 +92,6 @@ class Tbl_foto_denah_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id_foto_denah', $q);
         $this->db->or_like('foto', $q);
-        $this->db->or_like('ukuran_akhir', $q);
         $this->db->or_like('ukuran_awal', $q);
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
