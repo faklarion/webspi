@@ -22,10 +22,11 @@ class Tbl_foto_rumah_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-    function get_foto_by_ukuran($tipe, $ukuran) {
+    function get_foto_by_ukuran($tipe, $ukuran, $jenis) {
         $this->db->select('*');
         $this->db->where("ukuran_awal", $ukuran);
         $this->db->where("id_tipe", $tipe);
+        $this->db->where("id_jenis", $jenis);
         return $this->db->get($this->table)->result();
     }
 

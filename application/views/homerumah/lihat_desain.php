@@ -95,7 +95,7 @@
                                 <input type="hidden" name="fotorumah" id="fotorumah">
                                 <div class="row justify-content-center">
                                     <?php
-                                        $foto_rumah = $this->Tbl_foto_rumah_model->get_foto_by_ukuran($tipe, $ukuran);
+                                        $foto_rumah = $this->Tbl_foto_rumah_model->get_foto_by_ukuran($tipe, $ukuran, $id_jenis);
                                         foreach ($foto_rumah as $row): 
                                             $fotos = explode(',', $row->foto); // Memisahkan string menjadi array
                                             foreach ($fotos as $foto): // Iterasi melalui setiap elemen array
@@ -117,7 +117,7 @@
                                 <div id="carouselExampleControls" class="carousel slide d-md-none" data-ride="carousel">
                                     <div class="carousel-inner">
                                         <?php
-                                        $foto_rumah = $this->Tbl_foto_rumah_model->get_foto_by_ukuran($tipe, $ukuran);
+                                        $foto_rumah = $this->Tbl_foto_rumah_model->get_foto_by_ukuran($tipe, $ukuran, $id_jenis);
                                         $first = true; // Variable untuk menandai item pertama
                                         foreach ($foto_rumah as $row): 
                                             $fotos = explode(',', $row->foto); // Memisahkan string menjadi array

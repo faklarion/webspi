@@ -35,6 +35,7 @@
             <thead>
             <tr>
                 <th>No</th>
+                <th>Jenis Rumah</th>
                 <th>Tipe Rumah</th>
                 <th>Ukuran</th>
                 <th>Foto</th>
@@ -48,6 +49,17 @@
                 ?>
                 <tr>
                     <td width="10px"><?php echo ++$start ?></td>
+                    <td>
+                        <?php 
+                        if($tbl_foto_rumah->id_jenis == 1) {
+                            echo 'Mewah';
+                        } elseif($tbl_foto_rumah->id_jenis == 2) {
+                            echo 'Ideal';
+                        } elseif($tbl_foto_rumah->id_jenis == 3) {
+                            echo 'Murah';
+                        }
+                        ?>
+                    </td>
                     <td>
                         <?php 
                         if($tbl_foto_rumah->id_tipe == 1) {

@@ -88,6 +88,7 @@
                                 <input type="hidden" name="namaTipe" value="<?php echo $namaTipe ?>">
                                 <input type="hidden" name="jenis" value="Mewah">
                                 <input type="hidden" name="fotodenah" id="fotodenah">
+                                <input type="hidden" name="id_jenis" id="id_jenis" value="1">
                                 
                                 <div class="row justify-content-center">
                                     <?php

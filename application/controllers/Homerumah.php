@@ -278,6 +278,7 @@ class Homerumah extends CI_Controller{
         $wc         = $this->input->get('wc');
         $harga      = $this->input->get('harga');
         $namaTipe   = $this->input->get('namaTipe');
+        $id_jenis   = $this->input->get('id_jenis');
         $jenis      = $this->input->get('jenis');
         $fotodenah  = $this->input->get('fotodenah');
 
@@ -285,6 +286,7 @@ class Homerumah extends CI_Controller{
             'harga'             => $harga,
             'namaTipe'          => $namaTipe,
             'tipe'              => $tipe,
+            'id_jenis'          => $id_jenis,
             'jenis'             => $jenis,
             'kamar'             => $kamar,
             'wc'                => $wc,
