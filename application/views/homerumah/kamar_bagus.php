@@ -31,42 +31,58 @@
         <div class="container my-3">
                 <div class="card" style="background-color: #f0f0f0; border-radius: 10px;">
                     <div class="card-body">
-                        <form action="<?php echo site_url('homerumah/detail_harga_bagus') ?>" method="get" enctype="multipart/form-data" autocomplete="off">
-                            <div class="radio-button mb-3" id="inputUkuran">
-                                <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah Kamar</small></p>
-                                <input type="hidden" id="ukuran_rumah" class="form-control" name="ukuran_rumah" placeholder="Masukkan Ukuran" value="<?php echo $ukuran ?>">
-                                <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah" value="<?php echo $idTipe ?>">
-                                <input type="radio" id="kamar1" name="jumlah_kamar" value="1" required>
-                                <label for="kamar1">1</label>
-                                <input type="radio" id="kamar2" name="jumlah_kamar" value="2" required>
-                                <label for="kamar2">2 </label>
-                                <input type="radio" id="kamar3" name="jumlah_kamar" value="3" required>
-                                <label for="kamar3">3</label>
-                                <input type="radio" id="kamar4" name="jumlah_kamar" value="4" required>
-                                <label for="kamar3">4</label>
-                                <input type="radio" id="kamar5" name="jumlah_kamar" value="5" required>
-                                <label for="kamar3">5</label>
-                            </div>
-                            <div class="radio-button mb-3" id="inputWc">
-                                <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah WC</small></p>
-                                <input type="radio" id="wc1" name="jumlah_wc" value="1" required>
-                                <label for="wc1">1</label>
-                                <input type="radio" id="wc2" name="jumlah_wc" value="2" required>
-                                <label for="wc2">2 </label>
-                                <input type="radio" id="wc3" name="jumlah_wc" value="3" required>
-                                <label for="wc3">3</label>
-                                <input type="radio" id="wc4" name="jumlah_wc" value="4" required>
-                                <label for="wc3">4</label>
-                                <input type="radio" id="wc5" name="jumlah_wc" value="5" required>
-                                <label for="wc3">5</label>
-                            </div>
-                                <button type="submit" id="btnSubmit" class="btn btn-warning" style="border-radius:10px; width: 300px;"><b
-                                        style="font-family: Arial, Helvetica, sans-serif;">Cek Harga</b></button>
-                        </form>
+                    <form action="<?php echo site_url('homerumah/detail_harga_mewah') ?>" method="get" enctype="multipart/form-data" autocomplete="off">
+                        <div class="radio-button mb-3" id="inputUkuran">
+                            <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah Kamar</small></p>
+                            <input type="hidden" id="ukuran_rumah" class="form-control" name="ukuran_rumah" placeholder="Masukkan Ukuran" value="<?php echo $ukuran ?>">
+                            <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah" value="<?php echo $idTipe ?>">
+                            <?php 
+                                $jmlKamar = $this->Tbl_foto_denah_model->get_kamar_by_ukuran($ukuran); 
+                                foreach ($jmlKamar as $row) :
+                            ?>
+                            <input type="radio" id="kamar<?php echo $row->kamar; ?>" name="jumlah_kamar" value="<?php echo $row->kamar ?>" required>
+                            <label for="kamar<?php echo $row->kamar; ?>"><?php echo $row->kamar ?></label>
+                            <?php endforeach ?>
+                        </div>
+                        
+                        <div class="radio-button mb-3" id="inputWc" style="display: none;">
+                            <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah WC</small></p>
+                            <div id="wcOptions"></div> <!-- Placeholder untuk jumlah WC -->
+                        </div>
+                        
+                        <button type="submit" id="btnSubmit" class="btn btn-warning" style="border-radius:10px; width: 300px;">
+                            <b style="font-family: Arial, Helvetica, sans-serif;">Cek Harga</b>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 </body>
+<script>
+$(document).ready(function() {
+    $('input[name="jumlah_kamar"]').on('change', function() {
+        var kamar = $(this).val(); // Ambil nilai kamar yang dipilih
+        var ukuran = $('#ukuran_rumah').val(); // Ambil ukuran rumah dari input hidden
+        
+        // Lakukan request ke server untuk mengambil jumlah WC berdasarkan kamar dan ukuran
+        $.ajax({
+            url: "<?php echo site_url('homerumah/get_wc_by_kamar'); ?>", // Ganti dengan URL ke controller yang tepat
+            type: 'POST',
+            data: {kamar: kamar, ukuran: ukuran}, // Kirim dua parameter: kamar dan ukuran
+            success: function(response) {
+                // Tampilkan div WC jika berhasil
+                $('#inputWc').show();
+                
+                // Tampilkan jumlah WC ke dalam div #wcOptions
+                $('#wcOptions').html(response);
+            },
+            error: function() {
+                alert('Terjadi kesalahan saat mengambil data WC.');
+            }
+        });
+    });
+});
+</script>
 <?php include 'footer.php'; ?>
 </html>

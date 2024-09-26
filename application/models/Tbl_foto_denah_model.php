@@ -71,6 +71,16 @@ class Tbl_foto_denah_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_kamar_by_ukuran($ukuran)
+    {
+        $this->db->distinct();
+        $this->db->select('kamar'); // Menyaring kolom 'kamar' secara unik
+        $this->db->where('ukuran_awal', $ukuran);
+        $query = $this->db->get($this->table);
+        return $query->result();
+    }
+    
+
     // get data by id
     function get_by_id($id)
     {
@@ -116,6 +126,15 @@ class Tbl_foto_denah_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
+
+    public function get_wc_by_kamar_ukuran($kamar, $ukuran)
+    {
+        $this->db->select('wc'); // Ambil data jumlah WC
+        $this->db->where('kamar', $kamar);
+        $this->db->where('ukuran_awal', $ukuran); // Berdasarkan kamar yang dipilih
+        return $this->db->get($this->table)->result(); // Ganti 'table_name' dengan nama tabel yang sesuai
+    }
+
 
 }
 

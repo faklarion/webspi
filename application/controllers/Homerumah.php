@@ -320,4 +320,26 @@ class Homerumah extends CI_Controller{
         );
         $this->load->view('homerumah/lihat_rekap', $data);
     }
+
+    public function get_wc_by_kamar()
+    {
+        $kamar = $this->input->post('kamar');
+        $ukuran = $this->input->post('ukuran'); // Ambil ukuran rumah dari request
+        
+        // Query untuk mengambil data WC berdasarkan kamar dan ukuran
+        $jumlah_wc = $this->Tbl_foto_denah_model->get_wc_by_kamar_ukuran($kamar, $ukuran); 
+        
+        // Generate opsi radio button berdasarkan jumlah WC yang didapatkan
+        if (!empty($jumlah_wc)) {
+            foreach ($jumlah_wc as $wc) {
+                echo '<input type="radio" id="wc' . $wc->wc . '" name="jumlah_wc" value="' . $wc->wc . '" required>';
+                echo '<label for="wc' . $wc->wc . '">' . $wc->wc . '</label>';
+                echo ' ';
+            }
+        } else {
+            echo 'Tidak ada data WC untuk kamar dan ukuran ini.';
+        }
+    }
+    
+
 }
