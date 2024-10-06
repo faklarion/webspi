@@ -31,7 +31,7 @@
         <div class="container my-3">
                 <div class="card" style="background-color: #f0f0f0; border-radius: 10px;">
                     <div class="card-body">
-                    <form action="<?php echo site_url('homerumah/detail_harga_mewah') ?>" method="get" enctype="multipart/form-data" autocomplete="off">
+                    <form action="<?php echo site_url('homerumah/detail_harga_murah') ?>" method="get" enctype="multipart/form-data" autocomplete="off">
                         <div class="radio-button mb-3" id="inputUkuran">
                             <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah Kamar</small></p>
                             <input type="hidden" id="ukuran_rumah" class="form-control" name="ukuran_rumah" placeholder="Masukkan Ukuran" value="<?php echo $ukuran ?>">
