@@ -20,9 +20,9 @@
 </script>
 <script>
     // Nilai awal dan akhir yang valid
-    const startVal = <?php $hargacoret = $harga + ((25 / 100) * $harga);
+    const startVal = <?php $hargacoret = $hargaRumah + ((25 / 100) * $hargaRumah);
                             echo $hargacoret; ?>; // Nilai awal
-    const endVal = <?php echo $harga ?>;      // Nilai akhir
+    const endVal = <?php echo $hargaRumah ?>;      // Nilai akhir
     
     // Membuat instance baru dari CountUp
     const odometer = new CountUp('odometer', startVal, endVal, 0, 3, {

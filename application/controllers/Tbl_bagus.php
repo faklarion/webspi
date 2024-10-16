@@ -10,7 +10,6 @@ class Tbl_bagus extends CI_Controller
         parent::__construct();
         is_login();
         $this->load->model('Tbl_bagus_model');
-        $this->load->model('Tbl_foto_bagus_model');
         $this->load->library('form_validation');
     }
 
@@ -100,9 +99,9 @@ class Tbl_bagus extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('tbl_bagus/update_action'),
-		'id_bagus' => set_value('id_bagus', $row->id_bagus),
-		'tipe' => set_value('tipe', $row->tipe),
-		'harga' => set_value('harga', $row->harga),
+                'id_bagus' => set_value('id_bagus', $row->id_bagus),
+                'tipe' => set_value('tipe', $row->tipe),
+                'harga' => set_value('harga', $row->harga),
 	    );
             $this->template->load('template','tbl_bagus/tbl_bagus_form', $data);
         } else {

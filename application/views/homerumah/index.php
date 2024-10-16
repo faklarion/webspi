@@ -118,7 +118,7 @@
                                 <div class="card text-alignment class"
                                     style="background-color: #f0f0f0; border-radius: 12px; height:150px;">
                                     <div class="card-body align-items-center d-flex justify-content-center">
-                                        <h4 class="text-center">Bagus</h4>
+                                        <h4 class="text-center">Ideal</h4>
                                     </div>
                                 </div>
                             </a>

@@ -14,6 +14,25 @@
 
 					<tr>
 						<td width="200">
+							Jenis Rumah
+						</td>
+						<td>
+							<?php 
+								 
+								if($id_jenis == 1) {
+									echo 'Mewah';
+								} elseif($id_jenis == 2) {
+									echo 'Ideal';
+								} elseif($id_jenis == 3) {
+									echo 'Murah';
+								}
+								
+							?>
+						</td>
+					</tr>
+
+					<tr>
+						<td width="200">
 							Tipe Rumah
 						</td>
 						<td>
@@ -32,13 +51,17 @@
 					</tr>
 	
 					<tr>
-						<td width='200'>Ukuran Awal <?php echo form_error('ukuran_awal') ?></td><td><input type="text" class="form-control" name="ukuran_awal" id="ukuran_awal" placeholder="Ukuran Awal" value="<?php echo $ukuran_awal; ?>" readonly/></td>
+						<td width='200'>Ukuran <?php echo form_error('ukuran_awal') ?></td><td><input type="text" class="form-control" name="ukuran_awal" id="ukuran_awal" placeholder="Ukuran Awal" value="<?php echo $ukuran_awal; ?>" readonly/></td>
 					</tr>
-	    
+
 					<tr>
-						<td width='200'>Foto</td>
+						<td width='200'>Desain ke- </td><td><input type="text" class="form-control" name="desain" id="desain" value="<?php echo $desain; ?>" readonly/></td>
+					</tr>
+
+					<tr>
+						<td width='200'>Foto Rumah</td>
 						<td> 
-							<input type="file" class="form-control" rows="3" name="foto[]" id="foto" placeholder="Foto" multiple>
+							<input type="file" class="form-control" rows="3" name="foto[]" id="foto" placeholder="Foto">
 						</td>
 					</tr>
 	

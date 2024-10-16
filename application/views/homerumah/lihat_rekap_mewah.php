@@ -1,0 +1,149 @@
+<style>
+    .card-img {
+        width: 200px; /* Mengisi lebar card body */
+        height: auto;
+        object-fit: cover; /* Memastikan gambar menutupi seluruh area card body */
+        border-radius: 15px; /* Sama seperti border-radius card */
+    }
+
+    @media (max-width: 576px) { /* Media query untuk perangkat mobile */
+        .card-img {
+            width: 100%; /* Mengisi lebar card body */
+            height: auto; /* Biarkan height otomatis */
+        }
+    }
+</style>
+<?php include 'header.php' ?>
+<body style="background-color: #ffffff;">
+    <section>
+        <div>
+            <h2 class="text-center" style="font-family: Arial, Helvetica, sans-serif;">
+                <b>Mau Bikin Rumah ?</b>
+            </h2>
+        </div>
+        <div class="container" width="50%">
+            <b><a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="https://siperindo.id/">Halaman Utama </a></b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="<?php echo site_url('homerumah/mewah/') ?>"> Mewah</a></b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="<?php echo site_url('homerumah/ukuran_mewah?tipe_rumah=' . $tipe . '') ?>">
+                    <?php echo $namaTipe ?></a></b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="<?php echo site_url('homerumah/kamar_mewah?ukuran_rumah=' . $ukuran . '&tipe_rumah=' . $tipe . '') ?>">
+                    <?php echo $ukuran ?> (m2)</a></b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%"
+                    href="<?php echo site_url('homerumah/detail_harga_'.$namaJenis.'?ukuran_rumah=' . $ukuran . '&tipe_rumah=' . $tipe . '&id_foto_rumah=' . $id_foto_rumah . '&jenis_rumah=' . $jenis .'') ?>">
+                    Pilih Denah</a></b>
+            </b>
+            <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
+            <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%">
+                    Hasil</a></b>
+            </b>
+        </div>
+        </div>
+        <div class="container my-3">
+            <div class="card" style="background-color: #f0f0f0; border-radius: 10px;">
+                <div class="container my-3">
+                    <div class="row justify-content-center">
+                        <h4 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;" class="text-center">
+                            Rekapan Hasil Pilihan Rumah Impian Kamu
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <tr>
+                                <td>Jenis</td>
+                                <td width="20px" class="text-center">:</td>
+                                <td><?php if($jenis == 1){
+                                    echo 'Mewah';
+                                } elseif($jenis == 2) {
+                                    echo 'Ideal';
+                                } elseif($jenis == 3) {
+                                    echo 'Murah';
+                                }?></td>
+                            </tr>
+                            <tr>
+                                <td>Tipe</td>
+                                <td width="20px" class="text-center">:</td>
+                                <td><?php echo $namaTipe ?></td>
+                            </tr>
+                            <tr>
+                                <td>Ukuran</td>
+                                <td width="20px" class="text-center">:</td>
+                                <td><?php echo $ukuran ?> (m2)</td>
+                            </tr>
+                            <tr>
+                                <td>Jumlah Kamar</td>
+                                <td width="20px" class="text-center">:</td>
+                                <td><?php echo $kamar ?></td>
+                            </tr>
+                            <tr>
+                                <td>Jumlah WC</td>
+                                <td width="20px" class="text-center">:</td>
+                                <td><?php echo $wc ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr>
+
+                   <?php include 'harga.php'; ?>
+                    
+
+                    <div class="container mt-4">
+                            <h6 class="text-center">Berikut Pilihan Denah dan Desain Rumah Kamu</h6>
+                            <div class="row d-flex justify-content-center align-items-center mt-4">
+                                <div class="col-md-6 mb-2 text-center">
+                                    <?php 
+                                        $denah = $this->Tbl_foto_denah_model->get_foto_denah_by_id($id_foto_rumah, $kamar, $wc);
+                                        foreach($denah as $row) :
+                                    ?>
+                                        <img src="<?php echo base_url('assets/denah/'. $row->foto_denah)?>" width="320px" style="border-radius: 15px;">
+                                    <?php endforeach?>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <?php 
+                                        $rumah = $this->Tbl_foto_rumah_model->get_by_id($id_foto_rumah);
+                                        
+                                    ?>
+                                        <img src="<?php echo base_url('assets/rumah/'. $rumah->foto)?>" width="320px" style="border-radius: 15px;">
+                                </div>
+                            </div>
+                    </div>
+
+                    <?php include 'hari.php'; ?>
+                    
+                    <div class="container mb-4 mt-2">
+                        <div class="row justify-content-center">
+                            <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ?</p>
+                            
+                        </div>
+                        <div class="row justify-content-center">
+                            
+                            <p style="font-family: Arial, Helvetica, sans-serif;">Wujudkan Rumah Impian Kamu Sekarang !</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <a href="https://wa.me/6281250969099" target="_blank" class="btn btn-sm btn-success"><i
+                                    class="fa fa-whatsapp"></i> <b
+                                    style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
+                        </div>
+                    </div>
+
+                   
+                    <!-- <div class="container mt-4">
+                        <div class="row justify-content-center">
+                            <a href="<?php echo site_url('homerumah/mewah') ?>" class="btn btn-sm btn-warning"><b
+                            style="font-family: Arial, Helvetica, sans-serif;">Cek Kembali</b></a>
+                        </div>
+                    </div> -->
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<?php include 'footer.php' ?>

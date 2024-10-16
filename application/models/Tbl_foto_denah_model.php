@@ -71,11 +71,12 @@ class Tbl_foto_denah_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-    function get_kamar_by_ukuran($ukuran)
+    function get_kamar_by_id_foto_rumah($id_foto_rumah)
     {
         $this->db->distinct();
         $this->db->select('kamar'); // Menyaring kolom 'kamar' secara unik
-        $this->db->where('ukuran_awal', $ukuran);
+        $this->db->where('id_foto_rumah', $id_foto_rumah);
+        $this->db->order_by('kamar', 'ASC');
         $query = $this->db->get($this->table);
         return $query->result();
     }
@@ -85,6 +86,26 @@ class Tbl_foto_denah_model extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
+    
+    function get_by_id_join($id)
+    {
+        $this->db->join('tbl_foto_rumah', 'tbl_foto_rumah.id_foto_rumah = tbl_foto_denah.id_foto_rumah');
+        $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
+    function get_by_id_rumah($id)
+    {
+        $this->db->where('id_foto_rumah', $id);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_by_id_rumah_row($id)
+    {
+        $this->db->where('id_foto_rumah', $id);
         return $this->db->get($this->table)->row();
     }
     
@@ -127,12 +148,35 @@ class Tbl_foto_denah_model extends CI_Model
         $this->db->delete($this->table);
     }
 
-    public function get_wc_by_kamar_ukuran($kamar, $ukuran)
+    public function get_wc_by_kamar_id_rumah($kamar, $id_foto_rumah)
     {
         $this->db->select('wc'); // Ambil data jumlah WC
         $this->db->where('kamar', $kamar);
-        $this->db->where('ukuran_awal', $ukuran); // Berdasarkan kamar yang dipilih
+        $this->db->where('id_foto_rumah', $id_foto_rumah);
+        $this->db->order_by('wc', 'ASC'); // Berdasarkan kamar yang dipilih
         return $this->db->get($this->table)->result(); // Ganti 'table_name' dengan nama tabel yang sesuai
+    }
+
+    public function get_foto_denah_by_id($id_foto_rumah, $kamar, $wc) 
+    {
+        $this->db->where('id_foto_rumah', $id_foto_rumah);
+        $this->db->where('kamar', $kamar);
+        $this->db->where('wc', $wc);
+        return $this->db->get($this->table)->result();
+    }
+
+    public function check_duplicate($id_foto_rumah, $kamar, $wc)
+    {
+        $this->db->where('id_foto_rumah', $id_foto_rumah);
+        $this->db->where('kamar', $kamar);
+        $this->db->where('wc', $wc);
+        $query = $this->db->get($this->table);
+
+        if ($query->num_rows() > 0) {
+            return true; // Duplicate found
+        } else {
+            return false; // No duplicate
+        }
     }
 
 

@@ -1,18 +1,14 @@
 <?php
 class Homerumah extends CI_Controller{
 
-
     function __construct()
     {
         parent::__construct();
         $this->load->model('Tbl_mewah_model');
         $this->load->model('Tbl_murah_model');
         $this->load->model('Tbl_bagus_model');
-        $this->load->model('Tbl_foto_bagus_model');
         $this->load->model('Tbl_foto_denah_model');
         $this->load->model('Tbl_foto_rumah_model');
-        $this->load->model('Tbl_foto_mewah_model');
-        $this->load->model('Tbl_foto_murah_model');
     }
 
     function index(){
@@ -72,11 +68,22 @@ class Homerumah extends CI_Controller{
     function detail_harga_mewah(){
 
         $tipe   = $this->input->get('tipe_rumah');
+        $jenis  = $this->input->get('jenis_rumah');
         $ukuran = $this->input->get('ukuran_rumah');
+        $desain = $this->input->get('desain');
         $kamar  = $this->input->get('jumlah_kamar');
         $wc     = $this->input->get('jumlah_wc');
+        $id_foto_rumah     = $this->input->get('id_foto_rumah');
 
-        $result = $this->Tbl_mewah_model->get_by_id($tipe);
+
+        if($tipe == 1) {
+            $result = $this->Tbl_mewah_model->get_by_id($tipe);
+        } elseif($tipe == 2) {
+            $result = $this->Tbl_bagus_model->get_by_id($tipe);
+        } elseif($tipe == 3) {
+            $result = $this->Tbl_murah_model->get_by_id($tipe);
+        }
+        
 
         if($result) {
             $tipeRmh    = $result->harga;
@@ -87,14 +94,18 @@ class Homerumah extends CI_Controller{
 
         $data = array(
             'harga'             => $harga,
+            'jenis'             => $jenis,
             'namaTipe'          => $namaTipe,
+            'id_foto_rumah'     => $id_foto_rumah,
             'tipe'              => $tipe,
+            'desain'            => $desain,
             'kamar'             => $kamar,
             'wc'                => $wc,
             'ukuran'            => $ukuran,
         );
         $this->load->view('homerumah/hasil_mewah', $data);
     }
+
 
     function bagus(){
         $data = array(
@@ -104,7 +115,6 @@ class Homerumah extends CI_Controller{
     }
 
     function ukuran_bagus() {
-
         
         $tipe   = $this->input->get('tipe_rumah');
 
@@ -149,11 +159,22 @@ class Homerumah extends CI_Controller{
     function detail_harga_bagus(){
 
         $tipe   = $this->input->get('tipe_rumah');
+        $jenis  = $this->input->get('jenis_rumah');
         $ukuran = $this->input->get('ukuran_rumah');
+        $desain = $this->input->get('desain');
         $kamar  = $this->input->get('jumlah_kamar');
         $wc     = $this->input->get('jumlah_wc');
+        $id_foto_rumah     = $this->input->get('id_foto_rumah');
 
-        $result = $this->Tbl_bagus_model->get_by_id($tipe);
+
+        if($tipe == 1) {
+            $result = $this->Tbl_mewah_model->get_by_id($tipe);
+        } elseif($tipe == 2) {
+            $result = $this->Tbl_bagus_model->get_by_id($tipe);
+        } elseif($tipe == 3) {
+            $result = $this->Tbl_murah_model->get_by_id($tipe);
+        }
+        
 
         if($result) {
             $tipeRmh    = $result->harga;
@@ -164,8 +185,11 @@ class Homerumah extends CI_Controller{
 
         $data = array(
             'harga'             => $harga,
+            'jenis'             => $jenis,
             'namaTipe'          => $namaTipe,
+            'id_foto_rumah'     => $id_foto_rumah,
             'tipe'              => $tipe,
+            'desain'            => $desain,
             'kamar'             => $kamar,
             'wc'                => $wc,
             'ukuran'            => $ukuran,
@@ -226,11 +250,22 @@ class Homerumah extends CI_Controller{
     function detail_harga_murah(){
 
         $tipe   = $this->input->get('tipe_rumah');
+        $jenis  = $this->input->get('jenis_rumah');
         $ukuran = $this->input->get('ukuran_rumah');
+        $desain = $this->input->get('desain');
         $kamar  = $this->input->get('jumlah_kamar');
         $wc     = $this->input->get('jumlah_wc');
+        $id_foto_rumah     = $this->input->get('id_foto_rumah');
 
-        $result = $this->Tbl_murah_model->get_by_id($tipe);
+
+        if($tipe == 1) {
+            $result = $this->Tbl_mewah_model->get_by_id($tipe);
+        } elseif($tipe == 2) {
+            $result = $this->Tbl_bagus_model->get_by_id($tipe);
+        } elseif($tipe == 3) {
+            $result = $this->Tbl_murah_model->get_by_id($tipe);
+        }
+        
 
         if($result) {
             $tipeRmh    = $result->harga;
@@ -241,8 +276,11 @@ class Homerumah extends CI_Controller{
 
         $data = array(
             'harga'             => $harga,
+            'jenis'             => $jenis,
             'namaTipe'          => $namaTipe,
+            'id_foto_rumah'     => $id_foto_rumah,
             'tipe'              => $tipe,
+            'desain'            => $desain,
             'kamar'             => $kamar,
             'wc'                => $wc,
             'ukuran'            => $ukuran,
@@ -296,38 +334,124 @@ class Homerumah extends CI_Controller{
         $this->load->view('homerumah/lihat_desain', $data);
     }
 
-    function lihat_rekap() {
-        $tipe       = $this->input->get('tipe');
-        $ukuran     = $this->input->get('ukuran');
-        $kamar      = $this->input->get('kamar');
-        $wc         = $this->input->get('wc');
-        $harga      = $this->input->get('harga');
-        $namaTipe   = $this->input->get('namaTipe');
-        $jenis      = $this->input->get('jenis');
-        $fotodenah  = $this->input->get('fotodenah');
-        $fotorumah  = $this->input->get('fotorumah');
+    function lihat_rekap_mewah() {
+        $tipe       = $this->input->get('tipe_rumah');
+        $ukuran     = $this->input->get('ukuran_rumah');
+        $kamar      = $this->input->get('jumlah_kamar');
+        $wc         = $this->input->get('jumlah_wc');
+        $jenis      = $this->input->get('jenis_rumah');
+        $id_foto_rumah      = $this->input->get('id_foto_rumah');
+
+        if($this->input->get('tipe_rumah') == 1) {
+            $namaTipe = 'Classic';
+        } elseif($this->input->get('tipe_rumah') == 2) {
+            $namaTipe = 'Skandinavian'; 
+        } elseif($this->input->get('tipe_rumah') == 3) {
+            $namaTipe = 'Minimalis';
+        }
+
+        if($this->input->get('jenis_rumah') == 1) {
+            $namaJenis = 'mewah';
+        } elseif($this->input->get('jenis_rumah') == 2) {
+            $namaJenis = 'bagus'; 
+        } elseif($this->input->get('jenis_rumah') == 3) {
+            $namaJenis = 'murah';
+        }
 
         $data = array(
-            'harga'             => $harga,
             'namaTipe'          => $namaTipe,
+            'id_foto_rumah'     => $id_foto_rumah,
+            'namaJenis'         => $namaJenis,
             'tipe'              => $tipe,
             'jenis'             => $jenis,
             'kamar'             => $kamar,
             'wc'                => $wc,
             'ukuran'            => $ukuran,
-            'fotodenah'         => $fotodenah,
-            'fotorumah'         => $fotorumah,
         );
-        $this->load->view('homerumah/lihat_rekap', $data);
+        $this->load->view('homerumah/lihat_rekap_mewah', $data);
     }
 
-    public function get_wc_by_kamar()
+    function lihat_rekap_bagus() {
+        $tipe       = $this->input->get('tipe_rumah');
+        $ukuran     = $this->input->get('ukuran_rumah');
+        $kamar      = $this->input->get('jumlah_kamar');
+        $wc         = $this->input->get('jumlah_wc');
+        $jenis      = $this->input->get('jenis_rumah');
+        $id_foto_rumah      = $this->input->get('id_foto_rumah');
+
+        if($this->input->get('tipe_rumah') == 1) {
+            $namaTipe = 'Classic';
+        } elseif($this->input->get('tipe_rumah') == 2) {
+            $namaTipe = 'Skandinavian'; 
+        } elseif($this->input->get('tipe_rumah') == 3) {
+            $namaTipe = 'Minimalis';
+        }
+
+        if($this->input->get('jenis_rumah') == 1) {
+            $namaJenis = 'mewah';
+        } elseif($this->input->get('jenis_rumah') == 2) {
+            $namaJenis = 'bagus'; 
+        } elseif($this->input->get('jenis_rumah') == 3) {
+            $namaJenis = 'murah';
+        }
+
+        $data = array(
+            'namaTipe'          => $namaTipe,
+            'id_foto_rumah'     => $id_foto_rumah,
+            'namaJenis'         => $namaJenis,
+            'tipe'              => $tipe,
+            'jenis'             => $jenis,
+            'kamar'             => $kamar,
+            'wc'                => $wc,
+            'ukuran'            => $ukuran,
+        );
+        $this->load->view('homerumah/lihat_rekap_bagus', $data);
+    }
+
+    function lihat_rekap_murah() {
+        $tipe       = $this->input->get('tipe_rumah');
+        $ukuran     = $this->input->get('ukuran_rumah');
+        $kamar      = $this->input->get('jumlah_kamar');
+        $wc         = $this->input->get('jumlah_wc');
+        $jenis      = $this->input->get('jenis_rumah');
+        $id_foto_rumah      = $this->input->get('id_foto_rumah');
+
+        if($this->input->get('tipe_rumah') == 1) {
+            $namaTipe = 'Classic';
+        } elseif($this->input->get('tipe_rumah') == 2) {
+            $namaTipe = 'Skandinavian'; 
+        } elseif($this->input->get('tipe_rumah') == 3) {
+            $namaTipe = 'Minimalis';
+        }
+
+        if($this->input->get('jenis_rumah') == 1) {
+            $namaJenis = 'mewah';
+        } elseif($this->input->get('jenis_rumah') == 2) {
+            $namaJenis = 'bagus'; 
+        } elseif($this->input->get('jenis_rumah') == 3) {
+            $namaJenis = 'murah';
+        }
+
+        $data = array(
+            'namaTipe'          => $namaTipe,
+            'id_foto_rumah'     => $id_foto_rumah,
+            'namaJenis'         => $namaJenis,
+            'tipe'              => $tipe,
+            'jenis'             => $jenis,
+            'kamar'             => $kamar,
+            'wc'                => $wc,
+            'ukuran'            => $ukuran,
+        );
+        $this->load->view('homerumah/lihat_rekap_murah', $data);
+    }
+
+    public function get_wc_by_kamar_id_rumah()
     {
         $kamar = $this->input->post('kamar');
-        $ukuran = $this->input->post('ukuran'); // Ambil ukuran rumah dari request
+        $id_foto_rumah = $this->input->post('id_foto_rumah'); // Ambil ukuran rumah dari request
         
         // Query untuk mengambil data WC berdasarkan kamar dan ukuran
-        $jumlah_wc = $this->Tbl_foto_denah_model->get_wc_by_kamar_ukuran($kamar, $ukuran); 
+        $jumlah_wc = $this->Tbl_foto_denah_model->get_wc_by_kamar_id_rumah($kamar, $id_foto_rumah); 
         
         // Generate opsi radio button berdasarkan jumlah WC yang didapatkan
         if (!empty($jumlah_wc)) {

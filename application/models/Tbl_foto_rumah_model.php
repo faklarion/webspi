@@ -18,7 +18,7 @@ class Tbl_foto_rumah_model extends CI_Model
     // get all
     function get_all()
     {
-        $this->db->order_by($this->id, 'ASC');
+        $this->db->order_by($this->id, 'DESC');
         return $this->db->get($this->table)->result();
     }
 
@@ -36,6 +36,7 @@ class Tbl_foto_rumah_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
     
     // get total rows
     function total_rows($q = NULL) {
@@ -116,6 +117,88 @@ class Tbl_foto_rumah_model extends CI_Model
         // Return FALSE jika URL foto tidak ditemukan
         return false;
     }
+
+    public function delete_photo_denah_by_url($id_foto_rumah, $photo_url) {
+        // Fetch the existing photo URLs
+        $foto = $this->db->select('foto_denah')
+                         ->where('id_foto_rumah', $id_foto_rumah)
+                         ->get('tbl_foto_rumah')
+                         ->row()
+                         ->foto_denah;
+    
+        // Explode the fetched photo string into an array of photo URLs
+        $photos = array_map('trim', explode(",", $foto));
+    
+        // Find the index of the photo URL to delete
+        $index = array_search($photo_url, $photos);
+    
+        if ($index !== false) {
+            // Remove the photo URL from the array
+            unset($photos[$index]);
+    
+            // Implode the array back into a comma-separated string
+            $updated_foto = implode(",", $photos);
+    
+            // Update the database record with the updated foto
+            $this->db->where('id_foto_rumah', $id_foto_rumah)
+                     ->update('tbl_foto_rumah', ['foto_denah' => $updated_foto]);
+    
+            // Hapus file gambar dari direktori server
+            $file_path = './assets/denah/' . $photo_url;
+            if (file_exists($file_path)) {
+                unlink($file_path); // Menghapus file dari server
+            }
+    
+            // Return TRUE jika update dan penghapusan file berhasil
+            return true;
+        }
+    
+        // Return FALSE jika URL foto tidak ditemukan
+        return false;
+    }
+
+
+    public function check_duplicate($id_tipe, $id_jenis, $desain, $ukuran_awal)
+    {
+        $this->db->where('id_tipe', $id_tipe);
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->where('desain', $desain);
+        $this->db->where('ukuran_awal', $ukuran_awal);
+        $query = $this->db->get('tbl_foto_rumah');
+
+        if ($query->num_rows() > 0) {
+            return true; // Duplicate found
+        } else {
+            return false; // No duplicate
+        }
+    }
+
+    public function get_by_jenis_ukuran($id_jenis, $id_tipe, $ukuran) {
+        $this->db->select('*');
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->where('id_tipe', $id_tipe);
+        $this->db->where('ukuran_awal', $ukuran);
+        return $this->db->get($this->table)->result();
+    }
+
+    public function get_by_jenis_ukuran_desain($id_jenis, $id_tipe, $ukuran, $desain) {
+        $this->db->select('*');
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->where('id_tipe', $id_tipe);
+        $this->db->where('ukuran_awal', $ukuran);
+        $this->db->where('desain', $desain);
+        return $this->db->get($this->table)->row();
+    }
+
+    public function get_foto_by_jenis_ukuran_desain($id_jenis, $id_tipe, $ukuran, $desain) {
+        $this->db->select('*');
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->where('id_tipe', $id_tipe);
+        $this->db->where('ukuran_awal', $ukuran);
+        $this->db->where('desain', $desain);
+        return $this->db->get($this->table)->result();
+    }
+
     
 
 }

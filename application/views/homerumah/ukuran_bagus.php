@@ -88,8 +88,6 @@
                                     value="<?php echo $idTipe ?>">
                             </div>
 
-                            <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah"
-                                value="<?php echo $idTipe ?>">
                         
                         <button type="submit" id="btnSubmit" class="btn btn-warning"
                             style="border-radius:10px; width: 300px;">

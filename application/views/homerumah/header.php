@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="shortcut icon" href="<?= base_url('assets/img/siperindo.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url('assets/img/kotaksiperindo.png') ?>" type="image/x-icon">
     <meta name="description" content="Cek Harga Jasa Pembuatan Rumah Terbaik di PT Siperindo">
     <title>Dapatkan Penawaran Harga Jasa Pembuatan Rumahmu</title>
     <!-- Font Awesome -->
@@ -155,7 +155,7 @@
 <nav class="navbar mb-3" style="background: #909090;">
     <div class="container-fluid justify-content-center" style="min-height: 10%;">
         <a class="text-center" href="https://siperindo.id/">
-            <img src="<?= base_url('assets/img/siperindo.png') ?>" width="100px">
+            <img src="<?= base_url('assets/img/logosiperindo.png') ?>" width="250px">
         </a>
     </div>
 </nav>

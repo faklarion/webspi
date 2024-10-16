@@ -14,6 +14,7 @@
         }
     }
 
+    
 </style>
 <?php include 'header.php' ?>
 <body style="background-color: #ffffff;">
@@ -39,7 +40,7 @@
                     <?php echo $ukuran ?> (m2)</a></b>
             <i class="fa fa-chevron-right text-muted" style="font-size: 12px;"></i>
             <b> <a class="text-muted hover-overlay" style="font-family: Arial, Helvetica, sans-serif; font-size: 70%">
-                    Harga</a></b>
+                    Pilih Denah</a></b>
             </b>
         </div>
         </div>
@@ -48,6 +49,21 @@
                 <div class="container my-3">
                     <div class="card-body">
                         <table>
+                            <tr>
+                                <td>Jenis Rumah</td>
+                                <td width="20px" class="text-center">:</td>
+                                <td>
+                                    <?php 
+                                    if($jenis == 1) {
+                                        echo 'Mewah';
+                                    } elseif($jenis == 2) {
+                                        echo 'Ideal'; 
+                                    } elseif($jenis == 3) {
+                                        echo 'Murah';
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>Tipe</td>
                                 <td width="20px" class="text-center">:</td>
@@ -58,94 +74,72 @@
                                 <td width="20px" class="text-center">:</td>
                                 <td><?php echo $ukuran ?> (m2)</td>
                             </tr>
-                            <tr>
-                                <td>Jumlah Kamar</td>
-                                <td width="20px" class="text-center">:</td>
-                                <td><?php echo $kamar ?></td>
-                            </tr>
-                            <tr>
-                                <td>Jumlah WC</td>
-                                <td width="20px" class="text-center">:</td>
-                                <td><?php echo $wc ?></td>
-                            </tr>
                         </table>
                     </div>
                     <hr>
                     
+                    <form action="<?php echo site_url('homerumah/lihat_rekap_mewah') ?>" method="get" enctype="multipart/form-data" autocomplete="off">
+                        <p><h4 class="text-muted text-center" style="font-family: Arial, Helvetica, sans-serif;">Pilih Denah Untuk Rumah Kamu</h4></p>
+                        <div class="radio-button mb-3" id="inputUkuran">
+                            <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah Kamar</small></p>
+                            <input type="hidden" id="ukuran_rumah" class="form-control" name="ukuran_rumah" value="<?php echo $ukuran ?>">
+                            <input type="hidden" id="id_foto_rumah" class="form-control" name="id_foto_rumah" value="<?php echo $id_foto_rumah ?>">
+                            <input type="hidden" id="tipe_rumah" class="form-control" name="tipe_rumah" value="<?php echo $tipe ?>">
+                            <input type="hidden" id="jenis_rumah" class="form-control" name="jenis_rumah" value="<?php echo $jenis ?>">
+                            <?php 
+                                $jmlKamar = $this->Tbl_foto_denah_model->get_kamar_by_id_foto_rumah($id_foto_rumah); 
+                                foreach ($jmlKamar as $row) :
+                            ?>
+                            <input type="radio" id="kamar<?php echo $row->kamar; ?>" name="jumlah_kamar" value="<?php echo $row->kamar ?>" required>
+                            <label for="kamar<?php echo $row->kamar; ?>"><?php echo $row->kamar ?></label>
+                            <?php endforeach ?>
+                        </div>
+                        
+                        <div class="radio-button mb-3" id="inputWc" style="display: none;">
+                            <p><small class="text-muted" style="font-family: Arial, Helvetica, sans-serif;">Jumlah WC</small></p>
+                            <div id="wcOptions"></div> <!-- Placeholder untuk jumlah WC -->
+                        </div>
+                        
+                        <button type="submit" id="btnSubmit" class="btn btn-warning" style="border-radius:10px; width: 300px;">
+                            <b style="font-family: Arial, Helvetica, sans-serif;">Cek Harga</b>
+                        </button>
+                    </form>
+                    
+                    
                     <!-- <?php include 'harga.php'; ?> -->
 
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <h4 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 0.8em; margin-top: 0.8em; display: inline-block;" class="text-center">
-                                Pilih dan Klik Denah Pilihan Kamu
-                            </h4>
-                            <form action="<?php echo site_url('homerumah/lihat_desain')?>" id="myForm">
-                                <input type="hidden" name="tipe" value="<?php echo $tipe ?>">
-                                <input type="hidden" name="ukuran" value="<?php echo $ukuran ?>">
-                                <input type="hidden" name="kamar" value="<?php echo $kamar ?>">
-                                <input type="hidden" name="wc" value="<?php echo $wc ?>">
-                                <input type="hidden" name="harga" value="<?php echo $harga ?>">
-                                <input type="hidden" name="namaTipe" value="<?php echo $namaTipe ?>">
-                                <input type="hidden" name="jenis" value="Mewah">
-                                <input type="hidden" name="fotodenah" id="fotodenah">
-                                <input type="hidden" name="id_jenis" id="id_jenis" value="1">
-                                
-                                <div class="row justify-content-center">
-                                    <?php
-                                        $foto_denah = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran, $kamar, $wc); 
-                                        foreach ($foto_denah as $row): 
-                                            $fotos = explode(',', $row->foto); // Memisahkan string menjadi array
-                                            foreach ($fotos as $foto): // Iterasi melalui setiap elemen array
-                                    ?>
-                                                <div class="col-4 d-none d-md-block"> <!-- Hanya tampil di layar menengah ke atas -->
-                                                    <a href="#" class="fotoLink" data-foto="<?= trim($foto) ?>">
-                                                        <div class="card-body align-items-center d-flex justify-content-center card-shadow">
-                                                            <img src="<?= base_url('assets/denah/' . trim($foto)) ?>" alt="Foto Denah" class="card-img" style="border-radius: 15px">
-                                                        </div> 
-                                                    </a>
-                                                </div>
-                                    <?php
-                                            endforeach;
-                                        endforeach;
-                                    ?>
-                                </div>
-
-                                <!-- Carousel for Mobile Devices -->
-                                <div id="carouselExampleControls" class="carousel slide d-md-none" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <?php
-                                        $foto_denah = $this->Tbl_foto_denah_model->get_foto_denah_by_ukuran($ukuran, $kamar, $wc); 
-                                        $first = true; // Variable untuk menandai item pertama
-                                        foreach ($foto_denah as $row): 
-                                            $fotos = explode(',', $row->foto); // Memisahkan string menjadi array
-                                            foreach ($fotos as $foto): // Iterasi melalui setiap elemen array
-                                        ?>
-                                                <div class="carousel-item <?php if ($first) { echo 'active'; $first = false; } ?>">
-                                                    <a href="#" class="fotoLink" data-foto="<?= trim($foto) ?>">
-                                                        <img src="<?= base_url('assets/denah/' . trim($foto)) ?>" class="d-block w-100" alt="Foto Denah" style="border-radius: 15px;">
-                                                    </a>
-                                                </div>
-                                        <?php
-                                            endforeach;
-                                        endforeach;
-                                        ?>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                     
+                     
+                    <!-- <?php include 'hari.php'; ?> -->
+        
                 </div>
             </div>
         </div>
     </section>
 </body>
+<script>
+$(document).ready(function() {
+    $('input[name="jumlah_kamar"]').on('change', function() {
+        var kamar = $(this).val(); // Ambil nilai kamar yang dipilih
+        var idFotoRumah = $('#id_foto_rumah').val(); // Ambil ID foto rumah dari input hidden
+        
+        // Lakukan request ke server untuk mengambil jumlah WC berdasarkan kamar dan id_foto_rumah
+        $.ajax({
+            url: "<?php echo site_url('homerumah/get_wc_by_kamar_id_rumah'); ?>", // URL ke controller yang tepat
+            method: 'POST', // Gunakan 'method' daripada 'type'
+            data: {kamar: kamar, id_foto_rumah: idFotoRumah}, // Kirim dua parameter: kamar dan id_foto_rumah
+            success: function(response) {
+                // Tampilkan div WC jika berhasil
+                $('#inputWc').show();
+                
+                // Tampilkan jumlah WC ke dalam div #wcOptions
+                $('#wcOptions').html(response);
+            },
+            error: function() {
+                alert('Terjadi kesalahan saat mengambil data WC.');
+            }
+        });
+    });
+});
+</script>
 <?php include 'footer.php' ?>

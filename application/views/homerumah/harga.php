@@ -9,7 +9,18 @@
             style="font-family: Arial, Helvetica, sans-serif; display: inline-block; margin: 0; padding: 0; vertical-align: middle;">
             <s>
                 <?php
-                $hargacoret = $harga + ((25 / 100) * $harga);
+                if($jenis == 1) {
+                    $hargaMeter = $this->Tbl_mewah_model->get_by_id($tipe);
+                    $hargaRumah = $ukuran * $hargaMeter->harga;
+                } elseif($jenis == 2) {
+                    $hargaMeter = $this->Tbl_bagus_model->get_by_id($tipe);
+                    $hargaRumah = $ukuran * $hargaMeter->harga;
+                } elseif($jenis == 3) {
+                    $hargaMeter = $this->Tbl_murah_model->get_by_id($tipe);
+                    $hargaRumah = $ukuran * $hargaMeter->harga;
+                }
+
+                $hargacoret = $hargaRumah + ((25 / 100) * $hargaRumah);
                 echo rupiah($hargacoret);
                 ?>
             </s>

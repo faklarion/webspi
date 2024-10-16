@@ -12,7 +12,7 @@
             <div class='row'>
             <div class='col-md-9'>
             <div style="padding-bottom: 10px;">
-                <!-- <?php echo anchor(site_url('tbl_foto_rumah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?> -->
+                <?php echo anchor(site_url('tbl_foto_rumah/create'), '<i class="fa fa-wpforms" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm"'); ?>
             </div>
             </div>
             
@@ -38,7 +38,9 @@
                 <th>Jenis Rumah</th>
                 <th>Tipe Rumah</th>
                 <th>Ukuran</th>
-                <th>Foto</th>
+                <th>Desain ke-</th>
+                <th>Foto Rumah</th>
+                <th>Foto Denah</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -72,18 +74,28 @@
                         ?>
                     </td>
                     <td><?php echo $tbl_foto_rumah->ukuran_awal ?></td>
+                    <td><?php echo $tbl_foto_rumah->desain ?></td>
+                    
                     <td>
                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                             data-target="#myModal<?php echo $tbl_foto_rumah->id_foto_rumah ?>">Lihat Foto
                         </button>
                     </td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                            data-target="#myModalDenah<?php echo $tbl_foto_rumah->id_foto_rumah ?>">Lihat Foto Denah
+                        </button>
+                        <?php 
+                            echo anchor(site_url('tbl_foto_rumah/add_foto_denah/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-plus" aria-hidden="true"></i>','class="btn btn-success btn-sm"'); 
+                        ?>
+                    </td>
                     <td style="text-align:center" width="200px">
                         <?php 
                         //echo anchor(site_url('tbl_foto_rumah/read/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-eye" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
                         //echo '  '; 
-                        echo anchor(site_url('tbl_foto_rumah/update/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
+                        //echo anchor(site_url('tbl_foto_rumah/update/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
                         //echo '  '; 
-                        //echo anchor(site_url('tbl_foto_rumah/delete/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+                        echo anchor(site_url('tbl_foto_rumah/delete/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete onclick="javascript: return confirm(\'Are You Sure ?\')"'); 
                         ?>
                     </td>
 		        </tr>
@@ -138,13 +150,9 @@
                                                 width="150px"></td>
                                         <td>
                                             <!-- Form for delete action -->
-                                            <form action="<?php echo site_url('Tbl_foto_rumah/delete_photo'); ?>" method="post">
-                                                <input type="hidden" name="photo_url"
-                                                    value="<?php echo htmlspecialchars((string) $photo); ?>">
-                                                <input type="hidden" name="id_foto_rumah"
-                                                    value="<?php echo $foto->id_foto_rumah; ?>">
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                            </form>
+                                            <?php 
+                                                echo anchor(site_url('tbl_foto_rumah/update/'.$tbl_foto_rumah->id_foto_rumah),'<i class="fa fa-pencil-square-o" aria-hidden="true"> Ganti Gambar</i>','class="btn btn-danger btn-sm"'); 
+                                            ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -153,6 +161,63 @@
                                     <td colspan="2">No photos available</td>
                                 </tr>
                             <?php } ?>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <!-- footer modal -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
+
+<!-- Modal -->
+<?php foreach ($tbl_foto_rumah_data as $tbl_foto_rumah): ?>
+    <div id="myModalDenah<?php echo $tbl_foto_rumah->id_foto_rumah ?>" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- konten modal-->
+            <div class="modal-content">
+                <!-- heading modal -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Lihat Foto Denah</h4>
+                </div>
+                <!-- body modal -->
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Kamar</th>
+                                <th class="text-center">WC</th>
+                                <th class="text-center">Foto Denah</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                                $no = 1;
+                                $fotoDenah = $this->Tbl_foto_denah_model->get_by_id_rumah($tbl_foto_rumah->id_foto_rumah);
+                                foreach($fotoDenah as $row) :
+                            ?>
+                           <tr>
+                                <td class="text-center"><?= $no++ ?></td>
+                                <td class="text-center"><?= $row->kamar ?> Kamar</td>
+                                <td class="text-center"><?= $row->wc ?> WC</td>
+                                <td class="text-center"><img src="<?php echo base_url('assets/denah/' . htmlspecialchars((string) $row->foto_denah)) ?>" alt="" width="200px"></td>
+                                <td class="text-center">
+                                <?php 
+                                    echo anchor(site_url('tbl_foto_rumah/update_foto_denah/'.$row->id_foto_denah),'<i class="fa fa-pencil-square-o" aria-hidden="true"> Ganti Gambar</i>','class="btn btn-danger btn-sm"'); 
+                                    echo ' ';
+                                    echo anchor(site_url('tbl_foto_rumah/delete_foto_denah/'.$row->id_foto_denah),'<i class="fa fa-trash-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm" Delete onclick="javascript: return confirm(\'Are You Sure ?\')"'); 
+                                ?>
+                                </td>
+                           </tr>
+                           <?php endforeach ?>
                         </tbody>
                     </table>
 
