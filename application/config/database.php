@@ -76,9 +76,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'gskstore_spi2',
-	'password' => ',x-^hl.}=ul&',
-	'database' => 'gskstore_spi2',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'webspi',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
