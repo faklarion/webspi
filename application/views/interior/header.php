@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="shortcut icon" href="<?= base_url('assets/img/logosiperindo.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url('assets/img/kotaksiperindo.png') ?>" type="image/x-icon">
     <meta name="description" content="Cek Harga Jasa Interior Rumah Terbaik di PT Siperindo">
     <title>Dapatkan Penawaran Harga Jasa Pembuatan Interiormu</title>
     <!-- Font Awesome -->
