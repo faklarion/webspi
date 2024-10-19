@@ -17,9 +17,9 @@
 								 
 								if($id_jenis == 1) {
 									echo 'Mewah';
-								} elseif($id_jenis == 3) {
-									echo 'Ideal';
 								} elseif($id_jenis == 2) {
+									echo 'Ideal';
+								} elseif($id_jenis == 3) {
 									echo 'Murah';
 								}
 								
