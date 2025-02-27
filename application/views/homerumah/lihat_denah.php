@@ -175,7 +175,7 @@
                             <p style="font-family: Arial, Helvetica, sans-serif;">Berminat ? Hubungi Kami Sekarang Juga !</p>
                         </div>
                         <div class="row justify-content-center">
-                            <a href="https://wa.me/6281250969099" target="_blank" class="btn btn-sm btn-success"><i
+                            <a href="https://wa.me/6281350242324" target="_blank" class="btn btn-sm btn-success"><i
                                     class="fa fa-whatsapp"></i> <b
                                     style="font-family: Arial, Helvetica, sans-serif;">Hubungi Kami</b></a>
                         </div>
